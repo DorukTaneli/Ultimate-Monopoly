@@ -27,10 +27,10 @@ public class Control extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
 		
-		addBoardImage();
 		addButtons();
 		
 		initialize();
+		addBoardImage();
 		
 		this.setVisible(true);
 	}
@@ -82,10 +82,19 @@ public class Control extends JFrame{
 		Player playerHat = (Player)game1.getPlayers().get(0);
 		Player playerCar = (Player)game1.getPlayers().get(1);
 
-		Piece pieceHat = new Piece(new JLabel(new ImageIcon("hat small.png")), playerHat, -25);
-		Piece pieceCar = new Piece(new JLabel(new ImageIcon("car small.png")), playerCar, 25);
+		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics\\hat small.png")), playerHat, -25);
+		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics\\car small.png")), playerCar, 25);
 		
+
+		JLabel hatLbl = pieceHat.getJLabel();
+		this.getContentPane().add(hatLbl);
+		hatLbl.setBounds(1125, 825, 50, 50);
+		hatLbl.setVisible(true);
 		
+		JLabel carLbl = pieceCar.getJLabel();
+		this.getContentPane().add(carLbl);
+		carLbl.setBounds(1125, 775, 50, 50);
+		carLbl.setVisible(true);
 	}
 	
 	
