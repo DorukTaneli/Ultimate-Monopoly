@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MonopolyGame {
+public class DomainController {
 	private static final int ROUNDS_TOTAL = 20;
 	private static final int PLAYERS_TOTAL = 2;
 	private List players = new ArrayList(PLAYERS_TOTAL);
@@ -11,7 +11,7 @@ public class MonopolyGame {
 	private Die[] dice = {new Die(), new Die()};
 	private int turn = 0;
 
-	public MonopolyGame() {
+	public DomainController() {
 		Player p;
 		p = new Player("Hat", dice, board);
 		players.add(p);
@@ -48,5 +48,22 @@ public class MonopolyGame {
 
 	public Board getBoard() {
 		return board;
+	}
+	
+	public void rollPressed() {
+//		Player nextPlayer = getCurrentPlayer();
+//		nextPlayer.takeTurn();
+	}
+	
+	public void buyPressed() {
+		
+	}
+	
+	public void buildPressed() {
+		
+	}
+	
+	public void endTurnPressed() {
+		
 	}
 }

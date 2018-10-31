@@ -1,11 +1,12 @@
-package control;
+package uiLayer;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import domainLayer.MonopolyGame;
-import domainLayer.Piece;
+import domainLayer.DomainController;
 import domainLayer.Player;
 import domainLayer.Square;
 
@@ -13,23 +14,25 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Button;
 
-public class Control extends JFrame{
+public class AppWindow extends JFrame{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Control();
+		new AppWindow();
 	}
 	
-	public Control() {
+	public AppWindow() {
+		DomainController ctrl = new DomainController();
+		
 		setResizable(false);
 		
 		this.setSize(1600,1050);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
 		
-		addButtons();
+		addButtons(ctrl);
 		
-		initialize();
+		addPieces(ctrl);
 		addBoardImage();
 		
 		this.setVisible(true);
@@ -52,35 +55,51 @@ public class Control extends JFrame{
 	}
 	
 	
-	public void addButtons() {
+	public void addButtons(DomainController ctrl) {
 		JPanel panel = new JPanel();
 		this.getContentPane().add(panel, BorderLayout.WEST);
 		panel.setLayout(new GridLayout(4, 1, 10, 10));
 		
 		Button button = new Button("Roll Dice");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.rollPressed();
+			}
+		});
 		panel.add(button);
 		
-		Button button_1 = new Button("Buy Deed/Build");
+		Button button_1 = new Button("Buy Deed");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.buyPressed();
+			}
+		});
 		panel.add(button_1);
 		
-		Button button_2 = new Button("Use Card");
+		Button button_2 = new Button("Build");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.buildPressed();
+			}
+		});
 		panel.add(button_2);
 		
 		Button button_3 = new Button("End Turn");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrl.endTurnPressed();
+			}
+		});
 		panel.add(button_3);
 		
 
 		panel.setVisible(true);
 	}
 	
-	public void initialize() {
-		MonopolyGame game1 = new MonopolyGame();
-		addPieces(game1);
-	}
 	
-	public void addPieces(MonopolyGame game1) {
-		Player playerHat = (Player)game1.getPlayers().get(0);
-		Player playerCar = (Player)game1.getPlayers().get(1);
+	public void addPieces(DomainController ctrl) {
+		Player playerHat = (Player)ctrl.getPlayers().get(0);
+		Player playerCar = (Player)ctrl.getPlayers().get(1);
 
 		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics\\hat small.png")), playerHat, -25);
 		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics\\car small.png")), playerCar, 25);

@@ -1,5 +1,7 @@
 package domainLayer;
 
+import uiLayer.Piece;
+
 public class Player {
 
 	private Square location;
@@ -7,7 +9,6 @@ public class Player {
 	private Board board;
 	private Die[] dice;
 	private int cash = 1500;
-	private Piece piece;
 	private boolean haveRolled = false;
 
 	public Player(String name, Die[] dice, Board board) {
@@ -66,16 +67,6 @@ public class Player {
 				reduceCash(pr);
 			}
 		}
-	}
-
-
-	public Piece getPiece() {
-		return piece;
-	}
-
-
-	public void setPiece(Piece piece) {
-		this.piece = piece;
 	}
 
 	public boolean haveRolled() {

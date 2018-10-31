@@ -13,9 +13,7 @@ public class Board {
 	}
 	
 	public Square getSquare(Square start, int distance) {
-		int startInd = start.getIndex();
-		int endIndex = (startInd + distance) % SIZE;
-//		int endIndex = (start.getIndex() + distance) % SIZE;
+		int endIndex = (start.getIndex() + distance) % SIZE;
 		return (Square) squares.get(endIndex);
 	}
 	

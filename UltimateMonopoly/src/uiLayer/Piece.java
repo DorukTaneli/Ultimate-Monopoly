@@ -1,5 +1,8 @@
-package domainLayer;
+package uiLayer;
 import javax.swing.JLabel;
+
+import domainLayer.Player;
+import domainLayer.Square;
 
 public class Piece {
 	
