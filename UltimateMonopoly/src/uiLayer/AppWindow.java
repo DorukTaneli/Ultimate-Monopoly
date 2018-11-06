@@ -101,8 +101,8 @@ public class AppWindow extends JFrame{
 		Player playerHat = (Player)ctrl.getPlayers().get(0);
 		Player playerCar = (Player)ctrl.getPlayers().get(1);
 
-		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics\\hat small.png")), playerHat, -25);
-		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics\\car small.png")), playerCar, 25);
+		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics/hat small.png")), playerHat, -25);
+		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics/car small.png")), playerCar, 25);
 		
 
 		JLabel hatLbl = pieceHat.getJLabel();
