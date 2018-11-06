@@ -40,7 +40,7 @@ public class AppWindow extends JFrame{
 	
 	
 	public void addBoardImage() {
-		ImageIcon imageIcon = new ImageIcon("graphics\\\\ultimatemonopolyboard.png"); // load the image to a imageIcon
+		ImageIcon imageIcon = new ImageIcon("graphics/ultimatemonopolyboard.png"); // load the image to a imageIcon
 		Image image = imageIcon.getImage(); // transform it 
 		Image newimg = image.getScaledInstance(1000, 1000,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		imageIcon = new ImageIcon(newimg);  // transform it back
