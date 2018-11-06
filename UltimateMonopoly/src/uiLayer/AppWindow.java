@@ -101,19 +101,19 @@ public class AppWindow extends JFrame{
 		Player playerHat = (Player)ctrl.getPlayers().get(0);
 		Player playerCar = (Player)ctrl.getPlayers().get(1);
 
-		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics/hat small.png")), playerHat, -25);
-		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics/car small.png")), playerCar, 25);
-		
-
-		JLabel hatLbl = pieceHat.getJLabel();
-		this.getContentPane().add(hatLbl);
-		hatLbl.setBounds(1125, 825, 50, 50);
-		hatLbl.setVisible(true);
-		
-		JLabel carLbl = pieceCar.getJLabel();
-		this.getContentPane().add(carLbl);
-		carLbl.setBounds(1125, 775, 50, 50);
-		carLbl.setVisible(true);
+//		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics/hat small.png")), playerHat, -25);
+//		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics/car small.png")), playerCar, 25);
+//		
+//
+//		JLabel hatLbl = pieceHat.getJLabel();
+//		this.getContentPane().add(hatLbl);
+//		hatLbl.setBounds(1125, 825, 50, 50);
+//		hatLbl.setVisible(true);
+//		
+//		JLabel carLbl = pieceCar.getJLabel();
+//		this.getContentPane().add(carLbl);
+//		carLbl.setBounds(1125, 775, 50, 50);
+//		carLbl.setVisible(true);
 	}
 	
 	
@@ -121,30 +121,44 @@ public class AppWindow extends JFrame{
 	public static final int X_OFFSET = 0;
 	public static final int HALFSQ = 56;
 
-	public int getPixelx(Square sq) {
-		int ind = sq.getIndex();
+	public int getPixelx(int ind) {
+		if ((ind <= 39 && ind >= 30) || ind == 0) {
+			return X_OFFSET + HALFSQ*24;
+		} else if ((ind >= 10 && ind <= 20)) {
+			return X_OFFSET + HALFSQ*2;
+		}
 		switch (ind) {
-		case 0: case 19: case 18:
-		case 17: case 16: case 15:
-			return HALFSQ*11;
-		case 5: case 6: case 7:
-		case 8: case 9: case 10:
-			return HALFSQ*1;
-		case 4: case 11:
-			return HALFSQ*3;
-		case 3: case 12:
-			return HALFSQ*5;
-		case 2: case 13:
-			return HALFSQ*7;
-		case 1: case 14:
-			return HALFSQ*9;
+		case 1: case 29:
+			return X_OFFSET + HALFSQ*21;
+		case 2: case 28:
+			return X_OFFSET + HALFSQ*19;
+		case 3: case 27:
+			return X_OFFSET + HALFSQ*17;
+		case 4: case 26:
+			return X_OFFSET + HALFSQ*15;
+		case 5: case 25:
+			return X_OFFSET + HALFSQ*13;
+		case 6: case 24:
+			return X_OFFSET + HALFSQ*11;
+		case 7: case 23:
+			return X_OFFSET + HALFSQ*9;
+		case 8: case 22:
+			return X_OFFSET + HALFSQ*7;
+		case 9: case 21:
+			return X_OFFSET + HALFSQ*5;
 		default:
-			return HALFSQ*6;
+			return X_OFFSET + HALFSQ*14;
 		}
 	}
 
-	public int getPixely(Square sq) {
-		int ind = sq.getIndex();
+	public int getPixely(int ind) {
+		if ((ind <= 10 && ind >= 0)) {
+			return X_OFFSET + HALFSQ*24;
+		} else if ((ind >= 20 && ind <= 29)) {
+			return X_OFFSET + HALFSQ*2;
+		}
+		
+		
 		switch (ind) {
 		case 0: case 1: case 2:
 		case 3: case 4: case 5:
