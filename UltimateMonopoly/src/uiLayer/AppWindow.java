@@ -33,6 +33,7 @@ public class AppWindow extends JFrame{
 		addButtons(ctrl);
 		
 		addPieces(ctrl);
+		addPlayerLabels(ctrl);
 		addBoardImage();
 		
 		this.setVisible(true);
@@ -54,6 +55,35 @@ public class AppWindow extends JFrame{
 		this.getContentPane().add(picLabel);
 	}
 	
+	public void addPlayerLabels(DomainController ctrl) {
+		JPanel panel = new JPanel();
+		this.getContentPane().add(panel, BorderLayout.EAST);
+		
+		JLabel lbl = new JLabel("Player 1");
+		lbl.setToolTipText("<html>"
+				+ "<p width=\"200\"> Player1</p>"
+				+ "<p width=\"200\">Money: 2000</p>"
+				+ "<ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul>"
+				+ "</html>\"");
+		panel.add(lbl);
+		
+		JLabel lbl_1 = new JLabel("Player 2");
+		lbl_1.setToolTipText("<html>"
+				+ "<p width=\"200\"> Player2</p>"
+				+ "<p width=\"200\">Money: 9000</p>"
+				+ "<ul>Owned Places:<li>Smells</li><li>Like</li><li>Teen</li><li>Spirit</li></ul>"
+				+ "</html>\"");
+		panel.add(lbl_1);
+		
+		JLabel lbl_2 = new JLabel("Player 3");
+		lbl_2.setToolTipText("<html>"
+				+ "<p width=\"200\"> Player3</p>"
+				+ "<p width=\"200\">Money: 9001</p>"
+				+ "<ul>Owned Places:<li>Fire</li><li>Water</li><li>Earth</li><li>Wood</li></ul>"
+				+ "</html>\"");
+		panel.add(lbl_2);
+		
+	}
 	
 	public void addButtons(DomainController ctrl) {
 		JPanel panel = new JPanel();
