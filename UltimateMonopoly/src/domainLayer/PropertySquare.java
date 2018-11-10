@@ -17,6 +17,10 @@ public class PropertySquare extends Square{
 		if (owner != null && owner != p)
 			payRent(p);
 	}
+	
+	public void passedOn(Player p) {
+	
+	}
 
 	public int getPrice() {
 		return price;

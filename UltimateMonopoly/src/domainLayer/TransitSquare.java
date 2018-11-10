@@ -1,20 +1,24 @@
 package domainLayer;
 
-public class GoSquare extends Square{
+public class TransitSquare extends Square{
 
-	private int salary = 200;
 	
-	public GoSquare(String name, int index) {
+	
+	public TransitSquare(String name, int index) {
 		super(name, index);
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	@Override
 	public void landedOn(Player p) {
-		p.addCash(salary);
-	}
-	
-	public void passedOn(Player p) {
+		
 		
 	}
 
+	public void passedOn(Player p) {
+		
+	}
+	
+	
+	
 }

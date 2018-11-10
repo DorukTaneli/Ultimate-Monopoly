@@ -5,10 +5,20 @@ import java.util.List;
 public class Board {
 	private static final int SIZE = 40;
 	private List squares = new ArrayList(SIZE);
+	private Cup cup = new Cup();
 	
 	public Board() {
 		buildSquares();
 		linkSquares();
+		
+	}
+	
+	public Cup getCup() {
+		return cup;
+	}
+	
+	public List getSquaresList() {
+		return squares;
 	}
 	
 	public Square getSquare(Square start, int distance) {
@@ -63,6 +73,8 @@ public class Board {
 		buildRS("Luxury Tax", 38);
 		buildPS("Board Walk", 39, 350, 24);
 	}
+	
+	
 	
 	private void buildPS(String name, int ind, int pr, int rent) {
 		Square s = new PropertySquare(name, ind, pr, rent);

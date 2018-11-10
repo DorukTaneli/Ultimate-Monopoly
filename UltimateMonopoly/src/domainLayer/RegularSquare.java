@@ -9,4 +9,10 @@ public class RegularSquare extends Square{
 	public void landedOn(Player p) {
 		
 	}
+	
+	@Override
+	public void passedOn(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
 }

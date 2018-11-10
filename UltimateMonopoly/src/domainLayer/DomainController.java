@@ -7,15 +7,16 @@ public class DomainController {
 	private static final int PLAYERS_TOTAL = 2;
 	private List players = new ArrayList(PLAYERS_TOTAL);
 	private Board board = new Board();
-	private Die[] dice = {new Die(), new Die()};
+	private Cup cup;
 	private int turn = 0;
 
 	public DomainController() {
 		Player p;
-		p = new Player("Hat", dice, board);
+		p = new Player("Hat", board);
 		players.add(p);
-		p = new Player("Car", dice, board);
+		p = new Player("Car", board);
 		players.add(p);
+		this.cup=board.getCup();
 	}
 
 //	public void playGame() {

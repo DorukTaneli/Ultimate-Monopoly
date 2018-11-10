@@ -31,7 +31,6 @@ public class AppWindow extends JFrame{
 		this.setTitle("Sawcon Ultimate Monopoly");
 		
 		addButtons(ctrl);
-		
 		addPieces(ctrl);
 		addPlayerLabels(ctrl);
 		addBoardImage();

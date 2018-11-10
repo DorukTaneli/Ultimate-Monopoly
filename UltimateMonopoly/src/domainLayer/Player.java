@@ -5,35 +5,38 @@ public class Player {
 	private Piece piece;
 	private String name;
 	private Board board;
-	private Die[] dice;
 	private int cash = 1500;
 	private boolean haveRolled = false;
+	private Cup cup;
 
-	public Player(String name, Die[] dice, Board board) {
+	public Player(String name, Board board) {
 		this.name = name;
-		this.dice = dice;
 		this.board = board;
+		this.cup=board.getCup();
 		piece= new Piece(board.getStartSquare());
 	}
 
 	public void takeTurn() {
 		if (!haveRolled) {
-			int rollTotal = rollDice();
+			cup.roll();
+			int rollTotal = cup.get2RollValue();
 			Square newLoc = board.getSquare(piece.getLocation(), rollTotal);
 			piece.setLocation(newLoc);
 			piece.getLocation().landedOn(this);
 			haveRolled = true;
+			if(cup.isDualRoll()) haveRolled=false;
 		}
 	}
-
-	private int rollDice() {
-		//roll dice
-		int rollTotal = 0;
-		for (int i = 0; i < dice.length; i++) {
-			dice[i].roll();
-			rollTotal += dice[i].getFaceValue();
-		}
-		return rollTotal;
+	
+	public void move(Square sq) {
+		piece.setLocation(sq);
+		
+		sq.landedOn(this);
+	}
+	
+	public void passSquare(int movesLeft) {
+		
+		
 	}
 
 	public Square getLocation() {
