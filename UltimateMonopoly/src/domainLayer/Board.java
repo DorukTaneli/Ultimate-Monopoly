@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-	buil
 	private static final int SIZE = 40;
 	private List squares = new ArrayList(SIZE);
 	
