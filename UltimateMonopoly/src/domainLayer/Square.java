@@ -27,6 +27,10 @@ public abstract class Square {
 		return index;
 	}
 	
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	
 	abstract public void landedOn(Player p);
 	abstract public void passedOn(Player p);
 }
