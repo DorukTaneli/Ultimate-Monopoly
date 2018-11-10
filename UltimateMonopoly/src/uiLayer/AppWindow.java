@@ -94,6 +94,7 @@ public class AppWindow extends JFrame{
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.rollPressed();
+				
 			}
 		});
 		panel.add(button);

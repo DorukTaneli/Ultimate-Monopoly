@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class DomainController {
-	private static final int ROUNDS_TOTAL = 20;
 	private static final int PLAYERS_TOTAL = 2;
 	private List players = new ArrayList(PLAYERS_TOTAL);
 	private Board board = new Board();
@@ -19,17 +18,18 @@ public class DomainController {
 		players.add(p);
 	}
 
-	public void playGame() {
-		for (int i = 0; i < ROUNDS_TOTAL; i++) {
-			playRound();
-		}
-	}
-
-	public void endTurn() {
-		Player p = (Player) players.get(turn);
-		p.setHaveRolled(false);
-		turn = (turn + 1) % PLAYERS_TOTAL;
-	}
+//	public void playGame() {
+//		for (int i = 0; i < ROUNDS_TOTAL; i++) {
+//			playRound();
+//		}
+//	}
+	
+//	private void playRound() {
+//	for (Iterator iter = players.iterator(); iter.hasNext();) {
+//		Player player = (Player) iter.next();
+//		player.takeTurn();
+//	}
+//}
 
 	public Player getCurrentPlayer() {
 		return (Player) players.get(turn);
@@ -39,24 +39,17 @@ public class DomainController {
 		return players;
 	}
 
-	private void playRound() {
-		for (Iterator iter = players.iterator(); iter.hasNext();) {
-			Player player = (Player) iter.next();
-			player.takeTurn();
-		}
-	}
-
 	public Board getBoard() {
 		return board;
 	}
 	
 	public void rollPressed() {
-//		Player nextPlayer = getCurrentPlayer();
-//		nextPlayer.takeTurn();
+		Player nextPlayer = getCurrentPlayer();
+		nextPlayer.takeTurn();
 	}
 	
 	public void buyPressed() {
-		
+	
 	}
 	
 	public void buildPressed() {
@@ -64,6 +57,8 @@ public class DomainController {
 	}
 	
 	public void endTurnPressed() {
-		
+		Player p = (Player) players.get(turn);
+		p.setHaveRolled(false);
+		turn = (turn + 1) % PLAYERS_TOTAL;
 	}
 }

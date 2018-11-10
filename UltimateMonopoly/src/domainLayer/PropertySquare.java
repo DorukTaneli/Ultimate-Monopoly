@@ -4,12 +4,12 @@ public class PropertySquare extends Square{
 	
 	private int price;
 	private Player owner = null;
-	private int rent;
+	private int baseRent;
 
 	public PropertySquare(String name, int index, int price, int rent) {
 		super(name, index);
 		this.price = price;
-		this.rent = rent;
+		this.baseRent = rent;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class PropertySquare extends Square{
 	}
 	
 	public void payRent(Player p) {
-		owner.addCash(rent);
-		p.reduceCash(rent);
+		owner.addCash(baseRent);
+		p.reduceCash(baseRent);
 	}
 
 }
