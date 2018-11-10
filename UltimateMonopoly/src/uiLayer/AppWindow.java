@@ -128,22 +128,21 @@ public class AppWindow extends JFrame{
 	
 	
 	public void addPieces(DomainController ctrl) {
-		Player playerHat = (Player)ctrl.getPlayers().get(0);
-		Player playerCar = (Player)ctrl.getPlayers().get(1);
-
+//		Player playerHat = (Player)ctrl.getPlayers().get(0);
+//		Player playerCar = (Player)ctrl.getPlayers().get(1);
+//
 //		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics/hat small.png")), playerHat, -25);
 //		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics/car small.png")), playerCar, 25);
-//		
-//
-//		JLabel hatLbl = pieceHat.getJLabel();
-//		this.getContentPane().add(hatLbl);
-//		hatLbl.setBounds(1125, 825, 50, 50);
-//		hatLbl.setVisible(true);
-//		
-//		JLabel carLbl = pieceCar.getJLabel();
-//		this.getContentPane().add(carLbl);
-//		carLbl.setBounds(1125, 775, 50, 50);
-//		carLbl.setVisible(true);
+
+		JLabel hatLbl = new JLabel(new ImageIcon("graphics/hat small.png"));
+		this.getContentPane().add(hatLbl);
+		hatLbl.setBounds(1025, 825, 50, 50);
+		hatLbl.setVisible(true);
+		
+		JLabel carLbl = new JLabel(new ImageIcon("graphics/car small.png"));
+		this.getContentPane().add(carLbl);
+		carLbl.setBounds(1025, 775, 50, 50);
+		carLbl.setVisible(true);
 	}
 	
 	

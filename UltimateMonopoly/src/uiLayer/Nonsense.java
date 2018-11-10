@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import domainLayer.Player;
 import domainLayer.Square;
 
-public class Piece {
+public class Nonsense {
 	
 	public static final int BARHEIGHT = 0;
 	public static final int HALFSQ = 56;
@@ -12,7 +12,7 @@ public class Piece {
 	private int offset;
 	
 
-	public Piece(int offset) {
+	public Nonsense(int offset) {
 		this.offset = offset;
 	}
 	

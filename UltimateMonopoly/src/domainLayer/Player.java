@@ -1,10 +1,8 @@
 package domainLayer;
 
-import uiLayer.Piece;
-
 public class Player {
 
-	private Square location;
+	private Piece piece;
 	private String name;
 	private Board board;
 	private Die[] dice;
@@ -15,16 +13,15 @@ public class Player {
 		this.name = name;
 		this.dice = dice;
 		this.board = board;
-		location = board.getStartSquare();
+		piece= new Piece(board.getStartSquare());
 	}
 
 	public void takeTurn() {
 		if (!haveRolled) {
 			int rollTotal = rollDice();
-
-			Square newLoc = board.getSquare(location, rollTotal);
-			location = newLoc;
-			location.landedOn(this);
+			Square newLoc = board.getSquare(piece.getLocation(), rollTotal);
+			piece.setLocation(newLoc);
+			piece.getLocation().landedOn(this);
 			haveRolled = true;
 		}
 	}
@@ -40,7 +37,7 @@ public class Player {
 	}
 
 	public Square getLocation() {
-		return location;
+		return piece.getLocation();
 	}
 
 	public String getName() {
