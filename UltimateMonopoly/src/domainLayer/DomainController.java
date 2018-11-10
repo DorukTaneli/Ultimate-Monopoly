@@ -34,6 +34,10 @@ public class DomainController {
 	public Player getCurrentPlayer() {
 		return (Player) players.get(turn);
 	}
+	
+	public Player getLastPlayer() {
+		return (Player) players.get((turn - 1 + PLAYERS_TOTAL) % PLAYERS_TOTAL);
+	}
 
 	public List getPlayers() {
 		return players;
@@ -49,7 +53,8 @@ public class DomainController {
 	}
 	
 	public void buyPressed() {
-	
+		Player nextPlayer = getCurrentPlayer();
+		nextPlayer.attemptPurchase((PropertySquare)nextPlayer.getLocation());
 	}
 	
 	public void buildPressed() {

@@ -15,25 +15,32 @@ import java.awt.GridLayout;
 import java.awt.Button;
 
 public class AppWindow extends JFrame{
-
+	
+	private JLabel boardLabel;
+	private JLabel hatLbl;
+	private JLabel carLbl;
+	private int Y_OFFSET;
+	private int X_OFFSET;
+	private int HALFSQ;
+	private int MIDLAYER;
+	private DomainController ctrl = new DomainController();
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new AppWindow();
 	}
 	
 	public AppWindow() {
-		DomainController ctrl = new DomainController();
-		
 		setResizable(false);
 		
 		this.setSize(1600,1050);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
 		
-		addButtons(ctrl);
+		addButtons();
 		
-		addPieces(ctrl);
-		addPlayerLabels(ctrl);
+		addPieces();
+		addPlayerLabels();
 		addBoardImage();
 		
 		this.setVisible(true);
@@ -48,14 +55,16 @@ public class AppWindow extends JFrame{
 
 		
 		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
-		JLabel picLabel = new JLabel(imageIcon);
-		
-		
+		boardLabel = new JLabel(imageIcon);
+		X_OFFSET = boardLabel.getX();
+		Y_OFFSET = boardLabel.getY();
+		HALFSQ = (int) (boardLabel.getHeight()/17.5);
+		MIDLAYER = (int) (HALFSQ*1.1);
 
-		this.getContentPane().add(picLabel);
+		this.getContentPane().add(boardLabel);
 	}
 	
-	public void addPlayerLabels(DomainController ctrl) {
+	public void addPlayerLabels() {
 		JPanel panel = new JPanel();
 		this.getContentPane().add(panel, BorderLayout.EAST);
 		
@@ -85,7 +94,7 @@ public class AppWindow extends JFrame{
 		
 	}
 	
-	public void addButtons(DomainController ctrl) {
+	public void addButtons() {
 		JPanel panel = new JPanel();
 		this.getContentPane().add(panel, BorderLayout.WEST);
 		panel.setLayout(new GridLayout(4, 1, 10, 10));
@@ -94,7 +103,7 @@ public class AppWindow extends JFrame{
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.rollPressed();
-				
+				updatePieceGUILocation();
 			}
 		});
 		panel.add(button);
@@ -128,7 +137,7 @@ public class AppWindow extends JFrame{
 	}
 	
 	
-	public void addPieces(DomainController ctrl) {
+	public void addPieces() {
 //		Player playerHat = (Player)ctrl.getPlayers().get(0);
 //		Player playerCar = (Player)ctrl.getPlayers().get(1);
 //
@@ -146,68 +155,68 @@ public class AppWindow extends JFrame{
 		carLbl.setVisible(true);
 	}
 	
-	
-	public static final int Y_OFFSET = 0;
-	public static final int X_OFFSET = 0;
-	public static final int HALFSQ = 56;
+	private void updatePieceGUILocation(){
+		carLbl.setBounds(getPixelX(ctrl.getLastPlayer().getLocation().getIndex()),
+				getPixelY(ctrl.getLastPlayer().getLocation().getIndex()), 25, 25);
+	}
 
-	public int getPixelx(int ind) {
+	public int getPixelX(int ind) {
 		if ((ind <= 39 && ind >= 30) || ind == 0) {
-			return X_OFFSET + HALFSQ*24;
+			return X_OFFSET + HALFSQ*24 + MIDLAYER;
 		} else if ((ind >= 10 && ind <= 20)) {
-			return X_OFFSET + HALFSQ*2;
+			return X_OFFSET + HALFSQ*2 + MIDLAYER;
 		}
 		switch (ind) {
 		case 1: case 29:
-			return X_OFFSET + HALFSQ*21;
+			return X_OFFSET + HALFSQ*21 + MIDLAYER;
 		case 2: case 28:
-			return X_OFFSET + HALFSQ*19;
+			return X_OFFSET + HALFSQ*19 + MIDLAYER;
 		case 3: case 27:
-			return X_OFFSET + HALFSQ*17;
+			return X_OFFSET + HALFSQ*17 + MIDLAYER;
 		case 4: case 26:
-			return X_OFFSET + HALFSQ*15;
+			return X_OFFSET + HALFSQ*15 + MIDLAYER;
 		case 5: case 25:
-			return X_OFFSET + HALFSQ*13;
+			return X_OFFSET + HALFSQ*13 + MIDLAYER;
 		case 6: case 24:
-			return X_OFFSET + HALFSQ*11;
+			return X_OFFSET + HALFSQ*11 + MIDLAYER;
 		case 7: case 23:
-			return X_OFFSET + HALFSQ*9;
+			return X_OFFSET + HALFSQ*9 + MIDLAYER;
 		case 8: case 22:
-			return X_OFFSET + HALFSQ*7;
+			return X_OFFSET + HALFSQ*7 + MIDLAYER;
 		case 9: case 21:
-			return X_OFFSET + HALFSQ*5;
+			return X_OFFSET + HALFSQ*5 + MIDLAYER;
 		default:
-			return X_OFFSET + HALFSQ*14;
+			return X_OFFSET + HALFSQ*14 + MIDLAYER;
 		}
 	}
 
-	public int getPixely(int ind) {
+	public int getPixelY(int ind) {
 		if ((ind <= 10 && ind >= 0)) {
-			return X_OFFSET + HALFSQ*24;
+			return X_OFFSET + HALFSQ*24 + MIDLAYER;
 		} else if ((ind >= 20 && ind <= 29)) {
-			return X_OFFSET + HALFSQ*2;
+			return X_OFFSET + HALFSQ*2 + MIDLAYER;
 		}
-		
-		
 		switch (ind) {
-		case 0: case 1: case 2:
-		case 3: case 4: case 5:
-			return Y_OFFSET + 11*HALFSQ;
-		case 10: case 11: case 12:
-		case 13: case 14: case 15:
-			return Y_OFFSET + HALFSQ;
-		case 9: case 16:
-			return Y_OFFSET + HALFSQ*3;
-		case 8: case 17:
-			return Y_OFFSET + HALFSQ*5;
-		case 7: case 18:
-			return Y_OFFSET + HALFSQ*7;
-		case 6: case 19:
-			return Y_OFFSET + HALFSQ*9;
+		case 19: case 31:
+			return X_OFFSET + HALFSQ*5 + MIDLAYER;
+		case 18: case 32:
+			return X_OFFSET + HALFSQ*7 + MIDLAYER;
+		case 17: case 33:
+			return X_OFFSET + HALFSQ*9 + MIDLAYER;
+		case 16: case 34:
+			return X_OFFSET + HALFSQ*11 + MIDLAYER;
+		case 15: case 35:
+			return X_OFFSET + HALFSQ*13 + MIDLAYER;
+		case 14: case 36:
+			return X_OFFSET + HALFSQ*15 + MIDLAYER;
+		case 13: case 37:
+			return X_OFFSET + HALFSQ*17 + MIDLAYER;
+		case 12: case 38:
+			return X_OFFSET + HALFSQ*19 + MIDLAYER;
+		case 11: case 39:
+			return X_OFFSET + HALFSQ*21 + MIDLAYER;
 		default:
-			return Y_OFFSET + HALFSQ*6;
+			return X_OFFSET + HALFSQ*14 + MIDLAYER;
 		}
 	}
-	
-
 }
