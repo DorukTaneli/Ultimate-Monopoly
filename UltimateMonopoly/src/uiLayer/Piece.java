@@ -10,27 +10,16 @@ public class Piece {
 	public static final int HALFSQ = 56;
 
 	private int offset;
-	private JLabel lbl;
-	private Player player;
+	
 
-	public Piece(JLabel lbl, Player p, int offset) {
-		this.lbl = lbl;
-		this.player = p;
+	public Piece(int offset) {
 		this.offset = offset;
 	}
 	
-	public void setGUILocation() {
-		Square sq = player.getLocation();
-		lbl.setLocation(getPixelx(sq) + offset - 25, getPixely(sq) - 25);
-	}
-
-	public JLabel getJLabel() {
-		return lbl;
-	}
-
-	public void setJLabel(JLabel lbl) {
-		this.lbl = lbl;
-	}
+//	public void setGUILocation() {
+//		Square sq = player.getLocation();
+//		lbl.setLocation(getPixelx(sq) + offset - 25, getPixely(sq) - 25);
+//	}
 
 	public int getPixelx(Square sq) {
 		int ind = sq.getIndex();
