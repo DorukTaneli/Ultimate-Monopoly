@@ -9,6 +9,7 @@ public abstract class Card {
 	public Card(String name,Boolean keepable) {
 		this.name=name;
 		this.keepable=keepable;
+		
 	}
 	
 }
