@@ -23,6 +23,11 @@ public abstract class Square {
 		return name;
 	}
 	
+	public boolean equals(Square sq2) {
+		if(this.name.equals(sq2.name)) return true;
+		else return false;
+	}
+	
 	public int getIndex() {
 		return index;
 	}

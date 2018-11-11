@@ -3,6 +3,7 @@ package uiLayer;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -23,6 +24,7 @@ public class AppWindow extends JFrame{
 	
 	public AppWindow() {
 		DomainController ctrl = new DomainController();
+		
 		
 		setResizable(false);
 		
@@ -145,6 +147,9 @@ public class AppWindow extends JFrame{
 		carLbl.setVisible(true);
 	}
 	
+	public void updatePieceLocations() {
+		
+	}
 	
 	public static final int Y_OFFSET = 0;
 	public static final int X_OFFSET = 0;

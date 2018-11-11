@@ -8,6 +8,8 @@ public class Player {
 	private int cash = 1500;
 	private boolean haveRolled = false;
 	private Cup cup;
+	
+	private boolean inJail=false;
 
 	public Player(String name, Board board) {
 		this.name = name;
@@ -17,26 +19,70 @@ public class Player {
 	}
 
 	public void takeTurn() {
-		if (!haveRolled) {
+		while (!haveRolled) {
 			cup.roll();
 			int rollTotal = cup.get2RollValue();
-			Square newLoc = board.getSquare(piece.getLocation(), rollTotal);
-			piece.setLocation(newLoc);
-			piece.getLocation().landedOn(this);
+			if (inJail) tryToGetOutOfJail();
+			
+			if(!inJail) {
+				System.out.println("Player "+this.name+" rolled "+rollTotal+" Dual Roll?: "+cup.isDualRoll());
+				moveOneByOneFor(rollTotal);
+				
+				
+			}
+			
+			
+			
 			haveRolled = true;
 			if(cup.isDualRoll()) haveRolled=false;
+			if(cup.isThirdDualRoll()) {
+				haveRolled=true;
+				
+				 //10 is jail
+			}
 		}
 	}
 	
-	public void move(Square sq) {
-		piece.setLocation(sq);
+	public void moveOneByOneFor(int f) { //going to need to change this for transit stations
 		
-		sq.landedOn(this);
+		
+		Square currentLoc=piece.getLocation();
+		
+		for(int k=0;k<f;k++) {
+			Square nextLoc=currentLoc.getNextSquare();
+			piece.setLocation(nextLoc);
+			nextLoc.passedOn(this);
+			System.out.println("Player "+this.name+" moved from "+currentLoc.getName()+" to "+nextLoc.getName());
+			currentLoc=nextLoc;
+			
+		}
+
+		currentLoc.landedOn(this);
+		System.out.println("Player "+this.name+" landed on "+currentLoc.getName());
+		
+		
 	}
 	
-	public void passSquare(int movesLeft) {
+	
+	public void teleportToLand(Square sq) {
+		piece.setLocation(sq);
+		sq.landedOn(this); //will landed on work on teleports?
+	}
+	
+	public void teleportNoLand(Square sq) {
+		piece.setLocation(sq);
+	}
+	
+	public void goToJail() {
+		teleportNoLand(board.getSquareByIndex(10));
+		this.inJail=true;
+		System.out.println("Player "+this.name+" is in jail!");
+	}
+	
+	public void tryToGetOutOfJail() {
 		
-		
+		if(cup.isDualRoll()) inJail=false;
+		System.out.print("Player "+this.name+" tried to get out of jail. inJail = "+inJail );
 	}
 
 	public Square getLocation() {

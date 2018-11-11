@@ -26,6 +26,10 @@ public class Board {
 		return (Square) squares.get(endIndex);
 	}
 	
+	public Square getSquareByIndex(int index) {
+		return (Square)squares.get(index);
+	}
+	
 	public Square getStartSquare() {
 		return (Square) squares.get(0);
 	}
@@ -100,5 +104,6 @@ public class Board {
 		Square current = (Square) squares.get(i);
 		Square next = (Square) squares.get(i + 1);
 		current.setNextSquare(next);
+		//System.out.println(current.getName()+" linked to "+next.getName()+" at index "+current.getIndex()+" -> "+next.getIndex());
 	}
 }
