@@ -2,38 +2,88 @@ package domainLayer;
 
 public class Player {
 
-	private Piece piece;
+	public Piece piece;
 	private String name;
 	private Board board;
-	private Die[] dice;
 	private int cash = 1500;
 	private boolean haveRolled = false;
+	private Cup cup;
+	
+	private boolean inJail=false;
 
-	public Player(String name, Die[] dice, Board board) {
+	public Player(String name, Board board) {
 		this.name = name;
-		this.dice = dice;
 		this.board = board;
+		this.cup=board.getCup();
 		piece= new Piece(board.getStartSquare());
 	}
 
 	public void takeTurn() {
-		if (!haveRolled) {
-			int rollTotal = rollDice();
-			Square newLoc = board.getSquare(piece.getLocation(), rollTotal);
-			piece.setLocation(newLoc);
-			piece.getLocation().landedOn(this);
+		while (!haveRolled) {
+			cup.roll();
+			int rollTotal = cup.get2RollValue();
+			if (inJail) tryToGetOutOfJail();
+			
+			if(!inJail) {
+				System.out.println("**Player "+this.name+" rolled "+rollTotal+" Dual Roll?: "+cup.isDualRoll());
+				moveOneByOneFor(rollTotal);
+				
+				
+			}
+			
+			
+			
 			haveRolled = true;
+			if(cup.isDualRoll()) haveRolled=false;
+			if(cup.isThirdDualRoll()) {
+				haveRolled=true;
+				
+				 //10 is jail
+			}
 		}
 	}
-
-	private int rollDice() {
-		//roll dice
-		int rollTotal = 0;
-		for (int i = 0; i < dice.length; i++) {
-			dice[i].roll();
-			rollTotal += dice[i].getFaceValue();
+	
+	public void moveOneByOneFor(int f) { //going to need to change this for transit stations
+		
+		
+		Square currentLoc=piece.getLocation();
+		
+		for(int k=0;k<f;k++) {
+			Square nextLoc=currentLoc.getNextSquare();
+			piece.setLocation(nextLoc);
+			nextLoc.passedOn(this);
+			System.out.println("Player "+this.name+" moved from "+currentLoc.getName()+" to "+nextLoc.getName());
+			currentLoc=nextLoc;
+			
+			
 		}
-		return rollTotal;
+
+		currentLoc.landedOn(this);
+		System.out.println("Player "+this.name+" landed on "+currentLoc.getName()+" at Index: ("+currentLoc.getIndex()+")");
+		
+		
+	}
+	
+	
+	public void teleportToLand(Square sq) {
+		piece.setLocation(sq);
+		sq.landedOn(this); //will landed on work on teleports?
+	}
+	
+	public void teleportNoLand(Square sq) {
+		piece.setLocation(sq);
+	}
+	
+	public void goToJail() {
+		teleportNoLand(board.getSquareByIndex(10));
+		this.inJail=true;
+		System.out.println("Player "+this.name+" is in jail!");
+	}
+	
+	public void tryToGetOutOfJail() {
+		
+		if(cup.isDualRoll()) inJail=false;
+		System.out.print("Player "+this.name+" tried to get out of jail. inJail = "+inJail );
 	}
 
 	public Square getLocation() {

@@ -10,7 +10,7 @@ public class Die {
 	}
 	
 	public void roll() {
-		faceValue = (int) (Math.random() * (MAX + 1));
+		faceValue = (int) Math.floor(((Math.random() * MAX)+1));
 	}
 	
 	public int getFaceValue() {

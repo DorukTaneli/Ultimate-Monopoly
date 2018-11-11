@@ -3,19 +3,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import uiLayer.AppWindow; //THIS SHOULDNT BE HERE ************ DOING THIS TO SEE THE PIECES MOVE
+
 public class DomainController {
 	private static final int PLAYERS_TOTAL = 2;
-	private List players = new ArrayList(PLAYERS_TOTAL);
+	private ArrayList<Player> players = new ArrayList<Player>(PLAYERS_TOTAL);
 	private Board board = new Board();
-	private Die[] dice = {new Die(), new Die()};
+	private Cup cup;
 	private int turn = 0;
+	private AppWindow app;
 
-	public DomainController() {
+	public DomainController(AppWindow app) {
 		Player p;
-		p = new Player("Hat", dice, board);
+		this.app=app;
+		p = new Player("Hat", board);
 		players.add(p);
-		p = new Player("Car", dice, board);
+		p = new Player("Car", board);
 		players.add(p);
+		this.cup=board.getCup();
 	}
 
 //	public void playGame() {
@@ -34,13 +39,13 @@ public class DomainController {
 	public Player getCurrentPlayer() {
 		return (Player) players.get(turn);
 	}
-	
-	public Player getLastPlayer() {
-		return (Player) players.get((turn - 1 + PLAYERS_TOTAL) % PLAYERS_TOTAL);
-	}
 
-	public List getPlayers() {
+	public List<Player> getPlayers() {
 		return players;
+	}
+	
+	public Player getPlayerLocationIndex(int a) {
+		return players.get(a);
 	}
 
 	public Board getBoard() {
@@ -50,11 +55,11 @@ public class DomainController {
 	public void rollPressed() {
 		Player nextPlayer = getCurrentPlayer();
 		nextPlayer.takeTurn();
+		app.updatePieceGUILocation();
 	}
 	
 	public void buyPressed() {
-		Player nextPlayer = getCurrentPlayer();
-		nextPlayer.attemptPurchase((PropertySquare)nextPlayer.getLocation());
+	
 	}
 	
 	public void buildPressed() {
@@ -67,3 +72,4 @@ public class DomainController {
 		turn = (turn + 1) % PLAYERS_TOTAL;
 	}
 }
+

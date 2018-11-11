@@ -5,15 +5,29 @@ import java.util.List;
 public class Board {
 	private static final int SIZE = 40;
 	private List squares = new ArrayList(SIZE);
+	private Cup cup = new Cup();
 	
 	public Board() {
 		buildSquares();
 		linkSquares();
+		
+	}
+	
+	public Cup getCup() {
+		return cup;
+	}
+	
+	public List getSquaresList() {
+		return squares;
 	}
 	
 	public Square getSquare(Square start, int distance) {
 		int endIndex = (start.getIndex() + distance) % SIZE;
 		return (Square) squares.get(endIndex);
+	}
+	
+	public Square getSquareByIndex(int index) {
+		return (Square)squares.get(index);
 	}
 	
 	public Square getStartSquare() {
@@ -64,6 +78,8 @@ public class Board {
 		buildPS("Board Walk", 39, 350, 24);
 	}
 	
+	
+	
 	private void buildPS(String name, int ind, int pr, int rent) {
 		Square s = new PropertySquare(name, ind, pr, rent);
 		squares.add(s);
@@ -88,5 +104,6 @@ public class Board {
 		Square current = (Square) squares.get(i);
 		Square next = (Square) squares.get(i + 1);
 		current.setNextSquare(next);
+		//System.out.println(current.getName()+" linked to "+next.getName()+" at index "+current.getIndex()+" -> "+next.getIndex());
 	}
 }

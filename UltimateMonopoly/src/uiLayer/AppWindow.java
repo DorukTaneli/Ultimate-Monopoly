@@ -3,6 +3,7 @@ package uiLayer;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -23,16 +24,17 @@ public class AppWindow extends JFrame{
 	private int X_OFFSET;
 	private int HALFSQ;
 	private int MIDLAYER;
-	private DomainController ctrl = new DomainController();
+	private DomainController ctrl;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new AppWindow();
+		
 	}
 	
 	public AppWindow() {
 		setResizable(false);
-		
+		ctrl = new DomainController(this);
 		this.setSize(1600,1050);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
@@ -42,7 +44,7 @@ public class AppWindow extends JFrame{
 		addPieces();
 		addPlayerLabels();
 		addBoardImage();
-		
+				
 		this.setVisible(true);
 	}
 	
@@ -57,8 +59,9 @@ public class AppWindow extends JFrame{
 		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
 		boardLabel = new JLabel(imageIcon);
 		X_OFFSET = boardLabel.getX();
+		//System.out.println("X_OFFSET is" +X_OFFSET);
 		Y_OFFSET = boardLabel.getY();
-		HALFSQ = (int) (boardLabel.getHeight()/17.5);
+		HALFSQ = (int) (boardLabel.getHeight()/35);
 		MIDLAYER = (int) (HALFSQ*1.1);
 
 		this.getContentPane().add(boardLabel);
@@ -103,7 +106,6 @@ public class AppWindow extends JFrame{
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.rollPressed();
-				updatePieceGUILocation();
 			}
 		});
 		panel.add(button);
@@ -144,23 +146,42 @@ public class AppWindow extends JFrame{
 //		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics/hat small.png")), playerHat, -25);
 //		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics/car small.png")), playerCar, 25);
 
-		JLabel hatLbl = new JLabel(new ImageIcon("graphics/hat small.png"));
+		hatLbl = new JLabel(new ImageIcon("graphics/hat small.png"));
 		this.getContentPane().add(hatLbl);
 		hatLbl.setBounds(1025, 825, 50, 50);
 		hatLbl.setVisible(true);
 		
-		JLabel carLbl = new JLabel(new ImageIcon("graphics/car small.png"));
+		carLbl = new JLabel(new ImageIcon("graphics/car small.png"));
 		this.getContentPane().add(carLbl);
 		carLbl.setBounds(1025, 775, 50, 50);
 		carLbl.setVisible(true);
 	}
 	
-	private void updatePieceGUILocation(){
-		carLbl.setBounds(getPixelX(ctrl.getLastPlayer().getLocation().getIndex()),
-				getPixelY(ctrl.getLastPlayer().getLocation().getIndex()), 25, 25);
-	}
 
+	public void updatePieceGUILocation(){	
+		int playerLocIndex = ctrl.getPlayers().get(1).piece.getLocation().getIndex();
+		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
+		System.out.println("******** playerLocIndex: "+(playerLocIndex));
+		//carLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
+		carLbl.setVisible(true);
+		System.out.println("******** carLbl location: "+carLbl.getLocation());
+		
+		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
+		//hatLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
+		hatLbl.setVisible(true);
+
+	
+
+	}
+		
+	
+
+	
 	public int getPixelX(int ind) {
+		System.out.println("Current variables: "
+				+ "\n X_OFFSET: "+ X_OFFSET
+				+ "\n HALFSQ: "+HALFSQ
+				+"\n MIDLAYER: "+MIDLAYER);
 		if ((ind <= 39 && ind >= 30) || ind == 0) {
 			return X_OFFSET + HALFSQ*24 + MIDLAYER;
 		} else if ((ind >= 10 && ind <= 20)) {
@@ -192,31 +213,31 @@ public class AppWindow extends JFrame{
 
 	public int getPixelY(int ind) {
 		if ((ind <= 10 && ind >= 0)) {
-			return X_OFFSET + HALFSQ*24 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*24 + MIDLAYER;
 		} else if ((ind >= 20 && ind <= 29)) {
-			return X_OFFSET + HALFSQ*2 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*2 + MIDLAYER;
 		}
 		switch (ind) {
 		case 19: case 31:
-			return X_OFFSET + HALFSQ*5 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*5 + MIDLAYER;
 		case 18: case 32:
-			return X_OFFSET + HALFSQ*7 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*7 + MIDLAYER;
 		case 17: case 33:
-			return X_OFFSET + HALFSQ*9 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*9 + MIDLAYER;
 		case 16: case 34:
-			return X_OFFSET + HALFSQ*11 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*11 + MIDLAYER;
 		case 15: case 35:
-			return X_OFFSET + HALFSQ*13 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*13 + MIDLAYER;
 		case 14: case 36:
-			return X_OFFSET + HALFSQ*15 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*15 + MIDLAYER;
 		case 13: case 37:
-			return X_OFFSET + HALFSQ*17 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*17 + MIDLAYER;
 		case 12: case 38:
-			return X_OFFSET + HALFSQ*19 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*19 + MIDLAYER;
 		case 11: case 39:
-			return X_OFFSET + HALFSQ*21 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*21 + MIDLAYER;
 		default:
-			return X_OFFSET + HALFSQ*14 + MIDLAYER;
+			return Y_OFFSET + HALFSQ*14 + MIDLAYER;
 		}
 	}
 }
