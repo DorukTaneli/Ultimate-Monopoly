@@ -162,6 +162,7 @@ public class AppWindow extends JFrame{
 		int playerLocIndex = ctrl.getPlayers().get(1).piece.getLocation().getIndex();
 		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
 		System.out.println("******** playerLocIndex: "+(playerLocIndex));
+		//
 		//carLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
 		carLbl.setVisible(true);
 		System.out.println("******** carLbl location: "+carLbl.getLocation());
