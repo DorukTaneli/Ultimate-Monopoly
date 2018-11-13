@@ -20,9 +20,9 @@ public class AppWindow extends JFrame{
 	private JLabel boardLabel;
 	private JLabel hatLbl;
 	private JLabel carLbl;
-	private int BOARD_SIZE = 1000;
-	private int WINDOW_X = 1600;
-	private int WINDOW_Y = 1050;
+	private int BOARD_SIZE = 830;
+	private int WINDOW_X = 1400;
+	private int WINDOW_Y = 850;
 	private int Y_OFFSET;
 	private int X_OFFSET;
 	private int HALFSQ;
@@ -64,13 +64,13 @@ public class AppWindow extends JFrame{
 		MIDLAYER = (int) (HALFSQ*4.58);
 		boardLabel = new JLabel(imageIcon);
 		boardLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		boardLabel.setBounds(0, 0, 1000, 1015);
+		boardLabel.setBounds(0, 0, BOARD_SIZE, BOARD_SIZE);
 		this.getContentPane().add(boardLabel);
 	}
 	
 	public void addPlayerLabels() {
 		JPanel panel = new JPanel();
-		panel.setBounds(1007, 0, 585, 750);
+		panel.setBounds(840, 0, 585, 750);
 		this.getContentPane().add(panel);
 		
 		JLabel lbl = new JLabel("Player 1");
@@ -103,14 +103,18 @@ public class AppWindow extends JFrame{
 		getContentPane().setLayout(null);			
 				//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
 		JPanel panel = new JPanel();
-		panel.setBounds(1119, 841, 366, 95);
+		panel.setBounds(900, 500, 366, 95);
 		this.getContentPane().add(panel);
 		panel.setLayout(new GridLayout(2, 4, 10, 10));
 		
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.rollPressed();
+				if(e.getSource()==button) {
+					System.out.println("**Roll button pressed!");
+					ctrl.rollPressed();
+				}
+			
 			}
 		});
 		panel.add(button);
@@ -118,7 +122,11 @@ public class AppWindow extends JFrame{
 		Button button_1 = new Button("Buy Deed");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.buyPressed();
+				if(e.getSource()==button_1) {
+					System.out.println("**Buy Deed button pressed!");
+					ctrl.buyPressed();
+				}
+			
 			}
 		});
 		panel.add(button_1);
@@ -126,7 +134,11 @@ public class AppWindow extends JFrame{
 		Button button_2 = new Button("Build");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.buildPressed();
+				if(e.getSource()==button_2) {
+					System.out.println("**Build button pressed!");
+					ctrl.buildPressed();
+				}
+				
 			}
 		});
 		panel.add(button_2);
@@ -134,7 +146,11 @@ public class AppWindow extends JFrame{
 		Button button_3 = new Button("End Turn");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.endTurnPressed();
+				if(e.getSource()==button_3) {
+					System.out.println("**End Turn button pressed!");
+					ctrl.endTurnPressed();
+				}
+				
 			}
 		});
 		panel.add(button_3);
@@ -163,12 +179,12 @@ public class AppWindow extends JFrame{
 
 	public void updatePieceGUILocation(){	
 		int playerLocIndex = ctrl.getPlayers().get(1).piece.getLocation().getIndex();
-		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
-		System.out.println("******** playerLocIndex: "+(playerLocIndex));
+//		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
+//		System.out.println("******** playerLocIndex: "+(playerLocIndex));
 		//
 		carLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
 		carLbl.setVisible(true);
-		System.out.println("******** carLbl location: "+carLbl.getLocation());
+//		System.out.println("******** carLbl location: "+carLbl.getLocation());
 		
 		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
 		hatLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
@@ -182,10 +198,10 @@ public class AppWindow extends JFrame{
 
 	
 	public int getPixelX(int ind) {
-		System.out.println("Current variables: "
-				+ "\n X_OFFSET: "+ X_OFFSET
-				+ "\n HALFSQ: "+HALFSQ
-				+"\n MIDLAYER: "+MIDLAYER);
+//		System.out.println("Current variables: "
+//				+ "\n X_OFFSET: "+ X_OFFSET
+//				+ "\n HALFSQ: "+HALFSQ
+//				+"\n MIDLAYER: "+MIDLAYER);
 		if ((ind <= 39 && ind >= 30) || ind == 0) {
 			return X_OFFSET + HALFSQ*24 + MIDLAYER;
 		} else if ((ind >= 10 && ind <= 20)) {
