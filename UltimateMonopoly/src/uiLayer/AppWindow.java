@@ -58,10 +58,10 @@ public class AppWindow extends JFrame{
 		
 		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
 		boardLabel = new JLabel(imageIcon);
-		X_OFFSET = boardLabel.getX();
+		X_OFFSET = 400;
 		//System.out.println("X_OFFSET is" +X_OFFSET);
-		Y_OFFSET = boardLabel.getY();
-		HALFSQ = (int) (boardLabel.getHeight()/35);
+		Y_OFFSET = 25;
+		HALFSQ = (int) (1000/35);
 		MIDLAYER = (int) (HALFSQ*1.1);
 
 		this.getContentPane().add(boardLabel);
@@ -163,12 +163,12 @@ public class AppWindow extends JFrame{
 		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
 		System.out.println("******** playerLocIndex: "+(playerLocIndex));
 		//
-		//carLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
+		carLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
 		carLbl.setVisible(true);
 		System.out.println("******** carLbl location: "+carLbl.getLocation());
 		
 		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
-		//hatLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
+		hatLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
 		hatLbl.setVisible(true);
 
 	
