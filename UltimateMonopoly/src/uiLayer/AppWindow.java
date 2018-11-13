@@ -23,9 +23,10 @@ public class AppWindow extends JFrame{
 	private int BOARD_SIZE = 830;
 	private int WINDOW_X = 1400;
 	private int WINDOW_Y = 850;
-	private int Y_OFFSET;
-	private int X_OFFSET;
+	private int Y_OFFSET = 0;
+	private int X_OFFSET = 0;
 	private int HALFSQ;
+	private int PIECESIZE = 50;
 	private int MIDLAYER;
 	private DomainController ctrl;
 	
@@ -47,21 +48,24 @@ public class AppWindow extends JFrame{
 		addPieces();
 		addPlayerLabels();
 		addBoardImage();
+		updatePieceGUILocation();
 				
+		System.out.println("midlayer: " + MIDLAYER);
+		System.out.println("halfsq: " + HALFSQ);
+		
+		
 		this.setVisible(true);
 	}
 	
-	
+
+
 	public void addBoardImage() {
 		ImageIcon imageIcon = new ImageIcon("graphics/ultimatemonopolyboard.png"); // load the image to a imageIcon
 		Image image = imageIcon.getImage(); // transform it 
 		Image newimg = image.getScaledInstance(BOARD_SIZE, BOARD_SIZE,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		imageIcon = new ImageIcon(newimg);  // transform it back
-		X_OFFSET = (WINDOW_X - BOARD_SIZE)/2;
-		//System.out.println("X_OFFSET is" +X_OFFSET);
-		Y_OFFSET = (WINDOW_Y - BOARD_SIZE)/2;
-		HALFSQ = (int) (BOARD_SIZE/34);
-		MIDLAYER = (int) (HALFSQ*4.58);
+		HALFSQ = (int) (BOARD_SIZE/34.5);
+		MIDLAYER = (int) (BOARD_SIZE/7.9);
 		boardLabel = new JLabel(imageIcon);
 		boardLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		boardLabel.setBounds(0, 0, BOARD_SIZE, BOARD_SIZE);
@@ -171,7 +175,7 @@ public class AppWindow extends JFrame{
 		
 		carLbl = new JLabel(new ImageIcon("graphics/car small.png"));
 		this.getContentPane().add(carLbl);
-		carLbl.setBounds(240, 100, 50, 50);
+		carLbl.setBounds(0, 0, 50, 50);
 //		carLbl.setBounds(getPixelX(0), getPixelY(0), 50, 50);
 		carLbl.setVisible(true);
 	}
@@ -182,15 +186,13 @@ public class AppWindow extends JFrame{
 //		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
 //		System.out.println("******** playerLocIndex: "+(playerLocIndex));
 		//
-		carLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
+		carLbl.setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
 		carLbl.setVisible(true);
 //		System.out.println("******** carLbl location: "+carLbl.getLocation());
 		
 		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
-		hatLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
+		hatLbl.setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
 		hatLbl.setVisible(true);
-
-	
 
 	}
 		
