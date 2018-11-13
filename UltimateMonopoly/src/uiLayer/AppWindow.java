@@ -20,6 +20,9 @@ public class AppWindow extends JFrame{
 	private JLabel boardLabel;
 	private JLabel hatLbl;
 	private JLabel carLbl;
+	private int BOARD_SIZE = 1000;
+	private int WINDOW_X = 1600;
+	private int WINDOW_Y = 1050;
 	private int Y_OFFSET;
 	private int X_OFFSET;
 	private int HALFSQ;
@@ -35,7 +38,7 @@ public class AppWindow extends JFrame{
 	public AppWindow() {
 		setResizable(false);
 		ctrl = new DomainController(this);
-		this.setSize(1600,1050);
+		this.setSize(WINDOW_X, WINDOW_Y);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
 		
@@ -52,17 +55,17 @@ public class AppWindow extends JFrame{
 	public void addBoardImage() {
 		ImageIcon imageIcon = new ImageIcon("graphics/ultimatemonopolyboard.png"); // load the image to a imageIcon
 		Image image = imageIcon.getImage(); // transform it 
-		Image newimg = image.getScaledInstance(1000, 1000,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+		Image newimg = image.getScaledInstance(BOARD_SIZE, BOARD_SIZE,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		imageIcon = new ImageIcon(newimg);  // transform it back
 
 		
 		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
 		boardLabel = new JLabel(imageIcon);
-		X_OFFSET = 400;
+		X_OFFSET = (WINDOW_X - BOARD_SIZE)/2;
 		//System.out.println("X_OFFSET is" +X_OFFSET);
-		Y_OFFSET = 25;
-		HALFSQ = (int) (1000/35);
-		MIDLAYER = (int) (HALFSQ*1.1);
+		Y_OFFSET = (WINDOW_Y - BOARD_SIZE)/2;
+		HALFSQ = (int) (BOARD_SIZE/34);
+		MIDLAYER = (int) (HALFSQ*4.58);
 
 		this.getContentPane().add(boardLabel);
 	}
@@ -99,7 +102,7 @@ public class AppWindow extends JFrame{
 	
 	public void addButtons() {
 		JPanel panel = new JPanel();
-		this.getContentPane().add(panel, BorderLayout.WEST);
+		this.getContentPane().add(panel, BorderLayout.EAST);
 		panel.setLayout(new GridLayout(4, 1, 10, 10));
 		
 		Button button = new Button("Roll Dice");
@@ -148,12 +151,13 @@ public class AppWindow extends JFrame{
 
 		hatLbl = new JLabel(new ImageIcon("graphics/hat small.png"));
 		this.getContentPane().add(hatLbl);
-		hatLbl.setBounds(1025, 825, 50, 50);
+		hatLbl.setBounds(getPixelX(0), getPixelY(0), 50, 50);
 		hatLbl.setVisible(true);
 		
 		carLbl = new JLabel(new ImageIcon("graphics/car small.png"));
 		this.getContentPane().add(carLbl);
-		carLbl.setBounds(1025, 775, 50, 50);
+		carLbl.setBounds(240, 100, 50, 50);
+//		carLbl.setBounds(getPixelX(0), getPixelY(0), 50, 50);
 		carLbl.setVisible(true);
 	}
 	
