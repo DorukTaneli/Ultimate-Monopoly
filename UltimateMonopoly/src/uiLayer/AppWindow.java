@@ -110,7 +110,11 @@ public class AppWindow extends JFrame{
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.rollPressed();
+				if(e.getSource()==button) {
+					System.out.println("**Roll button pressed!");
+					ctrl.rollPressed();
+				}
+			
 			}
 		});
 		panel.add(button);
@@ -118,7 +122,11 @@ public class AppWindow extends JFrame{
 		Button button_1 = new Button("Buy Deed");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.buyPressed();
+				if(e.getSource()==button_1) {
+					System.out.println("**Buy Deed button pressed!");
+					ctrl.buyPressed();
+				}
+			
 			}
 		});
 		panel.add(button_1);
@@ -126,7 +134,11 @@ public class AppWindow extends JFrame{
 		Button button_2 = new Button("Build");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.buildPressed();
+				if(e.getSource()==button_2) {
+					System.out.println("**Build button pressed!");
+					ctrl.buildPressed();
+				}
+				
 			}
 		});
 		panel.add(button_2);
@@ -134,7 +146,11 @@ public class AppWindow extends JFrame{
 		Button button_3 = new Button("End Turn");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.endTurnPressed();
+				if(e.getSource()==button_3) {
+					System.out.println("**End Turn button pressed!");
+					ctrl.endTurnPressed();
+				}
+				
 			}
 		});
 		panel.add(button_3);

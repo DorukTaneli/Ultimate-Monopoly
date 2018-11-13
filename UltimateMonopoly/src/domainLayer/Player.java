@@ -123,12 +123,12 @@ public class Player {
 		cash -= amount;
 	}
 
-	public void attemptPurchase (Square psq) {
+	public void attemptPurchase (PropertySquare psq) {
 		
-			if(psq.type.equals("PropertySquare")) psq = (PropertySquare) psq;
-			if (!psq.isOwned() && cash >= psq.getPrice()) {
+			if (!psq.isOwned() && cash >= psq.getPrice()){
 				reduceCash(psq.getPrice());
 				addProperty(psq);
+				psq.setOwner(this);
 				
 			}
 			
