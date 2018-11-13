@@ -1,5 +1,7 @@
 package domainLayer;
 
+import java.util.ArrayList;
+
 public class Player {
 
 	public Piece piece;
@@ -8,6 +10,7 @@ public class Player {
 	private int cash = 1500;
 	private boolean haveRolled = false;
 	private Cup cup;
+	private ArrayList<Square> myProperties= new ArrayList<Square>();
 	
 	private boolean inJail=false;
 
@@ -18,6 +21,7 @@ public class Player {
 		piece= new Piece(board.getStartSquare());
 	}
 
+	//TURN
 	public void takeTurn() {
 		while (!haveRolled) {
 			cup.roll();
@@ -43,6 +47,21 @@ public class Player {
 		}
 	}
 	
+	public boolean haveRolled() {
+		return haveRolled;
+	}
+
+	public void setHaveRolled(boolean haveRolled) {
+		this.haveRolled = haveRolled;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	
+	
+	//MOVEMENT
 	public void moveOneByOneFor(int f) { //going to need to change this for transit stations
 		
 		
@@ -90,10 +109,8 @@ public class Player {
 		return piece.getLocation();
 	}
 
-	public String getName() {
-		return name;
-	}
 
+	//CASH
 	public void addCash(int amount) {
 		cash += amount;
 	}
@@ -106,22 +123,37 @@ public class Player {
 		cash -= amount;
 	}
 
-	public void attemptPurchase (PropertySquare psq) {
-		if (!psq.isOwned()) {
-			int pr = psq.getPrice();
-			if (cash >= pr) {
-				psq.setOwner(this);
-				reduceCash(pr);
+	public void attemptPurchase (Square psq) {
+		
+			if(psq.type.equals("PropertySquare")) psq = (PropertySquare) psq;
+			if (!psq.isOwned() && cash >= psq.getPrice()) {
+				reduceCash(psq.getPrice());
+				addProperty(psq);
+				
 			}
+			
+			System.out.println("Purchase attempted. Properties of player "+this.name+ " are:");
+			for(Square sq : myProperties) {
+				System.out.println("--"+sq.getName());
+			}
+			System.out.println("Money left: "+this.cash);
+			
 		}
-	}
 
-	public boolean haveRolled() {
-		return haveRolled;
+	public void addProperty(Square sq) {
+		if(!myProperties.contains(sq)) myProperties.add(sq);
 	}
-
-	public void setHaveRolled(boolean haveRolled) {
-		this.haveRolled = haveRolled;
+	
+	public void removeProperty(Square sq) {
+		if(myProperties.contains(sq)) myProperties.remove(sq);
+		
 	}
-
+	
+	public ArrayList<Square> getPlayerProperties(){
+		return myProperties;
+	}
+	
+	public boolean isMyProperty(Square sq) {
+		return myProperties.contains(sq);
+	}
 }

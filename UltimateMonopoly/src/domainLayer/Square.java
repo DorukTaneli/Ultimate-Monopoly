@@ -5,6 +5,7 @@ public abstract class Square {
 	private String name;
 	private Square nextSquare;
 	private int index;
+	protected String type;
 	
 	public Square(String name, int index) {
 		this.name = name;
@@ -38,4 +39,8 @@ public abstract class Square {
 	
 	abstract public void landedOn(Player p);
 	abstract public void passedOn(Player p);
+
+	protected abstract boolean isOwned();
+
+	protected abstract int getPrice();
 }

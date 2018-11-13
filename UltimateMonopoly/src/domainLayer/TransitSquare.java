@@ -26,6 +26,18 @@ public class TransitSquare extends Square{
 	public void setSecondIndex(int secondIndex) {
 		this.secondIndex = secondIndex;
 	}
+
+	@Override
+	protected boolean isOwned() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected int getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 	

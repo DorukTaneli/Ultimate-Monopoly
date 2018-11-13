@@ -7,11 +7,13 @@ public class PropertySquare extends Square{
 	private int baseRent;
 	private String color;
 
+
 	public PropertySquare(String name, int index, int price, int rent, String color) {
 		super(name, index);
 		this.price = price;
 		this.baseRent = rent;
 		this.color = color;
+		type="PropertySquare";
 	}
 
 	@Override
