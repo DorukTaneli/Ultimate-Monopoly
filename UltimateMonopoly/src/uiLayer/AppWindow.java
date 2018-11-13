@@ -20,6 +20,9 @@ public class AppWindow extends JFrame{
 	private JLabel boardLabel;
 	private JLabel hatLbl;
 	private JLabel carLbl;
+	private int BOARD_SIZE = 1000;
+	private int WINDOW_X = 1600;
+	private int WINDOW_Y = 1050;
 	private int Y_OFFSET;
 	private int X_OFFSET;
 	private int HALFSQ;
@@ -35,12 +38,12 @@ public class AppWindow extends JFrame{
 	public AppWindow() {
 		setResizable(false);
 		ctrl = new DomainController(this);
-		this.setSize(1600,1050);
+		this.setSize(WINDOW_X, WINDOW_Y);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
 		
-		addButtons();
 		
+		addButtons();
 		addPieces();
 		addPlayerLabels();
 		addBoardImage();
@@ -52,24 +55,23 @@ public class AppWindow extends JFrame{
 	public void addBoardImage() {
 		ImageIcon imageIcon = new ImageIcon("graphics/ultimatemonopolyboard.png"); // load the image to a imageIcon
 		Image image = imageIcon.getImage(); // transform it 
-		Image newimg = image.getScaledInstance(1000, 1000,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+		Image newimg = image.getScaledInstance(BOARD_SIZE, BOARD_SIZE,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		imageIcon = new ImageIcon(newimg);  // transform it back
-
-		
-		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
-		boardLabel = new JLabel(imageIcon);
-		X_OFFSET = boardLabel.getX();
+		X_OFFSET = (WINDOW_X - BOARD_SIZE)/2;
 		//System.out.println("X_OFFSET is" +X_OFFSET);
-		Y_OFFSET = boardLabel.getY();
-		HALFSQ = (int) (boardLabel.getHeight()/35);
-		MIDLAYER = (int) (HALFSQ*1.1);
-
+		Y_OFFSET = (WINDOW_Y - BOARD_SIZE)/2;
+		HALFSQ = (int) (BOARD_SIZE/34);
+		MIDLAYER = (int) (HALFSQ*4.58);
+		boardLabel = new JLabel(imageIcon);
+		boardLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		boardLabel.setBounds(0, 0, 1000, 1015);
 		this.getContentPane().add(boardLabel);
 	}
 	
 	public void addPlayerLabels() {
 		JPanel panel = new JPanel();
-		this.getContentPane().add(panel, BorderLayout.EAST);
+		panel.setBounds(1007, 0, 585, 750);
+		this.getContentPane().add(panel);
 		
 		JLabel lbl = new JLabel("Player 1");
 		lbl.setToolTipText("<html>"
@@ -98,9 +100,12 @@ public class AppWindow extends JFrame{
 	}
 	
 	public void addButtons() {
+		getContentPane().setLayout(null);			
+				//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
 		JPanel panel = new JPanel();
-		this.getContentPane().add(panel, BorderLayout.WEST);
-		panel.setLayout(new GridLayout(4, 1, 10, 10));
+		panel.setBounds(1119, 841, 366, 95);
+		this.getContentPane().add(panel);
+		panel.setLayout(new GridLayout(2, 4, 10, 10));
 		
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
@@ -133,9 +138,6 @@ public class AppWindow extends JFrame{
 			}
 		});
 		panel.add(button_3);
-		
-
-		panel.setVisible(true);
 	}
 	
 	
@@ -148,12 +150,13 @@ public class AppWindow extends JFrame{
 
 		hatLbl = new JLabel(new ImageIcon("graphics/hat small.png"));
 		this.getContentPane().add(hatLbl);
-		hatLbl.setBounds(1025, 825, 50, 50);
+		hatLbl.setBounds(0, 0, 50, 50);
 		hatLbl.setVisible(true);
 		
 		carLbl = new JLabel(new ImageIcon("graphics/car small.png"));
 		this.getContentPane().add(carLbl);
-		carLbl.setBounds(1025, 775, 50, 50);
+		carLbl.setBounds(240, 100, 50, 50);
+//		carLbl.setBounds(getPixelX(0), getPixelY(0), 50, 50);
 		carLbl.setVisible(true);
 	}
 	
@@ -163,12 +166,12 @@ public class AppWindow extends JFrame{
 		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
 		System.out.println("******** playerLocIndex: "+(playerLocIndex));
 		//
-		//carLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
+		carLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
 		carLbl.setVisible(true);
 		System.out.println("******** carLbl location: "+carLbl.getLocation());
 		
 		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
-		//hatLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
+		hatLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
 		hatLbl.setVisible(true);
 
 	
