@@ -20,9 +20,9 @@ public class AppWindow extends JFrame{
 	private JLabel boardLabel;
 	private JLabel hatLbl;
 	private JLabel carLbl;
-	private int BOARD_SIZE = 1000;
-	private int WINDOW_X = 1600;
-	private int WINDOW_Y = 1050;
+	private int BOARD_SIZE = 830;
+	private int WINDOW_X = 1400;
+	private int WINDOW_Y = 850;
 	private int Y_OFFSET;
 	private int X_OFFSET;
 	private int HALFSQ;
@@ -64,13 +64,13 @@ public class AppWindow extends JFrame{
 		MIDLAYER = (int) (HALFSQ*4.58);
 		boardLabel = new JLabel(imageIcon);
 		boardLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		boardLabel.setBounds(0, 0, 1000, 1015);
+		boardLabel.setBounds(0, 0, BOARD_SIZE, BOARD_SIZE);
 		this.getContentPane().add(boardLabel);
 	}
 	
 	public void addPlayerLabels() {
 		JPanel panel = new JPanel();
-		panel.setBounds(1007, 0, 585, 750);
+		panel.setBounds(840, 0, 585, 750);
 		this.getContentPane().add(panel);
 		
 		JLabel lbl = new JLabel("Player 1");
@@ -103,7 +103,7 @@ public class AppWindow extends JFrame{
 		getContentPane().setLayout(null);			
 				//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
 		JPanel panel = new JPanel();
-		panel.setBounds(1119, 841, 366, 95);
+		panel.setBounds(900, 500, 366, 95);
 		this.getContentPane().add(panel);
 		panel.setLayout(new GridLayout(2, 4, 10, 10));
 		
