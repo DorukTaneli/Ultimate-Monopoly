@@ -42,8 +42,8 @@ public class AppWindow extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
 		
-		addButtons();
 		
+		addButtons();
 		addPieces();
 		addPlayerLabels();
 		addBoardImage();
@@ -57,22 +57,21 @@ public class AppWindow extends JFrame{
 		Image image = imageIcon.getImage(); // transform it 
 		Image newimg = image.getScaledInstance(BOARD_SIZE, BOARD_SIZE,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		imageIcon = new ImageIcon(newimg);  // transform it back
-
-		
-		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
-		boardLabel = new JLabel(imageIcon);
 		X_OFFSET = (WINDOW_X - BOARD_SIZE)/2;
 		//System.out.println("X_OFFSET is" +X_OFFSET);
 		Y_OFFSET = (WINDOW_Y - BOARD_SIZE)/2;
 		HALFSQ = (int) (BOARD_SIZE/34);
 		MIDLAYER = (int) (HALFSQ*4.58);
-
+		boardLabel = new JLabel(imageIcon);
+		boardLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		boardLabel.setBounds(0, 0, 1000, 1015);
 		this.getContentPane().add(boardLabel);
 	}
 	
 	public void addPlayerLabels() {
 		JPanel panel = new JPanel();
-		this.getContentPane().add(panel, BorderLayout.EAST);
+		panel.setBounds(1007, 0, 585, 750);
+		this.getContentPane().add(panel);
 		
 		JLabel lbl = new JLabel("Player 1");
 		lbl.setToolTipText("<html>"
@@ -101,9 +100,12 @@ public class AppWindow extends JFrame{
 	}
 	
 	public void addButtons() {
+		getContentPane().setLayout(null);			
+				//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
 		JPanel panel = new JPanel();
-		this.getContentPane().add(panel, BorderLayout.EAST);
-		panel.setLayout(new GridLayout(4, 1, 10, 10));
+		panel.setBounds(1119, 841, 366, 95);
+		this.getContentPane().add(panel);
+		panel.setLayout(new GridLayout(2, 4, 10, 10));
 		
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
@@ -136,9 +138,6 @@ public class AppWindow extends JFrame{
 			}
 		});
 		panel.add(button_3);
-		
-
-		panel.setVisible(true);
 	}
 	
 	
@@ -151,7 +150,7 @@ public class AppWindow extends JFrame{
 
 		hatLbl = new JLabel(new ImageIcon("graphics/hat small.png"));
 		this.getContentPane().add(hatLbl);
-		hatLbl.setBounds(getPixelX(0), getPixelY(0), 50, 50);
+		hatLbl.setBounds(0, 0, 50, 50);
 		hatLbl.setVisible(true);
 		
 		carLbl = new JLabel(new ImageIcon("graphics/car small.png"));
