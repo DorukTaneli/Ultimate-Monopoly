@@ -17,4 +17,16 @@ public class CommunityChestSquare extends Square{
 	public void passedOn(Player p) {
 		// Do nothing
 	}
+
+	@Override
+	protected boolean isOwned() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected int getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
