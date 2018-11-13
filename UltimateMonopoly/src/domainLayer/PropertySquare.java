@@ -5,11 +5,13 @@ public class PropertySquare extends Square{
 	private int price;
 	private Player owner = null;
 	private int baseRent;
+	
 
 	public PropertySquare(String name, int index, int price, int rent) {
 		super(name, index);
 		this.price = price;
 		this.baseRent = rent;
+		type="PropertySquare";
 	}
 
 	@Override

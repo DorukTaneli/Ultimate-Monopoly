@@ -58,9 +58,9 @@ public class AppWindow extends JFrame{
 		
 		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
 		boardLabel = new JLabel(imageIcon);
-		X_OFFSET = 400;
+		X_OFFSET = 375;
 		//System.out.println("X_OFFSET is" +X_OFFSET);
-		Y_OFFSET = 25;
+		Y_OFFSET = 75;
 		HALFSQ = (int) (1000/35);
 		MIDLAYER = (int) (HALFSQ*1.1);
 
@@ -160,12 +160,12 @@ public class AppWindow extends JFrame{
 
 	public void updatePieceGUILocation(){	
 		int playerLocIndex = ctrl.getPlayers().get(1).piece.getLocation().getIndex();
-		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
-		System.out.println("******** playerLocIndex: "+(playerLocIndex));
+		//System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
+		//System.out.println("******** playerLocIndex: "+(playerLocIndex));
 		//
 		carLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
 		carLbl.setVisible(true);
-		System.out.println("******** carLbl location: "+carLbl.getLocation());
+		//System.out.println("******** carLbl location: "+carLbl.getLocation());
 		
 		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
 		hatLbl.setLocation(getPixelX(playerLocIndex), getPixelY(playerLocIndex));
@@ -179,10 +179,10 @@ public class AppWindow extends JFrame{
 
 	
 	public int getPixelX(int ind) {
-		System.out.println("Current variables: "
-				+ "\n X_OFFSET: "+ X_OFFSET
-				+ "\n HALFSQ: "+HALFSQ
-				+"\n MIDLAYER: "+MIDLAYER);
+		//System.out.println("Current variables: "
+		//		+ "\n X_OFFSET: "+ X_OFFSET
+//				+ "\n HALFSQ: "+HALFSQ
+//				+"\n MIDLAYER: "+MIDLAYER);
 		if ((ind <= 39 && ind >= 30) || ind == 0) {
 			return X_OFFSET + HALFSQ*24 + MIDLAYER;
 		} else if ((ind >= 10 && ind <= 20)) {

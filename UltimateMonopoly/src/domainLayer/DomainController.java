@@ -59,7 +59,8 @@ public class DomainController {
 	}
 	
 	public void buyPressed() {
-	
+		Player p = getCurrentPlayer();
+		p.attemptPurchase(p.getLocation());
 	}
 	
 	public void buildPressed() {
@@ -67,7 +68,7 @@ public class DomainController {
 	}
 	
 	public void endTurnPressed() {
-		Player p = (Player) players.get(turn);
+		Player p = getCurrentPlayer();
 		p.setHaveRolled(false);
 		turn = (turn + 1) % PLAYERS_TOTAL;
 	}
