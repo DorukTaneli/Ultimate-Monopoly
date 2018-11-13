@@ -116,7 +116,7 @@ public class AppWindow extends JFrame{
 		panel.add(button);
 		
 		Button button_1 = new Button("Buy Deed");
-		button.addActionListener(new ActionListener() {
+		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.buyPressed();
 			}
@@ -124,7 +124,7 @@ public class AppWindow extends JFrame{
 		panel.add(button_1);
 		
 		Button button_2 = new Button("Build");
-		button.addActionListener(new ActionListener() {
+		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.buildPressed();
 			}
@@ -132,7 +132,7 @@ public class AppWindow extends JFrame{
 		panel.add(button_2);
 		
 		Button button_3 = new Button("End Turn");
-		button.addActionListener(new ActionListener() {
+		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ctrl.endTurnPressed();
 			}
