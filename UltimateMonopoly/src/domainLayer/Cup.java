@@ -58,6 +58,12 @@ public class Cup {
 	public String getSpeedDieString() {
 		return speedDieString;
 	}
+	public int getSpeedDieInt() {
+		if(getSpeedDieString()=="MrMonopoly" || getSpeedDieString()=="Bus") return 0;
+		int roll=Integer.parseInt(getSpeedDieString());
+		return roll;
+	}
+	
 	
 	public boolean isDualRoll() {
 		if(firstDie==secondDie) return true;
@@ -86,7 +92,15 @@ public class Cup {
 		else return false;
 	}
 	
+	public boolean rolledEven() {
+		if((get2RollValue()+getSpeedDieInt())%2==0) return true;
+		return false;
+	}
 	
+	public boolean rolledOdd() {
+		if((get2RollValue()+getSpeedDieInt())%2==1) return true;
+		return false;
+	}
 	
 	
 }

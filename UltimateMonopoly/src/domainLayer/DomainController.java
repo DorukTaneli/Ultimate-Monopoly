@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import domainLayer.squares.PropertySquare;
+import domainLayer.squares.Square;
 import uiLayer.AppWindow; //THIS SHOULDNT BE HERE ************ DOING THIS TO SEE THE PIECES MOVE
 
 public class DomainController {
@@ -23,18 +25,18 @@ public class DomainController {
 		this.cup=board.getCup();
 	}
 
-//	public void playGame() {
-//		for (int i = 0; i < ROUNDS_TOTAL; i++) {
-//			playRound();
-//		}
-//	}
-	
-//	private void playRound() {
-//	for (Iterator iter = players.iterator(); iter.hasNext();) {
-//		Player player = (Player) iter.next();
-//		player.takeTurn();
-//	}
-//}
+	//	public void playGame() {
+	//		for (int i = 0; i < ROUNDS_TOTAL; i++) {
+	//			playRound();
+	//		}
+	//	}
+
+	//	private void playRound() {
+	//	for (Iterator iter = players.iterator(); iter.hasNext();) {
+	//		Player player = (Player) iter.next();
+	//		player.takeTurn();
+	//	}
+	//}
 
 	public Player getCurrentPlayer() {
 		return (Player) players.get(turn);
@@ -43,7 +45,7 @@ public class DomainController {
 	public List<Player> getPlayers() {
 		return players;
 	}
-	
+
 	public Player getPlayerLocationIndex(int a) {
 		return players.get(a);
 	}
@@ -51,26 +53,31 @@ public class DomainController {
 	public Board getBoard() {
 		return board;
 	}
-	
+
 	public void rollPressed() {
 		Player nextPlayer = getCurrentPlayer();
 		nextPlayer.takeTurn();
 		app.updatePieceGUILocation();
 	}
-	
+
 	public void buyPressed() {
 		Player p = getCurrentPlayer();
-		p.attemptPurchase((DeedSquare)p.getLocation());
+		Square sq = p.getLocation();
+		if(sq instanceof PropertySquare)
+			p.attemptPurchase((PropertySquare)p.getLocation());
 	}
-	
+
 	public void buildPressed() {
-		
+
 	}
-	
+
 	public void endTurnPressed() {
 		Player p = getCurrentPlayer();
-		p.setHaveRolled(false);
-		turn = (turn + 1) % PLAYERS_TOTAL;
+		if(p.haveRolled()) {
+			p.setHaveRolled(false);
+			turn = (turn + 1) % PLAYERS_TOTAL;
+		}
+
 	}
 }
 

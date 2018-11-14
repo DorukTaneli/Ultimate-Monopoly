@@ -1,8 +1,10 @@
-package domainLayer;
+package domainLayer.squares;
 
-public class CommunityChestSquare extends Square{
+import domainLayer.Player;
 
-	public CommunityChestSquare(String name, int index) {
+public class JailSquare extends Square {
+
+	public JailSquare(String name, int index) {
 		super(name, index);
 		// TODO Auto-generated constructor stub
 	}
@@ -10,11 +12,12 @@ public class CommunityChestSquare extends Square{
 	@Override
 	public void landedOn(Player p) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void passedOn(Player p) {
-		// Do nothing
+		// TODO Auto-generated method stub
+
 	}
 }

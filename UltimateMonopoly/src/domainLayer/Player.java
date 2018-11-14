@@ -2,6 +2,9 @@ package domainLayer;
 
 import java.util.ArrayList;
 
+import domainLayer.squares.PropertySquare;
+import domainLayer.squares.Square;
+
 public class Player {
 
 	public Piece piece;
@@ -43,7 +46,7 @@ public class Player {
 			if (inJail) tryToGetOutOfJail();
 			
 			if(!inJail) {
-				System.out.println("**Player "+this.name+" rolled "+rollTotal+" Dual Roll?: "+cup.isDualRoll());
+				System.out.println("*****Player "+this.name+" rolled "+rollTotal+" Dual Roll?: "+cup.isDualRoll());
 				moveOneByOneFor(rollTotal);		
 			}
 			
@@ -83,7 +86,7 @@ public class Player {
 			Square nextLoc=currentLoc.getNextSquare(f);
 			piece.setLocation(nextLoc);
 			nextLoc.passedOn(this);
-			System.out.println(" "+currentLoc.getName()+", ");
+			System.out.println("->"+currentLoc.getName()+" ");
 			currentLoc=nextLoc;
 		}
 
@@ -178,5 +181,15 @@ public class Player {
 	
 	public boolean isMyProperty(Square sq) {
 		return myProperties.contains(sq);
+	}
+
+	public boolean haveRolledEven(){
+		if(cup.rolledEven()==true)return true;
+		return false;
+	}
+	
+	public boolean haveRolledOdd(){
+		if(cup.rolledOdd()==true)return true;
+		return false;
 	}
 }

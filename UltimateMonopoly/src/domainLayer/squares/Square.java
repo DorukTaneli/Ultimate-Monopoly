@@ -1,11 +1,13 @@
-package domainLayer;
+package domainLayer.squares;
+
+import domainLayer.Player;
 
 public abstract class Square {
 	
 	private String name;
 	private Square nextSquare;
 	private int index;
-	protected String type;
+	private String type;
 	
 	public Square(String name, int index) {
 		this.name = name;
@@ -39,4 +41,12 @@ public abstract class Square {
 	
 	abstract public void landedOn(Player p);
 	abstract public void passedOn(Player p);
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }
