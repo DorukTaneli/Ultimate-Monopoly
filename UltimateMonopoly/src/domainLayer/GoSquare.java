@@ -21,17 +21,4 @@ public class GoSquare extends Square{
 		System.out.println("Player "+p.getName()+" has passed Go and received "+salary+"\n Total Money: "+p.getCash());
 
 	}
-
-	@Override
-	protected boolean isOwned() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	protected int getPrice() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

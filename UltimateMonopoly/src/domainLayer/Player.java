@@ -85,8 +85,6 @@ public class Player {
 			nextLoc.passedOn(this);
 			System.out.println(" "+currentLoc.getName()+", ");
 			currentLoc=nextLoc;
-			
-			
 		}
 
 		currentLoc.landedOn(this);
@@ -98,7 +96,7 @@ public class Player {
 	
 	public void teleportToLand(Square sq) {
 		piece.setLocation(sq);
-		sq.landedOn(this); //will landed on work on teleports?
+		sq.landedOn(this); //will landed on work on teleports? //Doruk thinks yes
 	}
 	
 	public void teleportNoLand(Square sq) {

@@ -1,13 +1,13 @@
 package domainLayer;
 
-public class TransitSquare extends Square{
+public class TransitSquare extends PropertySquare{
 
 	private int secondIndex;
 	private Square nextEvenSquare;
 	private Square nextOddSquare;
 	
-	public TransitSquare(String name, int index) {
-		super(name, index);
+	public TransitSquare(String name, int index, int price) {
+		super(name, index,price);
 		type="TransitSquare";
 		// TODO Auto-generated constructor stub
 		
@@ -40,17 +40,6 @@ public class TransitSquare extends Square{
 		this.secondIndex = secondIndex;
 	}
 
-	@Override
-	protected boolean isOwned() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	protected int getPrice() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 	public void setNextEvenSquare(Square nextEvenSquare) {
 		this.nextEvenSquare = nextEvenSquare;

@@ -60,7 +60,7 @@ public class DomainController {
 	
 	public void buyPressed() {
 		Player p = getCurrentPlayer();
-		p.attemptPurchase((PropertySquare)p.getLocation());
+		p.attemptPurchase((DeedSquare)p.getLocation());
 	}
 	
 	public void buildPressed() {

@@ -17,15 +17,4 @@ public class RegularSquare extends Square{
 		
 	}
 
-	@Override
-	protected boolean isOwned() {
-		// TODO Auto-generated method stu
-		return false;
-	}
-
-	@Override
-	protected int getPrice() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }
