@@ -2,16 +2,14 @@ package domainLayer;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
 import domainLayer.squares.PropertySquare;
 import domainLayer.squares.Square;
 
-public class Player {
-=======
+
 import uiLayer.PropertyListener;
 
 public class Player implements Publisher{
->>>>>>> refs/remotes/origin/baris
+
 
 	public Piece piece;
 	private String name;
@@ -195,7 +193,7 @@ public class Player implements Publisher{
 		return myProperties.contains(sq);
 	}
 
-<<<<<<< HEAD
+
 	public boolean haveRolledEven(){
 		if(cup.rolledEven()==true)return true;
 		return false;
@@ -204,7 +202,7 @@ public class Player implements Publisher{
 	public boolean haveRolledOdd(){
 		if(cup.rolledOdd()==true)return true;
 		return false;
-=======
+	}
 	@Override
 	public void addPropertyListener(PropertyListener listener) {
 		// TODO Auto-generated method stub
@@ -235,6 +233,6 @@ public class Player implements Publisher{
 		for(PropertyListener listener:myListeners) {
 			listener.onPropertyEvent(this, type, value);
 		}
->>>>>>> refs/remotes/origin/baris
+
 	}
 }

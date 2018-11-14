@@ -9,24 +9,17 @@ import javax.swing.*;
 
 import domainLayer.DomainController;
 import domainLayer.Player;
-<<<<<<< HEAD
 import domainLayer.squares.Square;
-=======
 import domainLayer.Publisher;
-import domainLayer.Square;
->>>>>>> refs/remotes/origin/baris
+
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Button;
 
-<<<<<<< HEAD
-public class AppWindow extends JFrame{
-
-=======
 public class AppWindow extends JFrame implements PropertyListener{
 	
->>>>>>> refs/remotes/origin/baris
+
 	private JLabel boardLabel;
 	private JLabel hatLbl;
 	private JLabel carLbl;
@@ -41,22 +34,15 @@ public class AppWindow extends JFrame implements PropertyListener{
 	private int INNERLAYER;
 	private int OUTERLAYER;
 	private DomainController ctrl;
-<<<<<<< HEAD
 
-=======
 	private JLabel player1Money;
 	private JLabel player2Money;
 	private JLabel player3Money;
 	
->>>>>>> refs/remotes/origin/baris
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
 		new AppWindow();
-
-=======
-		new AppWindow();	
->>>>>>> refs/remotes/origin/baris
 	}
 
 	public AppWindow() {
@@ -96,21 +82,15 @@ public class AppWindow extends JFrame implements PropertyListener{
 		boardLabel.setBounds(0, 0, BOARD_SIZE, BOARD_SIZE);
 		this.getContentPane().add(boardLabel);
 	}
-
+	JPanel playerPanel = new JPanel();
 	public void addPlayerLabels() {
-<<<<<<< HEAD
-		JPanel panel = new JPanel();
-		panel.setBounds(840, 0, 585, 750);
-		this.getContentPane().add(panel);
-
-=======
-		JPanel playerPanel = new JPanel();
+		
+		
 		playerPanel.setBounds(840, 0, 585, 750);
 		this.getContentPane().add(playerPanel);
 		playerPanel.setLayout(null);
 		
 		
->>>>>>> refs/remotes/origin/baris
 		JLabel lbl = new JLabel("Player 1");
 		lbl.setBounds(159, 25, 46, 16);
 		lbl.setToolTipText("<html>"
@@ -118,13 +98,9 @@ public class AppWindow extends JFrame implements PropertyListener{
 				+ "<p width=\"200\">Money: 2000</p>"
 				+ "<ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul>"
 				+ "</html>\"");
-<<<<<<< HEAD
-		panel.add(lbl);
 
-=======
 		playerPanel.add(lbl);
 		
->>>>>>> refs/remotes/origin/baris
 		JLabel lbl_1 = new JLabel("Player 2");
 		lbl_1.setBounds(248, 25, 46, 16);
 		lbl_1.setToolTipText("<html>"
@@ -132,13 +108,8 @@ public class AppWindow extends JFrame implements PropertyListener{
 				+ "<p width=\"200\">Money: 9000</p>"
 				+ "<ul>Owned Places:<li>Smells</li><li>Like</li><li>Teen</li><li>Spirit</li></ul>"
 				+ "</html>\"");
-<<<<<<< HEAD
-		panel.add(lbl_1);
-
-=======
 		playerPanel.add(lbl_1);
 		
->>>>>>> refs/remotes/origin/baris
 		JLabel lbl_2 = new JLabel("Player 3");
 		lbl_2.setBounds(342, 25, 46, 16);
 		lbl_2.setToolTipText("<html>"
@@ -146,8 +117,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 				+ "<p width=\"200\">Money: 9001</p>"
 				+ "<ul>Owned Places:<li>Fire</li><li>Water</li><li>Earth</li><li>Wood</li></ul>"
 				+ "</html>\"");
-<<<<<<< HEAD
-		panel.add(lbl_2);
+		playerPanel.add(lbl_2);
 
 	}
 
@@ -159,8 +129,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 		this.getContentPane().add(panel);
 		panel.setLayout(new GridLayout(2, 4, 10, 10));
 
-=======
-		playerPanel.add(lbl_2);
+
 		
 		player1Money = new JLabel("1500");
 		player1Money.setHorizontalAlignment(SwingConstants.CENTER);
@@ -185,7 +154,6 @@ public class AppWindow extends JFrame implements PropertyListener{
 		playerPanel.add(buttonPanel);
 		buttonPanel.setLayout(new GridLayout(2, 4, 10, 10));
 		
->>>>>>> refs/remotes/origin/baris
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -196,13 +164,9 @@ public class AppWindow extends JFrame implements PropertyListener{
 
 			}
 		});
-<<<<<<< HEAD
-		panel.add(button);
 
-=======
 		buttonPanel.add(button);
 		
->>>>>>> refs/remotes/origin/baris
 		Button button_1 = new Button("Buy Deed");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -213,13 +177,10 @@ public class AppWindow extends JFrame implements PropertyListener{
 
 			}
 		});
-<<<<<<< HEAD
-		panel.add(button_1);
 
-=======
 		buttonPanel.add(button_1);
 		
->>>>>>> refs/remotes/origin/baris
+
 		Button button_2 = new Button("Build");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -230,13 +191,9 @@ public class AppWindow extends JFrame implements PropertyListener{
 
 			}
 		});
-<<<<<<< HEAD
-		panel.add(button_2);
 
-=======
 		buttonPanel.add(button_2);
 		
->>>>>>> refs/remotes/origin/baris
 		Button button_3 = new Button("End Turn");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -251,9 +208,6 @@ public class AppWindow extends JFrame implements PropertyListener{
 		
 	}
 	
-	public void addButtons() {
-		getContentPane().setLayout(null);			
-	}
 
 
 	public void addPieces() {
