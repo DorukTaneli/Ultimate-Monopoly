@@ -3,21 +3,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-	private static final int SIZE = 40;
-	private List squares = new ArrayList(SIZE);
+	private static final int SIZE = 120;
+	private ArrayList<Square> squares = new ArrayList<Square>(SIZE);
 	private Cup cup = new Cup();
 	
 	public Board() {
 		buildSquares();
 		linkSquares();
+		setUpTransitSquares();
 		
+	}
+	
+	private void setUpTransitSquares() {
+		if(squares.get(15).type.equals("TransitSquare")) {
+			TransitSquare ts = (TransitSquare) squares.get(15);
+			
+			
+		}
 	}
 	
 	public Cup getCup() {
 		return cup;
 	}
 	
-	public List getSquaresList() {
+	public ArrayList<Square> getSquaresList() {
 		return squares;
 	}
 	
@@ -100,7 +109,7 @@ public class Board {
 		buildRS("Transit Station", 61);
 		buildRS("Reverse Direction", 62);
 		buildPS("Lombard Street", 63, 210, 17, "white");
-		buildRS("Subway", 64);
+		buildRS("Subway", 64); //is actually stock exchange on board
 		buildPS("Lake Street", 65, 30, 1, "lpink");
 		buildRS("Community Chest", 66);
 		buildPS("Nicollet Avenue", 67, 30, 1, "lpink");

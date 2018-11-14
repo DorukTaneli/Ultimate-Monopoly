@@ -16,7 +16,7 @@ public abstract class Square {
 		nextSquare = s;
 	}
 	
-	public Square getNextSquare() {
+	public Square getNextSquare(int f) {
 		return nextSquare;
 	}
 	
