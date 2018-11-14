@@ -9,17 +9,15 @@ import javax.swing.*;
 
 import domainLayer.DomainController;
 import domainLayer.Player;
-import domainLayer.squares.Square;
 import domainLayer.Publisher;
-
+import domainLayer.squares.Square;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Button;
 
 public class AppWindow extends JFrame implements PropertyListener{
-
-
+	
 	private JLabel boardLabel;
 	private JLabel hatLbl;
 	private JLabel carLbl;
@@ -34,39 +32,36 @@ public class AppWindow extends JFrame implements PropertyListener{
 	private int INNERLAYER;
 	private int OUTERLAYER;
 	private DomainController ctrl;
-	
-	JPanel playerPanel;
 	private JLabel player1Money;
 	private JLabel player2Money;
 	private JLabel player3Money;
-
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new AppWindow();
+		new AppWindow();	
 	}
-
+	
 	public AppWindow() {
 		setResizable(false);
 		ctrl = new DomainController(this);
 		this.setSize(WINDOW_X, WINDOW_Y);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
-
-
+		
+		
 		addButtons();
 		addPieces();
 		addPlayerLabels();
 		addBoardImage();
 		updatePieceGUILocation();
-
+				
 		System.out.println("midlayer: " + MIDLAYER);
 		System.out.println("halfsq: " + HALFSQ);
-
-
+		
+		
 		this.setVisible(true);
 	}
-
+	
 
 
 	public void addBoardImage() {
@@ -76,23 +71,21 @@ public class AppWindow extends JFrame implements PropertyListener{
 		imageIcon = new ImageIcon(newimg);  // transform it back
 		HALFSQ = (int) (BOARD_SIZE/34.5);
 		MIDLAYER = (int) (BOARD_SIZE/7.9);
-		INNERLAYER = (int) (BOARD_SIZE/3.95);
-		OUTERLAYER = (int) (BOARD_SIZE/103.75);
+		INNERLAYER=(int) (BOARD_SIZE/3.95);
+		OUTERLAYER=(int) (BOARD_SIZE/103.75);
 		boardLabel = new JLabel(imageIcon);
 		boardLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		boardLabel.setBounds(0, 0, BOARD_SIZE, BOARD_SIZE);
 		this.getContentPane().add(boardLabel);
 	}
 	
-	
 	public void addPlayerLabels() {
-
-		playerPanel = new JPanel();
+		JPanel playerPanel = new JPanel();
 		playerPanel.setBounds(840, 0, 585, 750);
 		this.getContentPane().add(playerPanel);
 		playerPanel.setLayout(null);
-
-
+		
+		
 		JLabel lbl = new JLabel("Player 1");
 		lbl.setBounds(159, 25, 46, 16);
 		lbl.setToolTipText("<html>"
@@ -100,9 +93,8 @@ public class AppWindow extends JFrame implements PropertyListener{
 				+ "<p width=\"200\">Money: 2000</p>"
 				+ "<ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul>"
 				+ "</html>\"");
-
 		playerPanel.add(lbl);
-
+		
 		JLabel lbl_1 = new JLabel("Player 2");
 		lbl_1.setBounds(248, 25, 46, 16);
 		lbl_1.setToolTipText("<html>"
@@ -111,7 +103,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 				+ "<ul>Owned Places:<li>Smells</li><li>Like</li><li>Teen</li><li>Spirit</li></ul>"
 				+ "</html>\"");
 		playerPanel.add(lbl_1);
-
+		
 		JLabel lbl_2 = new JLabel("Player 3");
 		lbl_2.setBounds(342, 25, 46, 16);
 		lbl_2.setToolTipText("<html>"
@@ -120,31 +112,19 @@ public class AppWindow extends JFrame implements PropertyListener{
 				+ "<ul>Owned Places:<li>Fire</li><li>Water</li><li>Earth</li><li>Wood</li></ul>"
 				+ "</html>\"");
 		playerPanel.add(lbl_2);
-
-	}
-
-	public void addButtons() {
-		getContentPane().setLayout(null);			
-		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
-		JPanel panel = new JPanel();
-		panel.setBounds(900, 500, 366, 95);
-		this.getContentPane().add(panel);
-		panel.setLayout(new GridLayout(2, 4, 10, 10));
-
-
-
+		
 		player1Money = new JLabel("1500");
 		player1Money.setHorizontalAlignment(SwingConstants.CENTER);
 		player1Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
 		player1Money.setBounds(159, 54, 46, 16);
 		playerPanel.add(player1Money);
-
+		
 		player2Money = new JLabel("1500");
 		player2Money.setHorizontalAlignment(SwingConstants.CENTER);
 		player2Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
 		player2Money.setBounds(248, 54, 46, 16);
 		playerPanel.add(player2Money);
-
+		
 		player3Money = new JLabel("0");
 		player3Money.setHorizontalAlignment(SwingConstants.CENTER);
 		player3Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
@@ -155,7 +135,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 		buttonPanel.setBounds(86, 642, 366, 95);
 		playerPanel.add(buttonPanel);
 		buttonPanel.setLayout(new GridLayout(2, 4, 10, 10));
-
+		
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -163,12 +143,11 @@ public class AppWindow extends JFrame implements PropertyListener{
 					System.out.println("**Roll button pressed!");
 					ctrl.rollPressed();
 				}
-
+			
 			}
 		});
-
 		buttonPanel.add(button);
-
+		
 		Button button_1 = new Button("Buy Deed");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -176,13 +155,11 @@ public class AppWindow extends JFrame implements PropertyListener{
 					System.out.println("**Buy Deed button pressed!");
 					ctrl.buyPressed();
 				}
-
+			
 			}
 		});
-
 		buttonPanel.add(button_1);
-
-
+		
 		Button button_2 = new Button("Build");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -190,12 +167,11 @@ public class AppWindow extends JFrame implements PropertyListener{
 					System.out.println("**Build button pressed!");
 					ctrl.buildPressed();
 				}
-
+				
 			}
 		});
-
 		buttonPanel.add(button_2);
-
+		
 		Button button_3 = new Button("End Turn");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -203,53 +179,56 @@ public class AppWindow extends JFrame implements PropertyListener{
 					System.out.println("**End Turn button pressed!");
 					ctrl.endTurnPressed();
 				}
-
+				
 			}
 		});
 		buttonPanel.add(button_3);
-
+		
 	}
-
-
-
+	
+	public void addButtons() {
+		getContentPane().setLayout(null);			
+	}
+	
+	
 	public void addPieces() {
-		//		Player playerHat = (Player)ctrl.getPlayers().get(0);
-		//		Player playerCar = (Player)ctrl.getPlayers().get(1);
-		//
-		//		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics/hat small.png")), playerHat, -25);
-		//		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics/car small.png")), playerCar, 25);
+//		Player playerHat = (Player)ctrl.getPlayers().get(0);
+//		Player playerCar = (Player)ctrl.getPlayers().get(1);
+//
+//		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics/hat small.png")), playerHat, -25);
+//		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics/car small.png")), playerCar, 25);
 
 		hatLbl = new JLabel(new ImageIcon("graphics/hat small.png"));
 		this.getContentPane().add(hatLbl);
 		hatLbl.setBounds(0, 0, 50, 50);
 		hatLbl.setVisible(true);
-
+		
 		carLbl = new JLabel(new ImageIcon("graphics/car small.png"));
 		this.getContentPane().add(carLbl);
 		carLbl.setBounds(0, 0, 50, 50);
-		//		carLbl.setBounds(getPixelX(0), getPixelY(0), 50, 50);
+//		carLbl.setBounds(getPixelX(0), getPixelY(0), 50, 50);
 		carLbl.setVisible(true);
 	}
-
+	
 
 	public void updatePieceGUILocation(){	
 		int playerLocIndex = ctrl.getPlayers().get(1).piece.getLocation().getIndex();
-		//		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
-		//		System.out.println("******** playerLocIndex: "+(playerLocIndex));
+//		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
+//		System.out.println("******** playerLocIndex: "+(playerLocIndex));
 		//
 		carLbl.setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
 		carLbl.setVisible(true);
-		//		System.out.println("******** carLbl location: "+carLbl.getLocation());
-
+//		System.out.println("******** carLbl location: "+carLbl.getLocation());
+		
 		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
 		hatLbl.setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
 		hatLbl.setVisible(true);
 
 	}
+		
+	
 
-
-
-
+	
 	public int getPixelX(int ind) {
 		//		System.out.println("Current variables: "
 		//				+ "\n X_OFFSET: "+ X_OFFSET
@@ -354,7 +333,6 @@ public class AppWindow extends JFrame implements PropertyListener{
 	}
 
 
-
 	@Override
 	public void onPropertyEvent(Publisher pb, String type, String val) {
 		// TODO Auto-generated method stub
@@ -374,10 +352,10 @@ public class AppWindow extends JFrame implements PropertyListener{
 			}
 		}
 		else if(type=="Location") {
-
+			
 		}
 		else {
-
+			
 		}
 	}
 }
