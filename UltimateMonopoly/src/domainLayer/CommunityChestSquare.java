@@ -14,7 +14,7 @@ public class CommunityChestSquare extends Square{
 	public void landedOn(Player p) {
 		// TODO Auto-generated method stub
 		drawCommunityChanceCard(p);
-		if(card.isKeepable()) {
+		if(!card.isKeepable()) {
 			card.cardAction();
 //		}else{
 //			card.addToInventory(p);

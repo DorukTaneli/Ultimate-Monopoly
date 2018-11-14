@@ -14,7 +14,7 @@ public class ChanceSquare extends Square{
 	public void landedOn(Player p) {
 		// TODO Auto-generated method stub
 		drawChanceCard(p);
-		if(card.isKeepable()) {
+		if(!card.isKeepable()) {
 			card.cardAction();
 //		}else{
 //			card.addToInventory(p);

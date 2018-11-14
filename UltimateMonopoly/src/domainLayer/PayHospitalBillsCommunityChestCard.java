@@ -10,6 +10,8 @@ public class PayHospitalBillsCommunityChestCard extends CommunityChestCard{
 	@Override
 	public void cardAction() {
 		// TODO Auto-generated method stub
+		System.out.println("PAY HOSPITAL BILLS COMMUNITY CHEST CARD ACTIVATED ON PLAYER: "+drawer.getName());
+
 		drawer.reduceCash(100);
 		
 	}

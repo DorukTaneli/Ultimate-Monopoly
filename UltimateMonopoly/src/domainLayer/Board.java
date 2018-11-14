@@ -60,12 +60,12 @@ public class Board {
 		Square sq = new GoSquare("Go Square", 0);
 		squares.add(sq);
 		buildPS("Mediterranean Avenue", 1, 60, 2, "purple");
-		buildRS("Community Chest", 2);
+		buildCCS("Community Chest", 2);
 		buildPS("Baltic Avenue", 3, 60, 4, "purple");
 		buildRS("Income Tax", 4);
 		buildTransit("Transit Station", 5, 200);
 		buildPS("Oriental Avenue", 6, 100, 6, "lblue");
-		buildRS("Chance", 7);
+		buildChance("Chance", 7);
 		buildPS("Vermont Avenue", 8, 100, 6, "lblue");
 		buildPS("Connecticut Avenue", 9, 120, 8, "lblue");
 		buildRS("Jail", 10);
@@ -75,12 +75,12 @@ public class Board {
 		buildPS("Virginia Avenue", 14, 160, 12 ,"pink");
 		buildTransit("Pennysylvania Railroad", 15,200);
 		buildPS("St. James Place", 16, 180, 14, "orange");
-		buildRS("Community Chest", 17);
+		buildCCS("Community Chest", 17);
 		buildPS("Tennessee Avenue", 18, 180, 14, "orange");
 		buildPS("New York Avenue", 19, 200, 16, "orange");
 		buildRS("Free Parking", 20);
 		buildPS("Kentucky Avenue", 21, 220, 18, "red");
-		buildRS("Chance", 22);
+		buildChance("Chance", 22);
 		buildPS("Indiana Avenue", 23, 220, 18, "red");
 		buildPS("Illinois Avenue", 24, 240, 20, "red");
 		buildTransit("Transit Station", 25,200);
@@ -91,10 +91,10 @@ public class Board {
 		buildRS("Go to Jail", 30);
 		buildPS("Pacific Avenue", 31, 300, 26, "green");
 		buildPS("North Carolina Avenue", 32, 300, 26, "green");
-		buildRS("Community Chest", 33);
+		buildCCS("Community Chest", 33);
 		buildPS("Pennysylvania Avenue", 34, 320, 28, "green");
 		buildTransit("Short Line", 35,200);
-		buildRS("Chance", 36);
+		buildChance("Chance", 36);
 		buildPS("Park Place", 37, 350, 35, "dblue");
 		buildRS("Luxury Tax", 38);
 		buildPS("Board Walk", 39, 400, 50, "dblue");
@@ -114,7 +114,7 @@ public class Board {
 		buildPS("Wall Street", 53, 500, 80, "gray");
 		buildRS("Tax Refund", 54);
 		buildRS("Gas Company", 55);
-		buildRS("Chance", 56);
+		buildChance("Chance", 56);
 		buildPS("Florida Avenue", 57, 130, 9, "lbrown");
 		buildRS("Holland Tunnel", 58);
 		buildPS("Miami Avenue", 59, 130, 9 ,"lbrown");
@@ -124,7 +124,7 @@ public class Board {
 		buildPS("Lombard Street", 63, 210, 17, "white");
 		buildRS("Subway", 64); //is actually stock exchange on board
 		buildPS("Lake Street", 65, 30, 1, "lpink");
-		buildRS("Community Chest", 66);
+		buildCCS("Community Chest", 66);
 		buildPS("Nicollet Avenue", 67, 30, 1, "lpink");
 		buildPS("Hennepin Avenue", 68, 60, 3, "lpink");
 		buildRS("Bus Ticket", 69);
@@ -132,7 +132,7 @@ public class Board {
 		buildTransit("Reading Railroad", 71,200);
 		buildPS("Esplanade Avenue", 72, 90, 5, "lgreen");
 		buildPS("Canal Street", 73, 90, 5, "lgreen");
-		buildRS("Chance", 74);
+		buildChance("Chance", 74);
 		buildRS("Cable Company", 75);
 		buildPS("Magazine Street", 76, 120, 8, "lgreen");
 		buildPS("Bourbon Street", 77, 120, 8, "lgreen");
@@ -143,32 +143,32 @@ public class Board {
 		buildRS("Internet Service Provider", 82);
 		buildPS("Kirby Drive", 83, 180, 14, "lyellow");
 		buildPS("Cullen Boulevard", 84, 180, 14, "lyellow");
-		buildRS("Chance", 85);
+		buildChance("Chance", 85);
 		buildRS("Black & White Cab Co.", 86);
 		buildPS("Dekalb Avenue", 87, 210, 17, "turqoise");
-		buildRS("Community Chest", 88);
+		buildCCS("Community Chest", 88);
 		buildPS("Andrew Young Int'l Boulevard", 89, 210, 17, "turqoise");
 		buildPS("Decatur Street", 90, 240, 20, "turqoise");
 		buildPS("Peachtree Street", 91, 240, 20, "turqoise");
 		buildRS("Pay Day", 92);
 		buildPS("Randolph Street", 93, 270, 23, "maroon");
-		buildRS("Chance", 94);
+		buildChance("Chance", 94);
 		buildPS("Lake Shore Drive", 95, 270, 23, "maroon");
 		buildPS("Wacher Drive", 96, 300, 26, "maroon");
 		buildPS("Michigan Avenue", 97, 300, 26, "maroon");
 		buildRS("Yellow Cab Co.", 98);
 		buildTransit("B&O Railroad", 99,200);
-		buildRS("Community Chest", 100);
+		buildCCS("Community Chest", 100);
 		buildPS("South Temple", 101, 330, 32, "mustard");
 		buildPS("West Temple", 102, 330, 32 ,"mustard");
 		buildRS("Trash Collector", 103);
 		buildPS("North Temple", 104, 360, 38, "mustard");
 		buildPS("Temple Square", 105, 360, 38, "mustard");
-		buildRS("Go to Jail", 106);
+		buildRS("Subway", 106); //NEEDS TO BE SUBWAY
 		buildPS("South Street", 107, 390, 45, "salmon");
 		buildPS("Broad Street", 108, 390, 45, "salmon");
 		buildPS("Wallnut Street", 109, 420, 55, "salmon");
-		buildRS("Community Chest", 110);
+		buildCCS("Community Chest", 110);
 		buildPS("Market Street", 111, 420, 55, "salmon");
 		buildRS("Bus Ticket", 112);
 		buildRS("Sewage System", 113);
@@ -176,7 +176,7 @@ public class Board {
 		buildRS("Birthday Gift", 115);
 		buildPS("Mulholland Drive", 116, 450, 70, "dbrown");
 		buildPS("Ventura Boulevard", 117, 480, 80, "dbrown");
-		buildRS("Chance", 118);
+		buildChance("Chance", 118);
 		buildPS("Rodeo Drive", 119, 480, 90, "dbrown");
 	}
 	
@@ -196,6 +196,16 @@ public class Board {
 		Square s = new TransitSquare(name,ind,pr,25);
 		squares.add(s);
 		
+	}
+	
+	private void buildChance(String name, int index) {
+		Square s = new ChanceSquare(name,index);
+		squares.add(s);
+	}
+	
+	private void buildCCS(String name, int index) { //COMMUNUTY CHEST SQUARE
+		Square s = new CommunityChestSquare(name,index);
+		squares.add(s);
 	}
 	
 	private void linkSquares() {

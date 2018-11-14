@@ -10,6 +10,7 @@ public class GoToJailChanceCard extends ChanceCard{
 	@Override
 	public void cardAction() {
 		// TODO Auto-generated method stub
+		System.out.println("GO TO JAIL CHANCE CARD ACTIVATED ON PLAYER: "+drawer.getName());
 		drawer.goToJail();
 	}
 	
