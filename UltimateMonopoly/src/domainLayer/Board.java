@@ -161,7 +161,7 @@ public class Board {
 	
 	
 	private void buildPS(String name, int ind, int pr, int rent, String color) {
-		Square s = new PropertySquare(name, ind, pr, rent, color);
+		Square s = new DeedSquare(name, ind, pr, rent, color);
 		squares.add(s);
 	}
 	

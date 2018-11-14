@@ -39,8 +39,4 @@ public abstract class Square {
 	
 	abstract public void landedOn(Player p);
 	abstract public void passedOn(Player p);
-
-	protected abstract boolean isOwned();
-
-	protected abstract int getPrice();
 }

@@ -73,20 +73,16 @@ public class Player {
 			nextLoc.passedOn(this);
 			System.out.println("Player "+this.name+" moved from "+currentLoc.getName()+" to "+nextLoc.getName());
 			currentLoc=nextLoc;
-			
-			
 		}
 
 		currentLoc.landedOn(this);
 		System.out.println("Player "+this.name+" landed on "+currentLoc.getName()+" at Index: ("+currentLoc.getIndex()+")");
-		
-		
 	}
 	
 	
 	public void teleportToLand(Square sq) {
 		piece.setLocation(sq);
-		sq.landedOn(this); //will landed on work on teleports?
+		sq.landedOn(this); //will landed on work on teleports? //Doruk thinks yes
 	}
 	
 	public void teleportNoLand(Square sq) {
