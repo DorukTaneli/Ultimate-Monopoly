@@ -6,7 +6,7 @@ public class DeedSquare extends PropertySquare{
 	private String color;
 
 	public DeedSquare(String name, int index, int price, int rent, String color) {
-		super(name, index, price);
+		super(name, index, price,rent);
 		this.price = price;
 		this.baseRent = rent;
 		this.color = color;

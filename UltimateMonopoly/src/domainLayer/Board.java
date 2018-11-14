@@ -17,9 +17,22 @@ public class Board {
 	private void setUpTransitSquares() {
 		if(squares.get(15).type.equals("TransitSquare")) {
 			TransitSquare ts = (TransitSquare) squares.get(15);
-			
-			
+			ts.setBrothers((TransitSquare)squares.get(49));
 		}
+		if(squares.get(25).type.equals("TransitSquare")) {
+			TransitSquare ts = (TransitSquare) squares.get(25);
+			ts.setBrothers((TransitSquare)squares.get(99));
+		}
+		if(squares.get(35).type.equals("TransitSquare")) {
+			TransitSquare ts = (TransitSquare) squares.get(35);
+			ts.setBrothers((TransitSquare)squares.get(61));
+		}
+		if(squares.get(5).type.equals("TransitSquare")) {
+			TransitSquare ts = (TransitSquare) squares.get(5);
+			ts.setBrothers((TransitSquare)squares.get(71));
+		}
+		
+		
 	}
 	
 	public Cup getCup() {
@@ -50,7 +63,7 @@ public class Board {
 		buildRS("Community Chest", 2);
 		buildPS("Baltic Avenue", 3, 60, 4, "purple");
 		buildRS("Income Tax", 4);
-		buildRS("Transit Station", 5);
+		buildTransit("Transit Station", 5, 200);
 		buildPS("Oriental Avenue", 6, 100, 6, "lblue");
 		buildRS("Chance", 7);
 		buildPS("Vermont Avenue", 8, 100, 6, "lblue");
@@ -60,7 +73,7 @@ public class Board {
 		buildRS("Electric Company", 12);
 		buildPS("States Avenue", 13, 140, 10, "pink");
 		buildPS("Virginia Avenue", 14, 160, 12 ,"pink");
-		buildRS("Pennysylvania Railroad", 15);
+		buildTransit("Pennysylvania Railroad", 15,200);
 		buildPS("St. James Place", 16, 180, 14, "orange");
 		buildRS("Community Chest", 17);
 		buildPS("Tennessee Avenue", 18, 180, 14, "orange");
@@ -70,7 +83,7 @@ public class Board {
 		buildRS("Chance", 22);
 		buildPS("Indiana Avenue", 23, 220, 18, "red");
 		buildPS("Illinois Avenue", 24, 240, 20, "red");
-		buildRS("Transit Station", 25);
+		buildTransit("Transit Station", 25,200);
 		buildPS("Atlantic Avenue", 26, 260, 22, "yellow");
 		buildPS("Ventnor Avenue", 27, 260, 22, "yellow");
 		buildRS("Water Works", 28);
@@ -80,7 +93,7 @@ public class Board {
 		buildPS("North Carolina Avenue", 32, 300, 26, "green");
 		buildRS("Community Chest", 33);
 		buildPS("Pennysylvania Avenue", 34, 320, 28, "green");
-		buildRS("Short Line", 35);
+		buildTransit("Short Line", 35,200);
 		buildRS("Chance", 36);
 		buildPS("Park Place", 37, 350, 35, "dblue");
 		buildRS("Luxury Tax", 38);
@@ -94,7 +107,7 @@ public class Board {
 		buildRS("Bonus", 46);
 		buildPS("Boylston Street", 47, 330, 30, "black");
 		buildPS("Newbury Street", 48, 380, 40, "black");
-		buildRS("Transit Station", 49);
+		buildTransit("Transit Station", 49,200);
 		buildPS("Fifth Avenue", 50, 430, 60, "gray");
 		buildPS("Madison Avenue", 51, 430, 60, "gray");
 		buildRS("Stock Exchange", 52);
@@ -106,7 +119,7 @@ public class Board {
 		buildRS("Holland Tunnel", 58);
 		buildPS("Miami Avenue", 59, 130, 9 ,"lbrown");
 		buildPS("Biscayne Avenue", 60, 150, 11, "lbrown");
-		buildRS("Transit Station", 61);
+		buildTransit("Transit Station", 61,200);
 		buildRS("Reverse Direction", 62);
 		buildPS("Lombard Street", 63, 210, 17, "white");
 		buildRS("Subway", 64); //is actually stock exchange on board
@@ -116,7 +129,7 @@ public class Board {
 		buildPS("Hennepin Avenue", 68, 60, 3, "lpink");
 		buildRS("Bus Ticket", 69);
 		buildRS("Checker Cab Co.", 70);
-		buildRS("Reading Railroad", 71);
+		buildTransit("Reading Railroad", 71,200);
 		buildPS("Esplanade Avenue", 72, 90, 5, "lgreen");
 		buildPS("Canal Street", 73, 90, 5, "lgreen");
 		buildRS("Chance", 74);
@@ -144,7 +157,7 @@ public class Board {
 		buildPS("Wacher Drive", 96, 300, 26, "maroon");
 		buildPS("Michigan Avenue", 97, 300, 26, "maroon");
 		buildRS("Yellow Cab Co.", 98);
-		buildRS("B&O Railroad", 99);
+		buildTransit("B&O Railroad", 99,200);
 		buildRS("Community Chest", 100);
 		buildPS("South Temple", 101, 330, 32, "mustard");
 		buildPS("West Temple", 102, 330, 32 ,"mustard");
@@ -179,6 +192,12 @@ public class Board {
 		squares.add(s);
 	}
 	
+	private void buildTransit(String name,int ind,int pr) {
+		Square s = new TransitSquare(name,ind,pr,25);
+		squares.add(s);
+		
+	}
+	
 	private void linkSquares() {
 		for (int i = 0; i < (SIZE - 1); i++) {
 			link(i);
@@ -187,6 +206,9 @@ public class Board {
 		Square first = getStartSquare();
 		Square last = (Square) squares.get(SIZE-1);
 		last.setNextSquare(first);
+		squares.get(63).setNextSquare(squares.get(40));
+		squares.get(119).setNextSquare(squares.get(64));
+		
 	}
 	
 	private void link(int i) {

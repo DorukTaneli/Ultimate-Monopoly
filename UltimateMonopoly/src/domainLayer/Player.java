@@ -43,7 +43,7 @@ public class Player {
 			if (inJail) tryToGetOutOfJail();
 			
 			if(!inJail) {
-				System.out.println("**Player "+this.name+" rolled "+rollTotal+" Dual Roll?: "+cup.isDualRoll());
+				System.out.println("*****Player "+this.name+" rolled "+rollTotal+" Dual Roll?: "+cup.isDualRoll());
 				moveOneByOneFor(rollTotal);		
 			}
 			
@@ -83,7 +83,7 @@ public class Player {
 			Square nextLoc=currentLoc.getNextSquare(f);
 			piece.setLocation(nextLoc);
 			nextLoc.passedOn(this);
-			System.out.println(" "+currentLoc.getName()+", ");
+			System.out.println("->"+currentLoc.getName()+" ");
 			currentLoc=nextLoc;
 		}
 
