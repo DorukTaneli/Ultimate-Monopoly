@@ -1,10 +1,12 @@
-package domainLayer;
+package domainLayer.squares;
+
+import domainLayer.Player;
 
 public class RegularSquare extends Square{
 	
 	public RegularSquare(String name, int index) {
 		super(name, index);
-		type="RegularSquare";
+		setType("RegularSquare");
 	}
 	
 	public void landedOn(Player p) {

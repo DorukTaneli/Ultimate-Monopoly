@@ -1,4 +1,8 @@
-package domainLayer;
+package domainLayer.squares;
+
+import domainLayer.Player;
+import domainLayer.cards.ChanceCard;
+import domainLayer.cards.GoToJailChanceCard;
 
 public class ChanceSquare extends Square{
 	
@@ -6,7 +10,7 @@ public class ChanceSquare extends Square{
 
 	public ChanceSquare(String name, int index) {
 		super(name, index);
-		type="ChanceSquare";
+		setType("ChanceSquare");
 		// TODO Auto-generated constructor stub
 	}
 

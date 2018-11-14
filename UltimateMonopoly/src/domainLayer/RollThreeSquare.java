@@ -1,5 +1,8 @@
 package domainLayer;
 
+import domainLayer.Cup;
+import domainLayer.Player;
+import domainLayer.cards.RollThreeCard;
 public class RollThreeSquare extends RegularSquare{
 	private RollThreeCard[] cards={(new RollThreeCard("kart1",new int[] {1,2,4})),(new RollThreeCard("kart2",new int[] {1,2,5}))};
 	Cup cup;

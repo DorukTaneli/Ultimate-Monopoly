@@ -1,4 +1,4 @@
-package domainLayer;
+package domainLayer.cards;
 
 public abstract class ChanceCard extends Card{
 	

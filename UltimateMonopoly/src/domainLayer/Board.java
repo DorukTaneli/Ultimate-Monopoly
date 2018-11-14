@@ -2,6 +2,15 @@ package domainLayer;
 import java.util.ArrayList;
 import java.util.List;
 
+import domainLayer.squares.ChanceSquare;
+import domainLayer.squares.CommunityChestSquare;
+import domainLayer.squares.DeedSquare;
+import domainLayer.squares.GoSquare;
+import domainLayer.squares.RegularSquare;
+import domainLayer.squares.RollThreeSquare;
+import domainLayer.squares.Square;
+import domainLayer.squares.TransitSquare;
+
 public class Board {
 	private static final int SIZE = 120;
 	private ArrayList<Square> squares = new ArrayList<Square>(SIZE);
@@ -15,19 +24,19 @@ public class Board {
 	}
 	
 	private void setUpTransitSquares() {
-		if(squares.get(15).type.equals("TransitSquare")) {
+		if(squares.get(15).getType().equals("TransitSquare")) {
 			TransitSquare ts = (TransitSquare) squares.get(15);
 			ts.setBrothers((TransitSquare)squares.get(49));
 		}
-		if(squares.get(25).type.equals("TransitSquare")) {
+		if(squares.get(25).getType().equals("TransitSquare")) {
 			TransitSquare ts = (TransitSquare) squares.get(25);
 			ts.setBrothers((TransitSquare)squares.get(99));
 		}
-		if(squares.get(35).type.equals("TransitSquare")) {
+		if(squares.get(35).getType().equals("TransitSquare")) {
 			TransitSquare ts = (TransitSquare) squares.get(35);
 			ts.setBrothers((TransitSquare)squares.get(61));
 		}
-		if(squares.get(5).type.equals("TransitSquare")) {
+		if(squares.get(5).getType().equals("TransitSquare")) {
 			TransitSquare ts = (TransitSquare) squares.get(5);
 			ts.setBrothers((TransitSquare)squares.get(71));
 		}
