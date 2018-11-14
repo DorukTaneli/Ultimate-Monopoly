@@ -2,6 +2,9 @@ package domainLayer;
 
 import java.util.ArrayList;
 
+import domainLayer.squares.PropertySquare;
+import domainLayer.squares.Square;
+
 public class Player {
 
 	public Piece piece;

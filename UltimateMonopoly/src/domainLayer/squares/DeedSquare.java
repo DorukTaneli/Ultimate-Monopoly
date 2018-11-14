@@ -1,4 +1,6 @@
-package domainLayer;
+package domainLayer.squares;
+
+import domainLayer.Player;
 
 public class DeedSquare extends PropertySquare{
 	
@@ -10,7 +12,7 @@ public class DeedSquare extends PropertySquare{
 		this.price = price;
 		this.baseRent = rent;
 		this.color = color;
-		type="PropertySquare";
+		setType("PropertySquare");
 	}
 
 	@Override

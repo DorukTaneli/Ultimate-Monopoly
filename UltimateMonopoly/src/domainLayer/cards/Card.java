@@ -1,4 +1,6 @@
-package domainLayer;
+package domainLayer.cards;
+
+import domainLayer.Player;
 
 public abstract class Card {
 	

@@ -9,7 +9,7 @@ import javax.swing.*;
 
 import domainLayer.DomainController;
 import domainLayer.Player;
-import domainLayer.Square;
+import domainLayer.squares.Square;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

@@ -1,4 +1,6 @@
-package domainLayer;
+package domainLayer.squares;
+
+import domainLayer.Player;
 
 public class TransitSquare extends PropertySquare{
 
@@ -7,7 +9,7 @@ public class TransitSquare extends PropertySquare{
 	
 	public TransitSquare(String name, int index, int price,int rent) {
 		super(name, index,price,rent);
-		type="TransitSquare";
+		setType("TransitSquare");
 		baseRent=rent;
 		// TODO Auto-generated constructor stub
 		

@@ -1,4 +1,6 @@
-package domainLayer;
+package domainLayer.squares;
+
+import domainLayer.Player;
 
 public class GoSquare extends Square{
 

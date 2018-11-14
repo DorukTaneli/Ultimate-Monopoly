@@ -1,4 +1,8 @@
-package domainLayer;
+package domainLayer.squares;
+
+import domainLayer.Player;
+import domainLayer.cards.CommunityChestCard;
+import domainLayer.cards.PayHospitalBillsCommunityChestCard;
 
 public class CommunityChestSquare extends Square{
 	
@@ -6,7 +10,7 @@ public class CommunityChestSquare extends Square{
 
 	public CommunityChestSquare(String name, int index) {
 		super(name, index);
-		type="CommunityChestSquare";
+		setType("CommunityChestSquare");
 		// TODO Auto-generated constructor stub
 	}
 

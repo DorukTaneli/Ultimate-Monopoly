@@ -2,7 +2,7 @@ package uiLayer;
 import javax.swing.JLabel;
 
 import domainLayer.Player;
-import domainLayer.Square;
+import domainLayer.squares.Square;
 
 public class Nonsense {
 	

@@ -1,5 +1,7 @@
 package domainLayer;
 
+import domainLayer.squares.Square;
+
 public class Piece {
 
 	private Square location;
