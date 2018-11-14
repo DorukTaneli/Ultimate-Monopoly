@@ -11,7 +11,7 @@ public class TransitSquare extends Square{
 
 	@Override
 	public void landedOn(Player p) {
-		//if(p.haveRolledEven()==true)
+		
 		
 	}
 
