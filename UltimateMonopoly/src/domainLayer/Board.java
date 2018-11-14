@@ -194,7 +194,9 @@ public class Board {
 	
 //<<<<<<< HEAD
 	private void buildRTS(String name, int ind) {
-		Square s = new RollThreeSquare(name, ind);}
+		Square s = new RollThreeSquare(name, ind);
+		squares.add(s);
+		}
 //=======
 	private void buildTransit(String name,int ind,int pr) {
 		Square s = new TransitSquare(name,ind,pr,25);
