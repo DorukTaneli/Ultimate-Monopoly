@@ -1,11 +1,11 @@
 package domainLayer;
 
-public class UtilitySquare extends Square{
+public class UtilitySquare extends PropertySquare{
 
 	private int price;
 	
 	public UtilitySquare(String name, int index, int price) {
-		super(name, index);
+		super(name, index, price);
 		this.price = price;
 		// TODO Auto-generated constructor stub
 	}
