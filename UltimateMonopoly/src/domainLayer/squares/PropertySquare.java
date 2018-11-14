@@ -6,9 +6,11 @@ public abstract class PropertySquare extends Square{
 
 	Player owner = null;
 	int price;
+	int rent;
 	
 	public PropertySquare(String name, int index, int price,int rent) {
 		super(name, index);
+		this.rent=rent;
 		this.price = price;
 		
 	}

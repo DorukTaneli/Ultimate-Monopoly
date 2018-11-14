@@ -2,13 +2,11 @@ package domainLayer.squares;
 
 import domainLayer.Player;
 
-public class UtilitySquare extends Square{
+public class UtilitySquare extends PropertySquare{
 
-	private int price;
 	
-	public UtilitySquare(String name, int index, int price) {
-		super(name, index);
-		this.price = price;
+	public UtilitySquare(String name, int index, int price, int rent) {
+		super(name, index, price, rent);
 		// TODO Auto-generated constructor stub
 	}
 
