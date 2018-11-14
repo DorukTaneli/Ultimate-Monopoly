@@ -192,12 +192,12 @@ public class Board {
 		squares.add(s);
 	}
 	
-//<<<<<<< HEAD
+
 	private void buildRTS(String name, int ind) {
 		Square s = new RollThreeSquare(name, ind);
 		squares.add(s);
 		}
-//=======
+
 	private void buildTransit(String name,int ind,int pr) {
 		Square s = new TransitSquare(name,ind,pr,25);
 		squares.add(s);
@@ -211,7 +211,7 @@ public class Board {
 	
 	private void buildCCS(String name, int index) { //COMMUNUTY CHEST SQUARE
 		Square s = new CommunityChestSquare(name,index);
-//>>>>>>> refs/remotes/origin/master
+
 		squares.add(s);
 	}
 	
