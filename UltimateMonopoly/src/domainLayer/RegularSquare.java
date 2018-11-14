@@ -16,4 +16,5 @@ public class RegularSquare extends Square{
 		// TODO Auto-generated method stub
 		
 	}
+
 }
