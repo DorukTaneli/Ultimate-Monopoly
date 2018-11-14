@@ -10,7 +10,7 @@ public class RollThreeSquare extends RegularSquare{
 	
 	public RollThreeCard drawRollThreeCard() {
 		int len=cards.length;
-		int card=(int) Math.floor(((Math.random() * len)+1));
+		int card=(int) Math.floor((Math.random() * len));
 		return cards[card];
 	}
 	
@@ -20,7 +20,10 @@ public class RollThreeSquare extends RegularSquare{
 		int no2=cup.getSecondDie();
 		int no3=cup.getThirdDie();
 		RollThreeCard drawn=drawRollThreeCard();
+		p.addCash(drawn.getReward(no1,no2,no3,true));
 		drawn.getReward(no1,no2,no3,p.haveRolled());
+		System.out.println("Player rolled: "+no1+" "+no2+" "+no3);
+		System.out.println("Card drawn "+drawn.numbers[0]+" "+drawn.numbers[1]+" "+drawn.numbers[2]);
 	}
 	
 	
