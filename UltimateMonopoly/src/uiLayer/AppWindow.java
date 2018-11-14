@@ -18,7 +18,7 @@ import java.awt.GridLayout;
 import java.awt.Button;
 
 public class AppWindow extends JFrame implements PropertyListener{
-	
+
 
 	private JLabel boardLabel;
 	private JLabel hatLbl;
@@ -34,11 +34,12 @@ public class AppWindow extends JFrame implements PropertyListener{
 	private int INNERLAYER;
 	private int OUTERLAYER;
 	private DomainController ctrl;
-
+	
+	JPanel playerPanel;
 	private JLabel player1Money;
 	private JLabel player2Money;
 	private JLabel player3Money;
-	
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -82,15 +83,16 @@ public class AppWindow extends JFrame implements PropertyListener{
 		boardLabel.setBounds(0, 0, BOARD_SIZE, BOARD_SIZE);
 		this.getContentPane().add(boardLabel);
 	}
-	JPanel playerPanel = new JPanel();
+	
+	
 	public void addPlayerLabels() {
-		
-		
+
+		playerPanel = new JPanel();
 		playerPanel.setBounds(840, 0, 585, 750);
 		this.getContentPane().add(playerPanel);
 		playerPanel.setLayout(null);
-		
-		
+
+
 		JLabel lbl = new JLabel("Player 1");
 		lbl.setBounds(159, 25, 46, 16);
 		lbl.setToolTipText("<html>"
@@ -100,7 +102,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 				+ "</html>\"");
 
 		playerPanel.add(lbl);
-		
+
 		JLabel lbl_1 = new JLabel("Player 2");
 		lbl_1.setBounds(248, 25, 46, 16);
 		lbl_1.setToolTipText("<html>"
@@ -109,7 +111,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 				+ "<ul>Owned Places:<li>Smells</li><li>Like</li><li>Teen</li><li>Spirit</li></ul>"
 				+ "</html>\"");
 		playerPanel.add(lbl_1);
-		
+
 		JLabel lbl_2 = new JLabel("Player 3");
 		lbl_2.setBounds(342, 25, 46, 16);
 		lbl_2.setToolTipText("<html>"
@@ -130,19 +132,19 @@ public class AppWindow extends JFrame implements PropertyListener{
 		panel.setLayout(new GridLayout(2, 4, 10, 10));
 
 
-		
+
 		player1Money = new JLabel("1500");
 		player1Money.setHorizontalAlignment(SwingConstants.CENTER);
 		player1Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
 		player1Money.setBounds(159, 54, 46, 16);
 		playerPanel.add(player1Money);
-		
+
 		player2Money = new JLabel("1500");
 		player2Money.setHorizontalAlignment(SwingConstants.CENTER);
 		player2Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
 		player2Money.setBounds(248, 54, 46, 16);
 		playerPanel.add(player2Money);
-		
+
 		player3Money = new JLabel("0");
 		player3Money.setHorizontalAlignment(SwingConstants.CENTER);
 		player3Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
@@ -153,7 +155,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 		buttonPanel.setBounds(86, 642, 366, 95);
 		playerPanel.add(buttonPanel);
 		buttonPanel.setLayout(new GridLayout(2, 4, 10, 10));
-		
+
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -166,7 +168,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 		});
 
 		buttonPanel.add(button);
-		
+
 		Button button_1 = new Button("Buy Deed");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -179,7 +181,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 		});
 
 		buttonPanel.add(button_1);
-		
+
 
 		Button button_2 = new Button("Build");
 		button_2.addActionListener(new ActionListener() {
@@ -193,7 +195,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 		});
 
 		buttonPanel.add(button_2);
-		
+
 		Button button_3 = new Button("End Turn");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -205,9 +207,9 @@ public class AppWindow extends JFrame implements PropertyListener{
 			}
 		});
 		buttonPanel.add(button_3);
-		
+
 	}
-	
+
 
 
 	public void addPieces() {
@@ -268,7 +270,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 			return X_OFFSET + HALFSQ*32 + OUTERLAYER;
 		else if ((ind >= 78 && ind <= 92))
 			return X_OFFSET + HALFSQ*2 + OUTERLAYER;
-		
+
 		switch (ind) {
 		case 103: case 29: case 1: case 67:
 			return X_OFFSET + HALFSQ*21 + MIDLAYER;
@@ -317,7 +319,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 			return Y_OFFSET + HALFSQ*32 + OUTERLAYER;
 		else if ((ind >= 92 && ind <= 106))
 			return Y_OFFSET + HALFSQ*2 + OUTERLAYER;
-		
+
 		//switches
 		switch (ind) {
 		case 89: case 19: case 31: case 109:
@@ -372,10 +374,10 @@ public class AppWindow extends JFrame implements PropertyListener{
 			}
 		}
 		else if(type=="Location") {
-			
+
 		}
 		else {
-			
+
 		}
 	}
 }
