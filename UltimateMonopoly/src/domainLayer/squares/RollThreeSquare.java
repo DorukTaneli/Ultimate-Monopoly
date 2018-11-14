@@ -1,4 +1,4 @@
-package domainLayer;
+package domainLayer.squares;
 
 import domainLayer.Cup;
 import domainLayer.Player;
