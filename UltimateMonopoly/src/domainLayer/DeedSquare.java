@@ -1,5 +1,8 @@
 package domainLayer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DeedSquare extends PropertySquare implements Buildable{
 	
 	private int baseRent;
@@ -56,7 +59,7 @@ public class DeedSquare extends PropertySquare implements Buildable{
 	@Override
 	public void build() {
 		// TODO Auto-generated method stub
-		this.houseNo++;
+
 	}
 
 	@Override
@@ -68,19 +71,19 @@ public class DeedSquare extends PropertySquare implements Buildable{
 	@Override
 	public int getBuildingNo() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.houseNo;
 	}
 
 	@Override
 	public void demolish() {
 		// TODO Auto-generated method stub
-		
+		this.houseNo--;
 	}
 
 	@Override
 	public void demolishAll() {
 		// TODO Auto-generated method stub
-		
+		this.houseNo=0;
 	}
 
 }
