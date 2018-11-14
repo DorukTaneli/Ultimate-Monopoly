@@ -16,7 +16,7 @@ public abstract class Square {
 		nextSquare = s;
 	}
 	
-	public Square getNextSquare() {
+	public Square getNextSquare(int f) {
 		return nextSquare;
 	}
 	
@@ -39,8 +39,4 @@ public abstract class Square {
 	
 	abstract public void landedOn(Player p);
 	abstract public void passedOn(Player p);
-
-	protected abstract boolean isOwned();
-
-	protected abstract int getPrice();
 }

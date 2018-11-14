@@ -9,7 +9,7 @@ public class DomainController {
 	private static final int PLAYERS_TOTAL = 2;
 	private ArrayList<Player> players = new ArrayList<Player>(PLAYERS_TOTAL);
 	private Board board = new Board();
-	private Cup cup;
+	private Cup cup; //might not be needed in DC, might be needed in order to save the game.
 	private int turn = 0;
 	private AppWindow app;
 
@@ -60,6 +60,8 @@ public class DomainController {
 	
 	public void buyPressed() {
 		Player p = getCurrentPlayer();
+		Square sq = p.getLocation();
+		if(sq instanceof PropertySquare)
 		p.attemptPurchase((PropertySquare)p.getLocation());
 	}
 	
