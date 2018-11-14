@@ -19,7 +19,7 @@ public class RegularSquare extends Square{
 
 	@Override
 	protected boolean isOwned() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stu
 		return false;
 	}
 
