@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import uiLayer.AppWindow; //THIS SHOULDNT BE HERE ************ DOING THIS TO SEE THE PIECES MOVE
+import uiLayer.PropertyListener;
 
 public class DomainController {
 	private static final int PLAYERS_TOTAL = 2;
@@ -21,6 +22,10 @@ public class DomainController {
 		p = new Player("Car", board);
 		players.add(p);
 		this.cup=board.getCup();
+		
+		for(Player player: players) {
+				player.addPropertyListener(app);
+		}
 	}
 
 //	public void playGame() {

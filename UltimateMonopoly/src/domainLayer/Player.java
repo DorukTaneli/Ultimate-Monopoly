@@ -2,12 +2,14 @@ package domainLayer;
 
 import java.util.ArrayList;
 
-public class Player {
+import uiLayer.PropertyListener;
+
+public class Player implements Publisher{
 
 	public Piece piece;
 	private String name;
 	private Board board;
-	private int cash = 1500;
+	private int cash;
 	private boolean haveRolled = false;
 	private Cup cup;
 	private ArrayList<Square> myProperties= new ArrayList<Square>();
@@ -15,10 +17,13 @@ public class Player {
 	private boolean inJail=false;
 	private int jailCounter=0;
 	private int layer;
+	
+	private ArrayList<PropertyListener> myListeners=new ArrayList<PropertyListener>();
 
 	public Player(String name, Board board) {
 		this.name = name;
 		this.board = board;
+		this.addCash(1500);
 		this.cup=board.getCup();
 		piece= new Piece(board.getStartSquare());
 	}
@@ -89,7 +94,7 @@ public class Player {
 
 		currentLoc.landedOn(this);
 		System.out.println(" and Player "+this.name+" landed on "+currentLoc.getName()+" at Index: ("+currentLoc.getIndex()+")");
-		
+		publishPropertyEvent("Location");
 		
 	}
 	
@@ -97,6 +102,7 @@ public class Player {
 	public void teleportToLand(Square sq) {
 		piece.setLocation(sq);
 		sq.landedOn(this); //will landed on work on teleports? //Doruk thinks yes
+		publishPropertyEvent("Location");
 	}
 	
 	public void teleportNoLand(Square sq) {
@@ -133,6 +139,7 @@ public class Player {
 	public void addCash(int amount) {
 		System.out.println("Player " +this.name+" gained "+amount+" money!");
 		cash += amount;
+		publishPropertyEvent("Money");
 	}
 
 	public int getCash() {
@@ -142,6 +149,7 @@ public class Player {
 	public void reduceCash(int amount) {
 		System.out.println("Player " +this.name+" lost "+amount+" money!");
 		cash -= amount;
+		publishPropertyEvent("Money");
 	}
 
 	public void attemptPurchase (PropertySquare psq) {
@@ -178,5 +186,37 @@ public class Player {
 	
 	public boolean isMyProperty(Square sq) {
 		return myProperties.contains(sq);
+	}
+
+	@Override
+	public void addPropertyListener(PropertyListener listener) {
+		// TODO Auto-generated method stub
+		myListeners.add(listener);
+	}
+
+	@Override
+	public void removePropertyListener(PropertyListener listener) {
+		// TODO Auto-generated method stub
+		if(myListeners.contains(listener)) {
+			myListeners.remove(listener);
+		}
+	}
+
+	@Override
+	public void publishPropertyEvent(String type) {
+		// TODO Auto-generated method stub
+		String value;
+		if(type=="Money") {
+			value=this.cash+"";
+		}
+		else if(type=="Location") {
+			value=this.getLocation().getName();
+		}
+		else {
+			value="error";
+		}
+		for(PropertyListener listener:myListeners) {
+			listener.onPropertyEvent(this, type, value);
+		}
 	}
 }

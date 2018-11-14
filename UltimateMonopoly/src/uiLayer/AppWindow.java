@@ -9,13 +9,14 @@ import javax.swing.*;
 
 import domainLayer.DomainController;
 import domainLayer.Player;
+import domainLayer.Publisher;
 import domainLayer.Square;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Button;
 
-public class AppWindow extends JFrame{
+public class AppWindow extends JFrame implements PropertyListener{
 	
 	private JLabel boardLabel;
 	private JLabel hatLbl;
@@ -29,11 +30,13 @@ public class AppWindow extends JFrame{
 	private int PIECESIZE = 50;
 	private int MIDLAYER;
 	private DomainController ctrl;
+	private JLabel player1Money;
+	private JLabel player2Money;
+	private JLabel player3Money;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new AppWindow();
-		
+		new AppWindow();	
 	}
 	
 	public AppWindow() {
@@ -73,43 +76,61 @@ public class AppWindow extends JFrame{
 	}
 	
 	public void addPlayerLabels() {
-		JPanel panel = new JPanel();
-		panel.setBounds(840, 0, 585, 750);
-		this.getContentPane().add(panel);
+		JPanel playerPanel = new JPanel();
+		playerPanel.setBounds(840, 0, 585, 750);
+		this.getContentPane().add(playerPanel);
+		playerPanel.setLayout(null);
+		
 		
 		JLabel lbl = new JLabel("Player 1");
+		lbl.setBounds(159, 25, 46, 16);
 		lbl.setToolTipText("<html>"
 				+ "<p width=\"200\"> Player1</p>"
 				+ "<p width=\"200\">Money: 2000</p>"
 				+ "<ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul>"
 				+ "</html>\"");
-		panel.add(lbl);
+		playerPanel.add(lbl);
 		
 		JLabel lbl_1 = new JLabel("Player 2");
+		lbl_1.setBounds(248, 25, 46, 16);
 		lbl_1.setToolTipText("<html>"
 				+ "<p width=\"200\"> Player2</p>"
 				+ "<p width=\"200\">Money: 9000</p>"
 				+ "<ul>Owned Places:<li>Smells</li><li>Like</li><li>Teen</li><li>Spirit</li></ul>"
 				+ "</html>\"");
-		panel.add(lbl_1);
+		playerPanel.add(lbl_1);
 		
 		JLabel lbl_2 = new JLabel("Player 3");
+		lbl_2.setBounds(342, 25, 46, 16);
 		lbl_2.setToolTipText("<html>"
 				+ "<p width=\"200\"> Player3</p>"
 				+ "<p width=\"200\">Money: 9001</p>"
 				+ "<ul>Owned Places:<li>Fire</li><li>Water</li><li>Earth</li><li>Wood</li></ul>"
 				+ "</html>\"");
-		panel.add(lbl_2);
+		playerPanel.add(lbl_2);
 		
-	}
-	
-	public void addButtons() {
-		getContentPane().setLayout(null);			
-				//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
-		JPanel panel = new JPanel();
-		panel.setBounds(900, 500, 366, 95);
-		this.getContentPane().add(panel);
-		panel.setLayout(new GridLayout(2, 4, 10, 10));
+		player1Money = new JLabel("1500");
+		player1Money.setHorizontalAlignment(SwingConstants.CENTER);
+		player1Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
+		player1Money.setBounds(159, 54, 46, 16);
+		playerPanel.add(player1Money);
+		
+		player2Money = new JLabel("1500");
+		player2Money.setHorizontalAlignment(SwingConstants.CENTER);
+		player2Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
+		player2Money.setBounds(248, 54, 46, 16);
+		playerPanel.add(player2Money);
+		
+		player3Money = new JLabel("0");
+		player3Money.setHorizontalAlignment(SwingConstants.CENTER);
+		player3Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
+		player3Money.setBounds(342, 54, 46, 16);
+		playerPanel.add(player3Money);
+		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setBounds(86, 642, 366, 95);
+		playerPanel.add(buttonPanel);
+		buttonPanel.setLayout(new GridLayout(2, 4, 10, 10));
 		
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
@@ -121,7 +142,7 @@ public class AppWindow extends JFrame{
 			
 			}
 		});
-		panel.add(button);
+		buttonPanel.add(button);
 		
 		Button button_1 = new Button("Buy Deed");
 		button_1.addActionListener(new ActionListener() {
@@ -133,7 +154,7 @@ public class AppWindow extends JFrame{
 			
 			}
 		});
-		panel.add(button_1);
+		buttonPanel.add(button_1);
 		
 		Button button_2 = new Button("Build");
 		button_2.addActionListener(new ActionListener() {
@@ -145,7 +166,7 @@ public class AppWindow extends JFrame{
 				
 			}
 		});
-		panel.add(button_2);
+		buttonPanel.add(button_2);
 		
 		Button button_3 = new Button("End Turn");
 		button_3.addActionListener(new ActionListener() {
@@ -157,7 +178,12 @@ public class AppWindow extends JFrame{
 				
 			}
 		});
-		panel.add(button_3);
+		buttonPanel.add(button_3);
+		
+	}
+	
+	public void addButtons() {
+		getContentPane().setLayout(null);			
 	}
 	
 	
@@ -260,6 +286,34 @@ public class AppWindow extends JFrame{
 			return Y_OFFSET + HALFSQ*21 + MIDLAYER;
 		default:
 			return Y_OFFSET + HALFSQ*14 + MIDLAYER;
+		}
+	}
+
+
+
+	@Override
+	public void onPropertyEvent(Publisher pb, String type, String val) {
+		// TODO Auto-generated method stub
+		if(type=="Money") {
+			System.out.println("Observer got the message "+ val);
+			if(((Player)pb).getName()=="Hat") {
+				player1Money.setText(val);
+				System.out.println("Observer got the message "+ val);
+				player1Money.revalidate();
+				player1Money.repaint();
+			}
+			else if(((Player) pb).getName()=="Car"){
+				player2Money.setText(val);
+				System.out.println("Observer got the message "+ val);
+				player2Money.revalidate();
+				player2Money.repaint();
+			}
+		}
+		else if(type=="Location") {
+			
+		}
+		else {
+			
 		}
 	}
 }
