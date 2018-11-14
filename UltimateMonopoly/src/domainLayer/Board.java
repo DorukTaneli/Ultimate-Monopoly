@@ -88,7 +88,7 @@ public class Board {
 		buildRS("Transit Station", 49);
 		buildPS("Fifth Avenue", 50, 430, 60, "gray");
 		buildPS("Madison Avenue", 51, 430, 60, "gray");
-		buildRS("Stock Exchange", 52);
+		buildRTS("Roll Three Square", 52);
 		buildPS("Wall Street", 53, 500, 80, "gray");
 		buildRS("Tax Refund", 54);
 		buildRS("Gas Company", 55);
@@ -167,6 +167,11 @@ public class Board {
 	
 	private void buildRS(String name, int ind) {
 		Square s = new RegularSquare(name, ind);
+		squares.add(s);
+	}
+	
+	private void buildRTS(String name, int ind) {
+		Square s = new RollThreeSquare(name, ind);
 		squares.add(s);
 	}
 	
