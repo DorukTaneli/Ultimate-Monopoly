@@ -156,4 +156,14 @@ public class Player {
 	public boolean isMyProperty(Square sq) {
 		return myProperties.contains(sq);
 	}
+
+	public boolean haveRolledEven(){
+		if(cup.rolledEven()==true)return true;
+		return false;
+	}
+	
+	public boolean haveRolledOdd(){
+		if(cup.rolledOdd()==true)return true;
+		return false;
+	}
 }
