@@ -18,6 +18,7 @@ public class RollThreeSquare extends RegularSquare{
 	}
 	
 	public void landedOn(Player p) {
+	
 		cup.roll();
 		int no1=cup.getFirstDie();
 		int no2=cup.getSecondDie();
