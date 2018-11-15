@@ -79,19 +79,19 @@ public class Cup {
 		
 	}
 	
-	public int rollThreeCommon(int match1, int match2, int match3) {
-		int totalMatch=0;
-		if(rollThreeSingle(match1)) totalMatch++;
-		if(rollThreeSingle(match2)) totalMatch++;
-		if(rollThreeSingle(match3)) totalMatch++;
-		return totalMatch;
-	}
-	
-	private boolean rollThreeSingle(int match) {
-		if(match==firstDie || match==secondDie || match==thirdDie) return true;
-		else return false;
-	}
-	
+//	public int rollThreeCommon(int match1, int match2, int match3) {
+//		int totalMatch=0;
+//		if(rollThreeSingle(match1)) totalMatch++;
+//		if(rollThreeSingle(match2)) totalMatch++;
+//		if(rollThreeSingle(match3)) totalMatch++;
+//		return totalMatch;
+//	}
+//	
+//	private boolean rollThreeSingle(int match) {
+//		if(match==firstDie || match==secondDie || match==thirdDie) return true;
+//		else return false;
+//	}
+//	
 	public boolean rolledEven() {
 		if((get2RollValue()+getSpeedDieInt())%2==0) return true;
 		return false;
