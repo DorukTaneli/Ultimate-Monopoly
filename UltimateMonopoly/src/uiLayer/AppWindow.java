@@ -35,19 +35,26 @@ public class AppWindow extends JFrame implements PropertyListener{
 	private JLabel player1Money;
 	private JLabel player2Money;
 	private JLabel player3Money;
+	private static volatile AppWindow instance = null;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new AppWindow();	
+		instance = new AppWindow();
+		instance.initialize();
 	}
 	
-	public AppWindow() {
+	private AppWindow() {
 		setResizable(false);
-		ctrl = new DomainController(this);
+		
 		this.setSize(WINDOW_X, WINDOW_Y);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
 		
+	}
+	
+	public void initialize() {
+		
+		ctrl = DomainController.getInstance();
 		
 		addButtons();
 		addPieces();
@@ -60,6 +67,15 @@ public class AppWindow extends JFrame implements PropertyListener{
 		
 		
 		this.setVisible(true);
+	}
+	
+	public static AppWindow getInstance() {
+		if(instance == null) {
+			instance = new AppWindow();
+		}
+		
+		return instance;
+		
 	}
 	
 

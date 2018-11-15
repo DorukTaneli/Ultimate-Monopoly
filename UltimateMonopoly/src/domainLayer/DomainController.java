@@ -8,7 +8,9 @@ import domainLayer.squares.Square;
 import uiLayer.AppWindow; //THIS SHOULDNT BE HERE ************ DOING THIS TO SEE THE PIECES MOVE
 import uiLayer.PropertyListener;
 
-public class DomainController {
+public final class DomainController {
+	private static volatile DomainController instance = null;
+	
 	private static final int PLAYERS_TOTAL = 2;
 	private ArrayList<Player> players = new ArrayList<Player>(PLAYERS_TOTAL);
 	private Board board = new Board();
@@ -16,9 +18,9 @@ public class DomainController {
 	private int turn = 0;
 	private AppWindow app;
 
-	public DomainController(AppWindow app) {
+	private DomainController() {
 		Player p;
-		this.app=app;
+		this.app=AppWindow.getInstance();
 		p = new Player("Hat", board);
 		players.add(p);
 		p = new Player("Car", board);
@@ -28,6 +30,15 @@ public class DomainController {
 		for(Player player: players) {
 				player.addPropertyListener(app);
 		}
+	}
+	
+	public static DomainController getInstance() {
+		if(instance == null) {
+					instance = new DomainController();
+		}
+		
+		return instance;
+		
 	}
 
 	//	public void playGame() {
