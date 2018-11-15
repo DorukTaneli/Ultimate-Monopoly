@@ -83,22 +83,22 @@ public class Player implements Publisher{
 	
 	
 	//MOVEMENT
-	public void moveOneByOneFor(int f) { //going to need to change this for transit stations
+	public void moveOneByOneFor(int f) { 
 		
 		
 		Square currentLoc=piece.getLocation();
 		
 		System.out.println("Player "+this.name+" passed on");
 		for(int k=0;k<f;k++) {
-			Square nextLoc=currentLoc.getNextSquare(f);
-			piece.setLocation(nextLoc);
-			nextLoc.passedOn(this);
 			System.out.println("->"+currentLoc.getName()+" ");
+			Square nextLoc=currentLoc.getNextSquare(f);
+			piece.setLocation(nextLoc);	
+			nextLoc.passedOn(this);
 			currentLoc=nextLoc;
 		}
-
-		currentLoc.landedOn(this);
+		
 		System.out.println(" and Player "+this.name+" landed on "+currentLoc.getName()+" at Index: ("+currentLoc.getIndex()+")");
+		currentLoc.landedOn(this);
 		publishPropertyEvent("Location");
 		
 	}
@@ -123,13 +123,13 @@ public class Player implements Publisher{
 	public void tryToGetOutOfJail() { //how much cash is taken in 3 rd failed attempt
 		
 		if(cup.isDualRoll()) inJail=false;
-		System.out.print("Player "+this.name+" tried to get out of jail. inJail = "+inJail );
+		System.out.println("Player "+this.name+" tried to get out of jail. inJail = "+inJail );
 		if(inJail) {
 			jailCounter++;
 			if(jailCounter>=3) {
 				inJail=false;
 				jailCounter=0;
-				this.reduceCash(100);
+				this.reduceCash(100); //??
 			}
 		}
 		
@@ -168,11 +168,15 @@ public class Player implements Publisher{
 				
 			}
 			
-			System.out.println("Purchase attempted,result is: "+success+". Properties of player "+this.name+ " are:");
-			for(Square sq : myProperties) {
-				System.out.println("--"+sq.getName());
+			System.out.println("Purchase attempted,result is: "+success+"");
+			if(success) {
+				for(Square sq : myProperties) {
+					System.out.println("--"+sq.getName());
+				}
+				System.out.println("Money left: "+this.cash);
+				
+				
 			}
-			System.out.println("Money left: "+this.cash);
 			
 		}
 

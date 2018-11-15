@@ -176,7 +176,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==button_3) {
-					System.out.println("**End Turn button pressed!");
+					System.out.println("**End Turn button pressed!\n");
 					ctrl.endTurnPressed();
 				}
 				
