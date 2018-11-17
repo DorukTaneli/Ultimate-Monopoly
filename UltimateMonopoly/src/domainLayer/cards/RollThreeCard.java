@@ -28,6 +28,7 @@ public class RollThreeCard extends Card{
 		if(no3==no2)c--;
 		if(no1==no3)c--;
 		if(no1==no2 && no2==no3)c++;
+		if(c==3 && pTurn==true)c++;
 			
 		
 		
@@ -40,6 +41,9 @@ public class RollThreeCard extends Card{
 			prize=200;
 			break;
 		case 3: 
+			prize=1000;
+			break;
+		case 4: 
 			prize=1500;
 			break;
 		default:
@@ -49,5 +53,7 @@ public class RollThreeCard extends Card{
 		return prize;
 	}
 	
-
+	public String getType() {
+		return "RollThreeCard";
+	}
 }

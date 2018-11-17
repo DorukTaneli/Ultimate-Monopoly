@@ -31,5 +31,6 @@ public abstract class Card {
 	public void setKeepable(boolean keepable) {
 		this.keepable = keepable;
 	}
-	
+
+	public abstract String getType();
 }

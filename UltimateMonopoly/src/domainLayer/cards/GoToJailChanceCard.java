@@ -13,6 +13,11 @@ public class GoToJailChanceCard extends ChanceCard{
 		System.out.println("GO TO JAIL CHANCE CARD ACTIVATED ON PLAYER: "+drawer.getName());
 		drawer.goToJail();
 	}
+
+	@Override
+	public String getType() {
+		return null;
+	}
 	
 	
 

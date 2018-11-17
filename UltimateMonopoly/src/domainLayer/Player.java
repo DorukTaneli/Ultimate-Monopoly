@@ -2,6 +2,7 @@ package domainLayer;
 
 import java.util.ArrayList;
 
+import domainLayer.cards.Card;
 import domainLayer.squares.PropertySquare;
 import domainLayer.squares.Square;
 
@@ -18,6 +19,7 @@ public class Player implements Publisher{
 	private boolean haveRolled = false;
 	private Cup cup;
 	private ArrayList<Square> myProperties= new ArrayList<Square>();
+	private ArrayList<Card> inventory=new ArrayList<Card>();
 	
 	private boolean inJail=false;
 	private int jailCounter=0;
@@ -196,7 +198,25 @@ public class Player implements Publisher{
 	public boolean isMyProperty(Square sq) {
 		return myProperties.contains(sq);
 	}
-
+	
+	public void keepCard(Card card) {
+		inventory.add(card);
+	}
+	
+	public void useCard(Card card) {
+		card.cardAction();
+		if(inventory.contains(card)) inventory.remove(card);
+	}
+	
+	public ArrayList<Card> getRollThreeCards(){
+		ArrayList<Card> rtcards=new ArrayList<Card>();
+		for(int i=0;i<inventory.size();i++) {
+			if(inventory.get(i).getType()=="RollThreeCard") {
+				rtcards.add(inventory.get(i));
+			}
+		}
+		return rtcards;
+	}
 
 	public boolean haveRolledEven(){
 		if(cup.rolledEven()==true)return true;

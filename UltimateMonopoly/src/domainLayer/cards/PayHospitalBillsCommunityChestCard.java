@@ -16,5 +16,7 @@ public class PayHospitalBillsCommunityChestCard extends CommunityChestCard{
 		
 	}
 	
-
+	public String getType() {
+		return null;
+	}
 }
