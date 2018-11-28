@@ -99,7 +99,17 @@ public class Cup {
 	 * @return the sum of the two regular dice rolls
 	 */
 	public int get2RollValue() {
-		return firstDie+secondDie;
+		if(c==0) {
+			c++;
+			return 13;
+		}else if(c==2) {
+			c++;
+			return 4;
+		}else {
+			c++;
+			return 1;
+		}
+		//return firstDie+secondDie;
 	}
 
 	/**
