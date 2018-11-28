@@ -101,7 +101,7 @@ public class Player implements Publisher{
 		
 		System.out.println(" and Player "+this.name+" landed on "+currentLoc.getName()+" at Index: ("+currentLoc.getIndex()+")");
 		currentLoc.landedOn(this);
-		publishPropertyEvent("Location");
+		publishPropertyEvent("Location", currentLoc.getName());
 		
 	}
 	
@@ -109,7 +109,7 @@ public class Player implements Publisher{
 	public void teleportToLand(Square sq) {
 		piece.setLocation(sq);
 		sq.landedOn(this); //will landed on work on teleports? //Doruk thinks yes
-		publishPropertyEvent("Location");
+		publishPropertyEvent("Location", sq.getName());
 	}
 	
 	public void teleportNoLand(Square sq) {
@@ -146,7 +146,7 @@ public class Player implements Publisher{
 	public void addCash(int amount) {
 		System.out.println("Player " +this.name+" gained "+amount+" money!");
 		cash += amount;
-		publishPropertyEvent("Money");
+		publishPropertyEvent("Money", cash+"");
 	}
 
 	public int getCash() {
@@ -156,7 +156,7 @@ public class Player implements Publisher{
 	public void reduceCash(int amount) {
 		System.out.println("Player " +this.name+" lost "+amount+" money!");
 		cash -= amount;
-		publishPropertyEvent("Money");
+		publishPropertyEvent("Money", cash+"");
 	}
 
 	public void attemptPurchase (PropertySquare psq) {
@@ -167,7 +167,7 @@ public class Player implements Publisher{
 				addProperty(psq);
 				psq.setOwner(this);
 				success=true;
-				
+				publishPropertyEvent("Purchase", myProperties);
 			}
 			
 			System.out.println("Purchase attempted,result is: "+success+"");
@@ -242,18 +242,8 @@ public class Player implements Publisher{
 	}
 
 	@Override
-	public void publishPropertyEvent(String type) {
+	public void publishPropertyEvent(String type, Object value) {
 		// TODO Auto-generated method stub
-		String value;
-		if(type=="Money") {
-			value=this.cash+"";
-		}
-		else if(type=="Location") {
-			value=this.getLocation().getName();
-		}
-		else {
-			value="error";
-		}
 		for(PropertyListener listener:myListeners) {
 			listener.onPropertyEvent(this, type, value);
 		}

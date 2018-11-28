@@ -350,24 +350,19 @@ public class AppWindow extends JFrame implements PropertyListener{
 
 
 	@Override
-	public void onPropertyEvent(Publisher pb, String type, String val) {
+	public void onPropertyEvent(Publisher pb, String type, Object val) {
 		// TODO Auto-generated method stub
+		System.out.println("Observer got the message "+ val);
 		if(type=="Money") {
-			System.out.println("Observer got the message "+ val);
-			if(((Player)pb).getName()=="Hat") {
-				player1Money.setText(val);
-				System.out.println("Observer got the message "+ val);
-				player1Money.revalidate();
-				player1Money.repaint();
-			}
-			else if(((Player) pb).getName()=="Car"){
-				player2Money.setText(val);
-				System.out.println("Observer got the message "+ val);
-				player2Money.revalidate();
-				player2Money.repaint();
+			switch(((Player)pb).getName()) {
+				case "Hat": player1Money.setText((String)val); break;
+				case "Car": player2Money.setText((String)val); break;
 			}
 		}
 		else if(type=="Location") {
+
+		}
+		else if(type=="Purchase") {
 			
 		}
 		else {
