@@ -3,7 +3,10 @@ package uiLayer;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -104,29 +107,17 @@ public class AppWindow extends JFrame implements PropertyListener{
 		
 		JLabel lbl = new JLabel("Player 1");
 		lbl.setBounds(159, 25, 46, 16);
-		lbl.setToolTipText("<html>"
-				+ "<p width=\"200\"> Player1</p>"
-				+ "<p width=\"200\">Money: 2000</p>"
-				+ "<ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul>"
-				+ "</html>\"");
+		lbl.setToolTipText(generateHTML(new ArrayList<Square>()));
 		playerPanel.add(lbl);
 		
 		JLabel lbl_1 = new JLabel("Player 2");
 		lbl_1.setBounds(248, 25, 46, 16);
-		lbl_1.setToolTipText("<html>"
-				+ "<p width=\"200\"> Player2</p>"
-				+ "<p width=\"200\">Money: 9000</p>"
-				+ "<ul>Owned Places:<li>Smells</li><li>Like</li><li>Teen</li><li>Spirit</li></ul>"
-				+ "</html>\"");
+		lbl_1.setToolTipText(generateHTML(new ArrayList<Square>()));
 		playerPanel.add(lbl_1);
 		
 		JLabel lbl_2 = new JLabel("Player 3");
 		lbl_2.setBounds(342, 25, 46, 16);
-		lbl_2.setToolTipText("<html>"
-				+ "<p width=\"200\"> Player3</p>"
-				+ "<p width=\"200\">Money: 9001</p>"
-				+ "<ul>Owned Places:<li>Fire</li><li>Water</li><li>Earth</li><li>Wood</li></ul>"
-				+ "</html>\"");
+		lbl_2.setToolTipText(generateHTML(new ArrayList<Square>()));
 		playerPanel.add(lbl_2);
 		
 		player1Money = new JLabel("1500");
@@ -242,10 +233,40 @@ public class AppWindow extends JFrame implements PropertyListener{
 
 	}
 		
+	public void updatePlayerLabel() {
+		
+	}
 	
+	public String generateHTML(ArrayList<Square> sqrs) { //should this be a new class?
+		String[] names = new String[sqrs.size()];
+		int[] buildings = new int[sqrs.size()];
+		
+		for(int i=0;i<sqrs.size();i++) {
+			Square sq = sqrs.get(i);
+			names[i]=sq.getName();
+			//buildings[i]=sq.getBuildingNum();
+		}
+		
+		String str = "<html>"
+				+ "<p width=\"200\"> Player1</p>"
+				+ "<ul>Owned Places:"+generateHTMLList(Arrays.asList(names))+"</ul>"
+				+ "</html>\"";
+
+		
+		return str;
+	}
+	
+	public String generateHTMLList(List<String> lst) {
+		String ret="";
+		for(int i=0;i<lst.size();i++) {
+			ret+="<li>"+lst.get(i)+"</li>";
+			
+		}
+		return ret;
+	}
 
 	
-	public int getPixelX(int ind) {
+ 	public int getPixelX(int ind) {
 		//		System.out.println("Current variables: "
 		//				+ "\n X_OFFSET: "+ X_OFFSET
 		//				+ "\n HALFSQ: "+HALFSQ

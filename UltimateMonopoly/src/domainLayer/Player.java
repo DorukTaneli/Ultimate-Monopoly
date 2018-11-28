@@ -11,7 +11,7 @@ import uiLayer.PropertyListener;
 
 public class Player implements Publisher{
 
-
+	
 	public Piece piece;
 	private String name;
 	private Board board;
@@ -24,6 +24,7 @@ public class Player implements Publisher{
 	private boolean inJail=false;
 	private int jailCounter=0;
 	private int layer;
+	private int index;
 	
 	private ArrayList<PropertyListener> myListeners=new ArrayList<PropertyListener>();
 
