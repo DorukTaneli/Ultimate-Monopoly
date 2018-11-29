@@ -97,7 +97,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 	
 	public void addPlayerLabels() {
 		JPanel playerPanel = new JPanel();
-		playerPanel.setBounds(840, 0, 585, 750);
+		playerPanel.setBounds(840, 0, 585, 500);
 		this.getContentPane().add(playerPanel);
 		playerPanel.setLayout(null);
 		
@@ -147,10 +147,16 @@ public class AppWindow extends JFrame implements PropertyListener{
 		player3Money.setBounds(342, 54, 46, 16);
 		playerPanel.add(player3Money);
 		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
+		
+	}
+	
+	public void addButtons() {
+		getContentPane().setLayout(null);
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBounds(86, 642, 366, 95);
-		playerPanel.add(buttonPanel);
+		buttonPanel.setBounds(950, 642, 366, 95);
 		buttonPanel.setLayout(new GridLayout(2, 4, 10, 10));
+		getContentPane().add(buttonPanel);
+		buttonPanel.setVisible(true);
 		
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
@@ -202,10 +208,6 @@ public class AppWindow extends JFrame implements PropertyListener{
 		
 	}
 	
-	public void addButtons() {
-		getContentPane().setLayout(null);			
-	}
-	
 	
 	public void addPieces() {
 //		Player playerHat = (Player)ctrl.getPlayers().get(0);
@@ -239,7 +241,6 @@ public class AppWindow extends JFrame implements PropertyListener{
 		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
 		hatLbl.setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
 		hatLbl.setVisible(true);
-
 	}
 		
 	
