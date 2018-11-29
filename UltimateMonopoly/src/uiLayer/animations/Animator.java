@@ -122,3 +122,4 @@ public class Animator extends JPanel implements Runnable {
     public void removeDrawable(Drawable d) {
         elementsToDraw.removeElement(d);
     }
+}
