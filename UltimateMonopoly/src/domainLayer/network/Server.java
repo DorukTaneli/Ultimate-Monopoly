@@ -39,7 +39,6 @@ public class Server extends Thread{
 				i++;
 			}
 			
-			
 			for(int k=0;k<clients.length;k++) {
 				clients[k].start();
 			}
