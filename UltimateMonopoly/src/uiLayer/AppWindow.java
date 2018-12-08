@@ -43,18 +43,20 @@ public class AppWindow extends JFrame implements PropertyListener{
 	private JLabel player3Money;
 	private static volatile AppWindow instance = null;
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		instance = new AppWindow();
-		instance.initialize();
-	}
-	
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		instance = new AppWindow();
+//		instance.initialize();
+//	}
+//	
 	private AppWindow() {
+		instance=getInstance();
 		setResizable(false);
 		
 		this.setSize(WINDOW_X, WINDOW_Y);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
+		instance.initialize();
 		
 	}
 	
