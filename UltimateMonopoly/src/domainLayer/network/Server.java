@@ -32,12 +32,12 @@ public class Server extends Thread{
 			while(i<playerNum) {
 				System.out.println("Waiting for next client: Client" + i);
 				socket = serverSocket.accept();
-				System.out.println("Waiting for new thread.");
 				Thread client = new Thread(new ClientServer(socket,"Client"+i));
 				
 				clients[i]=client;
 				i++;
 			}
+			System.out.println("All clients connected.");
 			
 			for(int k=0;k<clients.length;k++) {
 				clients[k].start();

@@ -1,7 +1,6 @@
 package domainLayer.network;
 
 import java.util.Scanner;
-
 import uiLayer.AppWindow;
 
 public class Client {
@@ -11,6 +10,7 @@ public class Client {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 	
 	//	NC= new NetworkController();
 		Scanner sc = new Scanner(System.in); 
@@ -22,12 +22,21 @@ public class Client {
 			port = sc.nextInt();
 			System.out.println(port);
 			
-		
-			Server s = new Server(port);
+			Thread s = new Thread(new Server(port));
+			s.run();
 			
 		}else if(initMode.equals("c")) {
-			
-			inst = AppWindow.getInstance();
+			NetworkController clientProtocol;
+			int port;
+			System.out.println("Enter your port number:");
+			port = sc.nextInt();
+			System.out.println(port);
+			sc.close();
+		
+			clientProtocol = new NetworkController();		
+			clientProtocol.connectToServer(port);
+			clientProtocol.start();
+			inst = new AppWindow();
 			
 		
 			

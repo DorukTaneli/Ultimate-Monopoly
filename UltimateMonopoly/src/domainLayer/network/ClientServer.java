@@ -31,25 +31,26 @@ public class ClientServer implements Runnable {
 	public void run() {
 		String response;
 		out.println(name);
-		while(true) {
-			 
+
 			 try {
 				out.println("Your turn");
 				// get client response
 				response = in.readLine();
-				System.out.println(response);
-				if (response.equals("X")) {
-			         out.println("END");
-					 break;
-			    }
+				System.out.println(name+" response: "+response);
+		
 			
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		
 
 		
+	}
+	
+	
+	public void sendMessage(String str) {
+		out.println(str);
 	}
 	
 
