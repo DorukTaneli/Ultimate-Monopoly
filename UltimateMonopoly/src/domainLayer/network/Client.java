@@ -35,7 +35,7 @@ public class Client {
 		
 			clientProtocol = new NetworkController();		
 			clientProtocol.connectToServer(port);
-			clientProtocol.start();
+			//clientProtocol.start();
 			inst = new AppWindow();
 			
 		
