@@ -5,6 +5,25 @@ public class Cup {
 	private int firstDie;
 	
 
+	public SpeedDie getSpeedDie() {
+		return speedDie;
+	}
+
+	public void setSpeedDie(SpeedDie speedDie) {
+		this.speedDie = speedDie;
+	}
+
+	public void setFirstDie(int firstDie) {
+		this.firstDie = firstDie;
+	}
+
+	public void setSecondDie(int secondDie) {
+		this.secondDie = secondDie;
+	}
+
+	public void setThirdDie(int thirdDie) {
+		this.thirdDie = thirdDie;
+	}
 	private int secondDie;
 	private int thirdDie;
 	private String speedDieString;

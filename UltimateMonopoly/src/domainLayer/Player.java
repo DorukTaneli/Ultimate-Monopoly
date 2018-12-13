@@ -36,7 +36,7 @@ public class Player implements Publisher{
 		piece= new Piece(board.getStartSquare());
 	}
 	
-	private int whichlayer() {
+	public int whichlayer() {
 		if(piece.getLocation().getIndex()<40) {
 			layer=1;
 			
