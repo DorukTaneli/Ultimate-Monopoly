@@ -230,9 +230,7 @@ public class Board {
 			link(i);
 		}
 		
-		Square first = getStartSquare();
-		Square last = (Square) squares.get(SIZE-1);
-		last.setNextSquare(first);
+		squares.get(39).setNextSquare(squares.get(0));
 		squares.get(63).setNextSquare(squares.get(40));
 		squares.get(119).setNextSquare(squares.get(64));
 		

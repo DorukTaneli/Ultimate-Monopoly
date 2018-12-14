@@ -5,7 +5,11 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ CupisDualRollTest.class, PlayerwhichLayerTest.class })
+@SuiteClasses({ BoardlinkTest.class, BoardsetUpTransitSquaresTest.class, CupisDualRollTest.class,
+		CupisThirdDualRollTest.class, CuprolledEvenTest.class, CuprolledOddTest.class, CuprollTest.class,
+		GoToJailChanceCardcardActionTest.class, PlayerattemptPurchaseTest.class, PlayermoveOneByOneForTest.class,
+		PlayertakeTurnTest.class, PlayertryToGetOutOfJailTest.class, PlayerwhichLayerTest.class,
+		TransitSquaregetBrotherTest.class, TransitSquaregetNextSquareTest.class, TransitSquaresetOwnerTest.class })
 public class AllTests {
 
 }

@@ -4,7 +4,7 @@ import domainLayer.Player;
 
 public abstract class PropertySquare extends Square{
 
-	Player owner = null;
+	public Player owner = null;
 	int price;
 	int rent;
 	

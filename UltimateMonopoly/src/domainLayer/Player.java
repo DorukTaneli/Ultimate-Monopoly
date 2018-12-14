@@ -16,12 +16,12 @@ public class Player implements Publisher{
 	private String name;
 	private Board board;
 	private int cash;
-	private boolean haveRolled = false;
-	private Cup cup;
+	public boolean haveRolled = false;
+	public Cup cup;
 	private ArrayList<Square> myProperties= new ArrayList<Square>();
 	private ArrayList<Card> inventory=new ArrayList<Card>();
 	
-	private boolean inJail=false;
+	public boolean inJail=false;
 	private int jailCounter=0;
 	private int layer;
 	private int index;
@@ -65,8 +65,7 @@ public class Player implements Publisher{
 			if(cup.isDualRoll()) haveRolled=false;
 			if(cup.isThirdDualRoll()) {
 				haveRolled=true;
-				
-				 //10 is jail
+				 this.goToJail();
 			}
 		}
 	}
@@ -109,7 +108,7 @@ public class Player implements Publisher{
 	
 	public void teleportToLand(Square sq) {
 		piece.setLocation(sq);
-		sq.landedOn(this); //will landed on work on teleports? //Doruk thinks yes
+		sq.landedOn(this); 
 		publishPropertyEvent("Location", sq.getName());
 	}
 	

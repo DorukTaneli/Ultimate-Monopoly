@@ -30,7 +30,7 @@ public class Cup {
 	private Die die;
 	private SpeedDie speedDie;
 	
-	private int dualCount;
+	public int dualCount;
 	
 	public Cup() {
 		die = new Die();
@@ -89,6 +89,13 @@ public class Cup {
 		else return false;
 	}
 	
+	public void setDual(int f,int s) {
+		firstDie=f;
+		secondDie=s;
+		if(f==s) dualCount++;
+		
+	}
+	
 	public boolean isThirdDualRoll() {
 		if(dualCount>=3) {
 			dualCount=0;
@@ -112,12 +119,12 @@ public class Cup {
 //	}
 //	
 	public boolean rolledEven() {
-		if((get2RollValue()+getSpeedDieInt())%2==0) return true;
+		if((get2RollValue()/*+getSpeedDieInt()*/)%2==0) return true;
 		return false;
 	}
 	
 	public boolean rolledOdd() {
-		if((get2RollValue()+getSpeedDieInt())%2==1) return true;
+		if((get2RollValue()/*+getSpeedDieInt()*/)%2==1) return true;
 		return false;
 	}
 	
