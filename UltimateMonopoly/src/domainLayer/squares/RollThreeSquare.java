@@ -54,18 +54,32 @@ public class RollThreeSquare extends RegularSquare{
 			RollThreeCard drawn=drawRollThreeCard();
 			if(plyrs.get(i)==p) {
 				p.keepCard(drawn);
+				int c=0;
+				int a=c;
 				for(int j=0;j<p.getRollThreeCards().size();j++) {
 					RollThreeCard crd=(RollThreeCard) p.getRollThreeCards().get(j);
-					p.addCash(crd.getReward(no1, no2, no3, true));
+					//p.addCash(crd.getReward(no1, no2, no3, true));
+					c=crd.getReward(no1, no2, no3, true);
+					if(a<c) {
+						a=c;
+					}
 					System.out.println("Player rolled: "+no1+" "+no2+" "+no3);
 					System.out.println("Card drawn "+drawn.numbers[0]+" "+drawn.numbers[1]+" "+drawn.numbers[2]);
 				}
+				p.addCash(a);
 			}else {
+				int c=0;
+				int a=c;
 				for(int j=0;j<plyrs.get(i).getRollThreeCards().size();j++) {
 					RollThreeCard crd=(RollThreeCard) plyrs.get(i).getRollThreeCards().get(j);
-					plyrs.get(i).addCash(crd.getReward(no1, no2, no3, false));
+					//plyrs.get(i).addCash(crd.getReward(no1, no2, no3, false));
+					c=crd.getReward(no1, no2, no3, false);
+					if(a<c) {
+						a=c;
+					}
 					System.out.println("Player:"+plyrs.get(i).getName()+" won "+crd.getReward(no1, no2, no3, false));
 				}
+				plyrs.get(i).addCash(a);
 			}
 			
 			//p.addCash(drawn.getReward(no1,no2,no3,true));
