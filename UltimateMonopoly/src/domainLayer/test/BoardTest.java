@@ -23,21 +23,21 @@ class BoardTest {
 			
 	}
 
-/*	@Test
-	void testGetSquare() {
-		fail("Not yet implemented");
-	}
-
 	@Test
 	void testGetSquareByIndex() {
-		fail("Not yet implemented");
+		assertEquals("Mediterranean Avenue",b.getSquareByIndex(1).getName());
+		assertEquals("Oriental Avenue",b.getSquareByIndex(6).getName());
 	}
-
+	
+	
 	@Test
 	void testBuildSquares() {
-		fail("Not yet implemented");
+		assertEquals("Baltic Avenue",b.getSquareByIndex(3).getName());
+		
+		assertEquals("Virginia Avenue",b.getSquareByIndex(14).getName());
 	}
-
+	
+	/*
 	@Test
 	void testBuildPS() {
 		fail("Not yet implemented");
@@ -67,11 +67,13 @@ class BoardTest {
 	void testBuildCCS() {
 		fail("Not yet implemented");
 	}
-
+*/
+	
 	@Test
 	void testLinkSquares() {
-		fail("Not yet implemented");
-	}*/
+		assertEquals("Mediterranean Avenue", b.getStartSquare().getNextSquare(1).getName());
+		assertEquals(40, b.getSquareByIndex(63).getNextSquare(1).getIndex());
+	}
 
 	@Test
 	void testLink() {
