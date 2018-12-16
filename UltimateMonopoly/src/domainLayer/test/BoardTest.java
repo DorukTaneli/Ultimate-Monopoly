@@ -12,6 +12,13 @@ import domainLayer.squares.Square;
 class BoardTest {
 	
 	Board b;
+	
+	
+	public boolean repOK() {
+		if(b.getSquaresList().size() != 120) return false;
+		if(b.getSquaresList().get(0).getName() == "Go Square") return false;
+		return true;
+	}
 
 	@BeforeEach
 	void setUp() {
