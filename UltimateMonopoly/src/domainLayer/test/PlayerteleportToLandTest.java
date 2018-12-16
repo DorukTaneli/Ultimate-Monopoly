@@ -13,7 +13,7 @@ public class PlayerteleportToLandTest {
 	
 	@Test
 	public void test() {
-		p.teleportNoLand(b.getSquareByIndex(11));
+		p.teleportToLand(b.getSquareByIndex(11));
 		assertEquals(p.getLocation().getName(), b.getSquareByIndex(11).getName());
 		assertNotEquals(p.getLocation().getName(), b.getSquareByIndex(12).getName());
 	}
