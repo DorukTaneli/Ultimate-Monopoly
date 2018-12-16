@@ -1,26 +1,16 @@
 package domainLayer.test;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import domainLayer.Board;
 import domainLayer.Player;
 import domainLayer.cards.GoToJailChanceCard;
 
 class GoToJailChanceCardTest {
-	
-	Board b;
-	Player p;
-	
-	@Before
-	void setUp() {
-		b = new Board();
-		p = new Player("Testing Player",b);
-	}
-	
-	
+	Board b=new Board();
+	Player p=new Player("Testing Player",b);
 	@Test
 	void testCardAction() {
 		GoToJailChanceCard jCard = new GoToJailChanceCard("GoToJailChanceCard", false);
@@ -31,3 +21,4 @@ class GoToJailChanceCardTest {
 	}
 
 }
+

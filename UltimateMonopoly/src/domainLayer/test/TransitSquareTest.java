@@ -2,26 +2,17 @@ package domainLayer.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import domainLayer.squares.TransitSquare;
 import domainLayer.Board;
 import domainLayer.Player;
 
 class TransitSquareTest {
-	
-	Board b;
-	Player p;
-	
-	@Before
-	void setUp() {
-		b = new Board();
-		p = new Player("Testing Player",b);
-	}
-
+	Board b=new Board();
+	Player p = new Player("TestingPlayer",b);
 
 	@Test
 	void testGetNextSquare() {

@@ -1,22 +1,15 @@
 package domainLayer.test;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Before;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import domainLayer.Board;
 import domainLayer.squares.Square;
 
 class BoardTest {
-	
-	Board b;
-	
-	@Before
-	void setUp() {
-		b = new Board();
-	}
+	Board b = new Board();
 
 	@Test
 	void testSetUpTransitSquares() {
