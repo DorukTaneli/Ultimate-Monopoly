@@ -151,6 +151,13 @@ class PlayerTest {
         assertEquals(p3.getCash(),1800);
     }
 	
+	@Test 
+    void testReduceCash() {
+        Player p3 = new Player("TestingPlayer",b);
+        p3.reduceCash(300);
+        assertEquals(p3.getCash(),1200);
+    }
+	
 	
 }
 
