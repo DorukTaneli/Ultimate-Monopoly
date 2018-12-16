@@ -148,6 +148,14 @@ class PlayerTest {
 		assertNotEquals(p.getPlayerProperties().size(),1);
 		assertEquals(p.getPlayerProperties().size(),2);
 	}
+	
+	@Test
+	void testRemoveProperty() {
+		p.addProperty(prop);
+		p.removeProperty(prop);
+		assertNotEquals(p.getPlayerProperties().size(),1);
+		assertEquals(p.getPlayerProperties().size(),0);
+	}
 
 	@Test
 	void testKeepCard() {
