@@ -12,11 +12,24 @@ import domainLayer.squares.RollThreeSquare;
 import domainLayer.squares.Square;
 import domainLayer.squares.TransitSquare;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Board.
+ */
 public class Board {
+	
+	/** The Constant SIZE. */
 	private static final int SIZE = 120;
+	
+	/** The squares. */
 	private ArrayList<Square> squares = new ArrayList<Square>(SIZE);
+	
+	/** The cup. */
 	private Cup cup = new Cup();
 	
+	/**
+	 * Instantiates a new board.
+	 */
 	public Board() {
 		buildSquares();
 		linkSquares();
@@ -24,6 +37,9 @@ public class Board {
 		
 	}
 	
+	/**
+	 * Sets up the transit squares and their brothers.
+	 */
 	private void setUpTransitSquares() {
 		if(squares.get(15).getType().equals("TransitSquare")) {
 			TransitSquare ts = (TransitSquare) squares.get(15);
@@ -45,27 +61,59 @@ public class Board {
 		
 	}
 	
+	/**
+	 * Gets the cup.
+	 *
+	 * @return the cup
+	 */
 	public Cup getCup() {
 		return cup;
 	}
 	
+	/**
+	 * Gets the squares list.
+	 *
+	 * @return the squares list
+	 */
 	public ArrayList<Square> getSquaresList() {
 		return squares;
 	}
 	
+	/**
+	 * Gets the square that is a given distance away as index from a starting square.
+	 *
+	 * @param starting square
+	 * @param distance between the indexes of squares as integer
+	 * @return targeted square
+	 */
 	public Square getSquare(Square start, int distance) {
 		int endIndex = (start.getIndex() + distance) % SIZE;
 		return (Square) squares.get(endIndex);
 	}
 	
+	/**
+	 * Gets the square with a given index.
+	 *
+	 * @param index of the targeted square
+	 * @return the square with the given index
+	 */
 	public Square getSquareByIndex(int index) {
 		return (Square)squares.get(index);
 	}
 	
+	/**
+	 * Gets the start square.
+	 *
+	 * @return the start square
+	 */
 	public Square getStartSquare() {
 		return (Square) squares.get(0);
 	}
 	
+	/**
+	 * Builds the Go square and adds it to the squares list.
+	 * Calls separate square creating methods to create each square on the board.
+	 */
 	private void buildSquares() {
 		Square sq = new GoSquare("Go Square", 0);
 		squares.add(sq);
@@ -192,39 +240,82 @@ public class Board {
 	
 	
 	
+	/**
+	 * Builds a property square with the given parameters and adds it to the squares list.
+	 *
+	 * @param name of the square
+	 * @param index of the square
+	 * @param price of the property related to that square
+	 * @param rent of the property related to that square
+	 * @param color group of the property related to that square
+	 */
 	private void buildPS(String name, int ind, int pr, int rent, String color) {
 		Square s = new DeedSquare(name, ind, pr, rent, color);
 		squares.add(s);
 	}
 	
+	/**
+	 * Builds a regular square with the given parameters and adds it to the squares list.
+	 *
+	 * @param name of the square
+	 * @param index of the square
+	 */
 	private void buildRS(String name, int ind) {
 		Square s = new RegularSquare(name, ind);
 		squares.add(s);
 	}
 	
 
+	/**
+	 * Builds a Roll Three square with the given parameters and adds it to the squares list.
+	 *
+	 * @param name of the square
+	 * @param index of the square
+	 */
 	private void buildRTS(String name, int ind) {
 		Square s = new RollThreeSquare(name, ind);
 		squares.add(s);
 		}
 
+	/**
+	 * Builds a transit square with the given parameters and adds it to the squares list.
+	 *
+	 * @param name of the square
+	 * @param index of the square
+	 * @param price of the transit property related to that square
+	 */
 	private void buildTransit(String name,int ind,int pr) {
 		Square s = new TransitSquare(name,ind,pr,25);
 		squares.add(s);
 		
 	}
 	
+	/**
+	 * Builds a chance square with the given parameters and adds it to the squares list.
+	 *
+	 * @param name of the square
+	 * @param index of the square
+	 */
 	private void buildChance(String name, int index) {
 		Square s = new ChanceSquare(name,index);
 		squares.add(s);
 	}
 	
+	/**
+	 * Builds a community chest square with the given parameters and adds it to the squares list.
+	 *
+	 * @param name of the square
+	 * @param index of the square
+	 */
 	private void buildCCS(String name, int index) { //COMMUNUTY CHEST SQUARE
 		Square s = new CommunityChestSquare(name,index);
 
 		squares.add(s);
 	}
 	
+	/**
+	 * Links squares.
+	 */
 	private void linkSquares() {
 		for (int i = 0; i < (SIZE - 1); i++) {
 			link(i);
@@ -236,6 +327,11 @@ public class Board {
 		
 	}
 	
+	/**
+	 * Links two squares according to their indexes in the squares list.
+	 *
+	 * @param index of the squares list
+	 */
 	private void link(int i) {
 		Square current = (Square) squares.get(i);
 		Square next = (Square) squares.get(i + 1);
