@@ -4,13 +4,20 @@ package domainLayer.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import domainLayer.Board;
 import domainLayer.squares.Square;
 
 class BoardTest {
-	Board b = new Board();
+	
+	Board b;
 
+	@BeforeEach
+	void setUp() {
+		b = new Board();
+	}
+	
 	@Test
 	void testSetUpTransitSquares() {
 		assertEquals(true, b.getSquareByIndex(15).getType().equals("TransitSquare"));
