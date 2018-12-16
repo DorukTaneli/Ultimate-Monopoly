@@ -2,15 +2,14 @@ package domainLayer.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import domainLayer.Cup;
 
 class CupTest {
 	
-	@BeforeAll
+	@Before
 	void setUp() {
 		Cup cp = new Cup();
 	}

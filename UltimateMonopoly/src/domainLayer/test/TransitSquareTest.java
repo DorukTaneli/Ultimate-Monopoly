@@ -2,9 +2,10 @@ package domainLayer.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import domainLayer.squares.TransitSquare;
 import domainLayer.Board;
@@ -12,7 +13,7 @@ import domainLayer.Player;
 
 class TransitSquareTest {
 	
-	@BeforeAll
+	@Before
 	void setUp() {
 		Board b = new Board();
 		Player p = new Player("Testing Player",b);

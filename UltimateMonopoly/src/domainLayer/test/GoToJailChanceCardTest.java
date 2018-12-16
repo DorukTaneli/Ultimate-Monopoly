@@ -1,9 +1,9 @@
 package domainLayer.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import domainLayer.Board;
 import domainLayer.Player;
@@ -11,7 +11,7 @@ import domainLayer.cards.GoToJailChanceCard;
 
 class GoToJailChanceCardTest {
 	
-	@BeforeAll
+	@Before
 	void setUp() {
 		Board b = new Board();
 		Player p = new Player("Testing Player",b);
