@@ -137,6 +137,13 @@ class PlayerTest {
 			assertEquals(p.getInventory().get(i),card);
 		}
 	}
-
+	
+	@Test
+	void testIsMyProperty() {
+		p.attemptPurchase((PropertySquare)b.getSquareByIndex(1));
+		p.isMyProperty(b.getSquareByIndex(1));
+	}
+	
+	
 }
 
