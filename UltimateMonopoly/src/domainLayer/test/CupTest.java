@@ -9,9 +9,11 @@ import domainLayer.Cup;
 
 class CupTest {
 	
+	Cup cp;
+	
 	@Before
 	void setUp() {
-		Cup cp = new Cup();
+		cp = new Cup();
 	}
 	
 	@Test

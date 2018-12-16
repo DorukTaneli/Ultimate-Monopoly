@@ -11,10 +11,13 @@ import domainLayer.cards.GoToJailChanceCard;
 
 class GoToJailChanceCardTest {
 	
+	Board b;
+	Player p;
+	
 	@Before
 	void setUp() {
-		Board b = new Board();
-		Player p = new Player("Testing Player",b);
+		b = new Board();
+		p = new Player("Testing Player",b);
 	}
 	
 	

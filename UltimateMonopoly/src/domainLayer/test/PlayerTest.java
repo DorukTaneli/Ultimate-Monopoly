@@ -15,17 +15,25 @@ import domainLayer.squares.Square;
 
 class PlayerTest {
 	
+	Board b;
+	Player p;
+	Player p2;
+	Card card;
+	Card card1;
+	Square prop;
+	Square prop2;
+	
 	@Before
 	void setUp() {
-		Board b = new Board();
-		Player p = new Player("TestingPlayer",b);
-		Player p2 = new Player("TestingPlayer2",b);
-		int[] a= {1,2,3};
-		Card card=new RollThreeCard("TestCard",a);
-		int[] c= {1,2,4};
-		Card card1=new RollThreeCard("TestCard",c);
-		Square prop=b.getSquareByIndex(1);
-		Square prop2=b.getSquareByIndex(2);
+		b = new Board();
+		p = new Player("TestingPlayer",b);
+		p2 = new Player("TestingPlayer2",b);
+		int[] a = {1,2,3};
+		card = new RollThreeCard("TestCard",a);
+		int[] c = {1,2,4};
+		card1 = new RollThreeCard("TestCard",c);
+		prop = b.getSquareByIndex(1);
+		prop2 = b.getSquareByIndex(2);
 	}
 
 	

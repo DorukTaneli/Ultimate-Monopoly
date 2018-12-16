@@ -9,9 +9,11 @@ import domainLayer.squares.Square;
 
 class BoardTest {
 	
+	Board b;
+	
 	@Before
 	void setUp() {
-		Board b = new Board();
+		b = new Board();
 	}
 
 	@Test
