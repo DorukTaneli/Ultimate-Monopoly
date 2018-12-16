@@ -9,7 +9,11 @@ import org.junit.jupiter.api.Test;
 import domainLayer.Cup;
 
 class CupTest {
-	Cup cp = new Cup();
+	
+	@BeforeAll
+	void setUp() {
+		Cup cp = new Cup();
+	}
 	
 	@Test
 	void testRoll() {

@@ -10,8 +10,14 @@ import domainLayer.Player;
 import domainLayer.cards.GoToJailChanceCard;
 
 class GoToJailChanceCardTest {
-	Board b=new Board();
-	Player p=new Player("Testing Player",b);
+	
+	@BeforeAll
+	void setUp() {
+		Board b = new Board();
+		Player p = new Player("Testing Player",b);
+	}
+	
+	
 	@Test
 	void testCardAction() {
 		GoToJailChanceCard jCard = new GoToJailChanceCard("GoToJailChanceCard", false);

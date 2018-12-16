@@ -11,8 +11,13 @@ import domainLayer.Board;
 import domainLayer.Player;
 
 class TransitSquareTest {
-	Board b=new Board();
-	Player p = new Player("TestingPlayer",b);
+	
+	@BeforeAll
+	void setUp() {
+		Board b = new Board();
+		Player p = new Player("Testing Player",b);
+	}
+
 
 	@Test
 	void testGetNextSquare() {

@@ -8,7 +8,11 @@ import domainLayer.Board;
 import domainLayer.squares.Square;
 
 class BoardTest {
-	Board b = new Board();
+	
+	@BeforeAll
+	void setUp() {
+		Board b = new Board();
+	}
 
 	@Test
 	void testSetUpTransitSquares() {
