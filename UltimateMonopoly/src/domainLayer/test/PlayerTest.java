@@ -24,6 +24,12 @@ class PlayerTest {
 	Square prop;
 	Square prop2;
 	
+	public boolean repOK() {
+		if(p.getJailCounter() < 0) return false;
+		if(p.getCash() < 0) return false;
+		return true;
+	}
+	
 	@BeforeEach
 	void setUp() {
 		b = new Board();

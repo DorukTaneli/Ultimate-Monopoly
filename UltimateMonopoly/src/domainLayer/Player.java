@@ -51,6 +51,10 @@ public class Player implements Publisher{
 	/** The jail counter. */
 	private int jailCounter=0;
 	
+	public int getJailCounter() {
+		return jailCounter;
+	}
+
 	/** The layer. */
 	private int layer;
 	
