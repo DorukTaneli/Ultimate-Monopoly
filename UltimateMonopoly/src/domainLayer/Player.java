@@ -250,7 +250,10 @@ public class Player implements Publisher{
 		}
 		return rtcards;
 	}
-
+	
+	public ArrayList<Card> getInventory(){
+		return inventory;
+	}
 	public boolean haveRolledEven(){
 		if(cup.rolledEven()==true)return true;
 		return false;

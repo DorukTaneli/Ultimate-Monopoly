@@ -9,7 +9,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		CupisThirdDualRollTest.class, CuprolledEvenTest.class, CuprolledOddTest.class, CuprollTest.class,
 		GoToJailChanceCardcardActionTest.class, PlayerattemptPurchaseTest.class, PlayermoveOneByOneForTest.class,
 		PlayertakeTurnTest.class, PlayertryToGetOutOfJailTest.class, PlayerwhichLayerTest.class,
-		TransitSquaregetBrotherTest.class, TransitSquaregetNextSquareTest.class, TransitSquaresetOwnerTest.class })
+		TransitSquaregetBrotherTest.class, TransitSquaregetNextSquareTest.class, TransitSquaresetOwnerTest.class, 
+		PlayerteleportToLandTest.class, PlayerkeepCardTest.class, PlayeruseCardTest.class, PlayergoToJailTest.class})
 public class AllTests {
 
 }
