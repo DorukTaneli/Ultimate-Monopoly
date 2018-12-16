@@ -4,12 +4,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import domainLayer.Board;
 import domainLayer.Cup;
 
 class CupTest {
-	Cup cp = new Cup();
+	
+	Cup cp;
+	
+	@BeforeEach
+	void setUp() {
+		cp = new Cup();
+	}
 	
 	public boolean repOK() {
         if(cp.getFirstDie()<1 || cp.getFirstDie()>6) return false;
