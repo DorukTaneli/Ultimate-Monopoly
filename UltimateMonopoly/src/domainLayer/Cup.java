@@ -18,7 +18,7 @@ public class Cup {
 	int c=0;
 
 	/**
-	 * Gets the speedDie object from the Cup object
+	 * EFFECTS:Gets the speedDie object from the Cup object
 	 * @return the speedDie object
 	 */
 	public SpeedDie getSpeedDie() {
@@ -26,7 +26,7 @@ public class Cup {
 	}
 
 	/**
-	 * Sets the speedDie of this Cup object to the given speedDie object
+	 * EFFECTS:Sets the speedDie of this Cup object to the given speedDie object
 	 * @param the speedDie object to be set 
 	 */
 	public void setSpeedDie(SpeedDie speedDie) {
@@ -34,7 +34,8 @@ public class Cup {
 	}
 
 	/**
-	 * Sets the firstDie of this Cup object to the given firstDie object
+	 * EFFECTS:Sets the firstDie of this Cup object to the given firstDie object
+	 * 
 	 * @param the firstDie object to be set 
 	 */
 	public void setFirstDie(int firstDie) {
