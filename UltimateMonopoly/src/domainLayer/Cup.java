@@ -1,7 +1,7 @@
 package domainLayer;
 
 /**
- * The cup class is a pure fabrication class that makes rolling easier
+ * OVERVIEW:The cup class is a pure fabrication class that makes rolling easier
  * The cup class contains a regular and a speed die 
  * @author SAWCON
  */
@@ -27,6 +27,7 @@ public class Cup {
 
 	/**
 	 * EFFECTS:Sets the speedDie of this Cup object to the given speedDie object
+	 * MODIFIES: this
 	 * @param the speedDie object to be set 
 	 */
 	public void setSpeedDie(SpeedDie speedDie) {
@@ -35,7 +36,7 @@ public class Cup {
 
 	/**
 	 * EFFECTS:Sets the firstDie of this Cup object to the given firstDie object
-	 * 
+	 * MODIFIES: this
 	 * @param the firstDie object to be set 
 	 */
 	public void setFirstDie(int firstDie) {
@@ -43,7 +44,8 @@ public class Cup {
 	}
 
 	/**
-	 * Sets the secondDie of this Cup object to the given secondDie object
+	 * EFFECTS: Sets the secondDie of this Cup object to the given secondDie object
+	 * MODIFIES: this
 	 * @param the secondDie object to be set
 	 */
 	public void setSecondDie(int secondDie) {
@@ -51,7 +53,8 @@ public class Cup {
 	}
 
 	/**
-	 * Sets the thirdDie of this Cup object to the given thirdDie object
+	 * EFFECTS: Sets the thirdDie of this Cup object to the given thirdDie object
+	 * MODIFIES: this
 	 * @param the thirdDie object to be set 
 	 */
 	public void setThirdDie(int thirdDie) {
@@ -59,8 +62,9 @@ public class Cup {
 	}
 	
 	/**
-	 * Creates a Cup object initialized with a regular and a speed die
+	 * EFFECTS: Creates a Cup object initialized with a regular and a speed die
 	 * Dual count is set to 0.
+	 * MODIFIES: this
 	 */
 	public Cup() {
 		die = new Die();
@@ -70,9 +74,10 @@ public class Cup {
 	}
 
 	/**
-	 * Rolls all the dice in the Cup
+	 * EFFECTS: Rolls all the dice in the Cup
 	 * Rolls three regular dice and a speed die
 	 * If the rolls are dual, the dual count is incremented for the GoToJail check
+	 * MODIFIES: this
 	 */
 	public void roll() {
 		die.roll();
@@ -90,7 +95,7 @@ public class Cup {
 	}
 	
 	/**
-	 * Gets the sum of the face values of two regular dice
+	 * EFFECTS: Gets the sum of the face values of two regular dice
 	 * @return the sum of the two regular dice rolls
 	 */
 	public int get2RollValue() {
@@ -98,7 +103,7 @@ public class Cup {
 	}
 
 	/**
-	 * Gets the sum of the face values of three regular dice
+	 * EFFECTS: Gets the sum of the face values of three regular dice
 	 * @return the sum of the three regular dice rolls
 	 */
 	public int get3RollValue() {
@@ -106,7 +111,7 @@ public class Cup {
 	}
 
 	/**
-	 * Gets the face value of the first die
+	 * EFFECTS: Gets the face value of the first die
 	 * @return the face value of the first die
 	 */
 	public int getFirstDie() {
@@ -114,7 +119,7 @@ public class Cup {
 	}
 	
 	/**
-	 * Gets the face value of the second die
+	 * EFFECTS: Gets the face value of the second die
 	 * @return the face value of the second die
 	 */
 	public int getSecondDie() {
@@ -122,7 +127,7 @@ public class Cup {
 	}
 	
 	/**
-	 * Gets the face value of the thirds die
+	 * EFFECTS: Gets the face value of the thirds die
 	 * @return the face value of the third die
 	 */
 	public int getThirdDie() {
@@ -130,7 +135,7 @@ public class Cup {
 	}
 
 	/**
-	 * Gets the string value of the speed die
+	 * EFFECTS: Gets the string value of the speed die
 	 * The possible string values are MrMonopoly and Bus
 	 * @return the string value of the speed die
 	 */
@@ -139,7 +144,7 @@ public class Cup {
 	}
 	
 	/**
-	 * Gets the integer value of the speed die
+	 * EFFECTS: Gets the integer value of the speed die
 	 * If the speed die string is either MrMonopoly or Bus returns 0
 	 * @return the integer value of the speed die
 	 */
@@ -150,7 +155,7 @@ public class Cup {
 	}
 
 	/**
-	 * Checks if the regular dice rolls are dual rolls
+	 * EFFECTS: Checks if the regular dice rolls are dual rolls
 	 * @return true if first die roll is equal to the second die roll, false otherwise
 	 */
 	public boolean isDualRoll() {
@@ -159,7 +164,8 @@ public class Cup {
 	}
 
 	/**
-	 * Sets the first and second die rolls according to the given roll values, increases dual count accordingly
+	 * EFFECTS: Sets the first and second die rolls according to the given roll values, increases dual count accordingly
+	 * MODIFIES: this
 	 * @param the first die roll
 	 * @param the second die roll
 	 */
@@ -171,7 +177,8 @@ public class Cup {
 	}
 
 	/**
-	 * Checks if the dual roll count is more than three
+	 * EFFECTS: Checks if the dual roll count is more than three
+	 * MODIFIES: this
 	 * @return true if dual count is greater than or equal to 3, false otherwise
 	 */
 	public boolean isThirdDualRoll() {
@@ -198,7 +205,7 @@ public class Cup {
 	//	
 	
 	/**
-	 * Checks if the two regular dice rolls sum up to an even number
+	 * EFFECTS: Checks if the two regular dice rolls sum up to an even number
 	 * @return true if two regular dice rolls sum up to an even number false otherwise
 	 */
 	public boolean rolledEven() {
@@ -207,7 +214,7 @@ public class Cup {
 	}
 
 	/**
-	 * Checks if the two regular dice rolls sum up to an odd number
+	 * EFFECTS: Checks if the two regular dice rolls sum up to an odd number
 	 * @return true if two regular dice rolls sum up to an odd number false otherwise
 	 */
 	public boolean rolledOdd() {
