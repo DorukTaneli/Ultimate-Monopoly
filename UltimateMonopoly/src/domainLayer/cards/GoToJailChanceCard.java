@@ -1,14 +1,14 @@
 package domainLayer.cards;
 
 /**
- * GoToJailChanceCard is a class that extends ChanceCards
+ * OVERVIEW: GoToJailChanceCard is a class that extends ChanceCards
  * @author SAWCON
  *
  */
 public class GoToJailChanceCard extends ChanceCard{
 
 	/**
-	 * Creates a GoToJailChanceCard object
+	 * EFFECTS: Creates a GoToJailChanceCard object
 	 * @param the name of the card
 	 * @param boolean keepable
 	 */
@@ -18,7 +18,8 @@ public class GoToJailChanceCard extends ChanceCard{
 	}
 
 	/**
-	 * Activates the card, resulting in the drawer of the card to be sent to the jail.
+	 * EFFECTS: Activates the card, resulting in the drawer of the card to be sent to the jail.
+	 * MODIFIES: Player
 	 */
 	@Override
 	public void cardAction() {
@@ -28,7 +29,7 @@ public class GoToJailChanceCard extends ChanceCard{
 	}
 
 	/**
-	 * Gets the type of the object.
+	 * EFFECTS: Gets the type of the object.
 	 * @return type of the object
 	 */
 	@Override
