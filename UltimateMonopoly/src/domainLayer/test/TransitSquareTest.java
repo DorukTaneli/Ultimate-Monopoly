@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import domainLayer.squares.TransitSquare;
@@ -11,9 +12,17 @@ import domainLayer.Board;
 import domainLayer.Player;
 
 class TransitSquareTest {
-	Board b=new Board();
-	Player p = new Player("TestingPlayer",b);
+	
+	Board b;
+	Player p;
 
+	@BeforeEach
+	void setUp() {
+		b=new Board();
+		p = new Player("TestingPlayer",b);
+	}
+	
+	
 	@Test
 	void testGetNextSquare() {
 		System.out.println("\nTesting TransitSquare's getNextSquare()\n");
