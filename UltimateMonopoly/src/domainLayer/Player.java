@@ -11,7 +11,7 @@ import uiLayer.PropertyListener;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Player class is a class which represents the players of the Monopoly game
+ * OVERVIEW: The Player class is a class which represents the players of the Monopoly game
  * Each player has a name, money, inventory of properties and cards
  * The player class implements the Publisher interface in order to publish changes in player attributes to the UI layer.
  *
@@ -75,10 +75,11 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Gets the number of the layer that the player is currently located in
+	 * EFFECTS: Gets the number of the layer that the player is currently located in
 	 * If the player stands on a square between 0 and 39, returns 1
 	 * Else if the player stands on a square between 40 and 63, returns 0
 	 * Otherwise, returns 2.
+	 * MODIFIES: this
 	 *
 	 * @return the number of the layer the player is located in
 	 */
@@ -96,9 +97,10 @@ public class Player implements Publisher{
 
 	//TURN
 	/**
-	 * Takes turn for the current Player object, rolling the dice and moves to the corresponding square
+	 * EFFECTS: Takes turn for the current Player object, rolling the dice and moves to the corresponding square
 	 * The the player moves to the destination square one square at a time
 	 * Performs the checks for jail and rolls the dice accordingly.
+	 * MODIFIES: this
 	 */
 	public void takeTurn() {
 		if (!haveRolled) {
@@ -122,8 +124,7 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Gets the haveRolled attribute of this Player object, which represents whether if the current Player has already rolled or not.
-	 *
+	 * EFFECTS: Gets the haveRolled attribute of this Player object, which represents whether if the current Player has already rolled or not.
 	 * @return the haveRolled attribute
 	 */
 	public boolean haveRolled() {
@@ -131,8 +132,7 @@ public class Player implements Publisher{
 	}
 
 	/**
-	 * Sets the haveRolled attribute of this Player object to the given boolean.
-	 *
+	 * EFFECTS: Sets the haveRolled attribute of this Player object to the given boolean.
 	 * @param new haveRolled boolean
 	 */
 	public void setHaveRolled(boolean haveRolled) {
@@ -140,8 +140,7 @@ public class Player implements Publisher{
 	}
 
 	/**
-	 * Gets the name.
-	 *
+	 * EFFECTS: Gets the name.
 	 * @return the name
 	 */
 	public String getName() {
@@ -151,8 +150,8 @@ public class Player implements Publisher{
 	
 	
 	/**
-	 * Move one by one for f squares.
-	 *
+	 * EFFECTS: Move one by one for f squares.
+	 * MODIFIES: this
 	 * @param f the amount of squares moved
 	 */
 	//MOVEMENT
@@ -178,8 +177,8 @@ public class Player implements Publisher{
 	
 	
 	/**
-	 * Teleport to land.
-	 *
+	 * EFFECTS: Teleport to land.
+	 * MODIFIES: this
 	 * @param square to be teleported to
 	 */
 	public void teleportToLand(Square sq) {
@@ -189,8 +188,8 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Teleport without calling the landedOn function.
-	 *
+	 * EFFECTS: Teleport without calling the landedOn function.
+	 * MODIFIES: this
 	 * @param square to be teleported to
 	 */
 	public void teleportNoLand(Square sq) {
@@ -198,7 +197,8 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Go to jail.
+	 * EFFECTS: Go to jail.
+	 * MODIFIES: this
 	 */
 	public void goToJail() {
 		teleportNoLand(board.getSquareByIndex(10));
@@ -207,8 +207,9 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Gets out of jail if any of the next three rolls are doubles, pays a fee at the end of 3rd turn 
+	 *EFFECTS: Gets out of jail if any of the next three rolls are doubles, pays a fee at the end of 3rd turn 
 	 * to get out if none were doubles.
+	 * MODIFIES: this
 	 */
 	public void tryToGetOutOfJail() { //how much cash is taken in 3 rd failed attempt
 		
@@ -226,8 +227,7 @@ public class Player implements Publisher{
 	}
 
 	/**
-	 * Gets the location.
-	 *
+	 * EFFECTS: Gets the location.
 	 * @return the location
 	 */
 	public Square getLocation() {
@@ -236,8 +236,8 @@ public class Player implements Publisher{
 
 
 	/**
-	 * Adds the cash.
-	 *
+	 * EFFECTS: Adds the cash.
+	 * MODIFIES: this
 	 * @param amount of cash added
 	 */
 	//CASH
@@ -248,8 +248,7 @@ public class Player implements Publisher{
 	}
 
 	/**
-	 * Gets the cash.
-	 *
+	 * EFFECTS: Gets the cash.
 	 * @return the cash
 	 */
 	public int getCash() {
@@ -257,8 +256,8 @@ public class Player implements Publisher{
 	}
 
 	/**
-	 * Reduce cash.
-	 *
+	 * EFFECTS: Reduce cash.
+	 * MODIFIES: this
 	 * @param amount of cash reduced
 	 */
 	public void reduceCash(int amount) {
@@ -268,8 +267,8 @@ public class Player implements Publisher{
 	}
 
 	/**
-	 * Attempt purchase.
-	 *
+	 * EFFECTS: Attempt purchase.
+	 * MODIFIES: this
 	 * @param property square to be purchased
 	 */
 	public void attemptPurchase (PropertySquare psq) {
@@ -288,16 +287,13 @@ public class Player implements Publisher{
 				for(Square sq : myProperties) {
 					System.out.println("--"+sq.getName());
 				}
-				System.out.println("Money left: "+this.cash);
-				
-				
+				System.out.println("Money left: "+this.cash);	
 			}
-			
 		}
 
 	/**
-	 * Adds the property.
-	 *
+	 * EFFECTS: Adds the property.
+	 * MODIFIES: this
 	 * @param square to be added to my properties list
 	 */
 	public void addProperty(Square sq) {
@@ -305,18 +301,17 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Removes the property.
-	 *
+	 * REQUIRES: myProperties list is initialized
+	 * EFFECTS: Removes the property.
+	 * MODIFIES: this
 	 * @param square to be removed from my properties list
 	 */
 	public void removeProperty(Square sq) {
 		if(myProperties.contains(sq)) myProperties.remove(sq);
-		
 	}
 	
 	/**
-	 * Gets the player properties.
-	 *
+	 * EFFECTS: Gets the player properties.
 	 * @return my properties list
 	 */
 	public ArrayList<Square> getPlayerProperties(){
@@ -324,8 +319,8 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Checks if is my property.
-	 *
+	 * REQUIRES: myProperties list is initialized.
+	 * EFFECTS: Checks if is my property.
 	 * @param square to be checked
 	 * @return true, if is in my properties list
 	 */
@@ -334,8 +329,8 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Adds a card to the players inventory.
-	 *
+	 * EFFECTS: Adds a card to the players inventory.
+	 * MODIFIES: this
 	 * @param card to be kept
 	 */
 	public void keepCard(Card card) {
@@ -343,8 +338,8 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Uses a card's action.
-	 *
+	 * EFFECTS: Uses a card's action.
+	 * MODIFIES: this
 	 * @param card to be used
 	 */
 	public void useCard(Card card) {
@@ -353,8 +348,7 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Gets the roll three cards list of player.
-	 *
+	 * EFFECTS: Gets the roll three cards list of player.
 	 * @return the roll three cards list
 	 */
 	public ArrayList<Card> getRollThreeCards(){
@@ -368,8 +362,7 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Gets the inventory list of player.
-	 *
+	 * EFFECTS: Gets the inventory list of player.
 	 * @return the inventory list
 	 */
 	public ArrayList<Card> getInventory(){
@@ -377,8 +370,7 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Have rolled even boolean. True if roll is even, false otherwise.
-	 *
+	 * EFFECTS: Have rolled even boolean. True if roll is even, false otherwise.
 	 * @return rolledEven boolean
 	 */
 	public boolean haveRolledEven(){
@@ -386,8 +378,7 @@ public class Player implements Publisher{
 	}
 	
 	/**
-	 * Have rolled even boolean. True if roll is even, false otherwise.
-	 *
+	 * EFFECTS: Have rolled even boolean. True if roll is even, false otherwise.
 	 * @return rolledOdd boolean
 	 */
 	public boolean haveRolledOdd(){
