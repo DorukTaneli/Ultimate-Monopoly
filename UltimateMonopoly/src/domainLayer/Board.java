@@ -21,19 +21,13 @@ public class Board {
 	 * OVERVIEW: Board is where the game is played. Has three layers.
 	 */
 	
-	/** 
-	 * 	EFFECTS: initializes this to be 120.
-	 */
+	/** The size. */
 	private static final int SIZE = 120;
 	
-	/** 
-	 * 	EFFECTS: initializes this to be an array list of size SIZE.
-	 */
+	/** The squares list. */
 	private ArrayList<Square> squares = new ArrayList<Square>(SIZE);
 	
-	/** 
-	 * 	EFFECTS: initializes a new cup.
-	 */
+	/** The cup. */
 	private Cup cup = new Cup();
 	
 	/**

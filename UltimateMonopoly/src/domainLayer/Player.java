@@ -61,7 +61,7 @@ public class Player implements Publisher{
 	private ArrayList<PropertyListener> myListeners=new ArrayList<PropertyListener>();
 
 	/**
-	 * Creates an Player object with name, board, cash, cup and piece attributes.
+	 *EFFECTS: Creates an Player object with name, board, cash, cup and piece attributes.
 	 *
 	 * @param name of the player
 	 * @param board

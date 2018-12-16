@@ -11,14 +11,10 @@ public class TransitSquare extends PropertySquare{
 	 * OVERVIEW: Transit squares are squares that allow a player to change their layer. 
 	 */
 
-	/** 
-	 * 	EFFECTS: initializes this to be null.
-	 */
+	/** The brother. */
 	private TransitSquare brother;
 	
-	/** 
-	 * EFFECTS: initializes this to be null.
-	 */
+	/** The base rent. */
 	private int baseRent;
 	
 	/**
