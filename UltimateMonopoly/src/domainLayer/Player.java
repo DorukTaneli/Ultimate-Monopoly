@@ -9,6 +9,14 @@ import domainLayer.squares.Square;
 
 import uiLayer.PropertyListener;
 
+/**
+ * The Player class is a class which represents the players of the Monopoly game
+ * Each player has a name, money, inventory of properties and cards
+ * The player class implements the Publisher interface in order to publish changes in player attributes to the UI layer
+ * @author SAWCON
+ *
+ */
+
 public class Player implements Publisher{
 
 	
@@ -28,6 +36,11 @@ public class Player implements Publisher{
 	
 	private ArrayList<PropertyListener> myListeners=new ArrayList<PropertyListener>();
 
+	/**
+	 * Creates an Player object with name, board, cash, cup and piece attributes
+	 * @param name of the player
+	 * @param Board object of the current Monopoly game
+	 */
 	public Player(String name, Board board) {
 		this.name = name;
 		this.board = board;
@@ -36,6 +49,13 @@ public class Player implements Publisher{
 		piece= new Piece(board.getStartSquare());
 	}
 	
+	/**
+	 * Gets the number of the layer that the player is currently located in
+	 * If the player stands on a square between 0 and 39, returns 1
+	 * Else if the player stands on a square between 40 and 63, returns 0
+	 * Otherwise, returns 2
+	 * @return the number of the layer the player is located in
+	 */
 	public int whichlayer() {
 		if(piece.getLocation().getIndex()<40) {
 			layer=1;
@@ -49,6 +69,11 @@ public class Player implements Publisher{
 	}
 
 	//TURN
+	/**
+	 * Takes turn for the current Player object, rolling the dice and moves to the corresponding square
+	 * The the player moves to the destination square one square at a time
+	 * Performs the checks for jail and rolls the dice accordingly
+	 */
 	public void takeTurn() {
 		if (!haveRolled) {
 			cup.roll();
@@ -70,10 +95,18 @@ public class Player implements Publisher{
 		}
 	}
 	
+	/**
+	 * Gets the haveRolled attribute of this Player object, which represents whether if the current Player has already rolled or not
+	 * @return the haveRolled attribute
+	 */
 	public boolean haveRolled() {
 		return haveRolled;
 	}
 
+	/**
+	 * Sets the haveRolled attribute of this Player object to the given boolean
+	 * @param the haveRolled boolean to be set
+	 */
 	public void setHaveRolled(boolean haveRolled) {
 		this.haveRolled = haveRolled;
 	}
