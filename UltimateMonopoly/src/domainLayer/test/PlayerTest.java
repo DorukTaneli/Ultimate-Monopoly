@@ -144,6 +144,13 @@ class PlayerTest {
 		p.isMyProperty(b.getSquareByIndex(1));
 	}
 	
+	@Test 
+    void testAddCash() {
+        Player p3 = new Player("TestingPlayer",b);
+        p3.addCash(300);
+        assertEquals(p3.getCash(),1800);
+    }
+	
 	
 }
 
