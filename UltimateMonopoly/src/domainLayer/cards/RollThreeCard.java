@@ -17,17 +17,23 @@ public class RollThreeCard extends Card{
 	}
 	
 	public int getReward(int no1,int no2,int no3,boolean pTurn) {
-		int[] x= {no1,no2,no3};
+		int[] x={no1,no2,no3};
+		if(no1==no2 && no2==no3) {
+			int[] y= {no1};
+			x=y;
+		}else if(no1==no2 || no2==no3) {
+			int[] y= {no1,no3};
+			x=y;
+		}else if(no1==no3) {
+			int[] y= {no1,no2};
+			x=y;
+		}else {}
 		int c=0;
 		for(int i=0;i<numbers.length;i++) {
 			for(int j=0;j<x.length;j++) {
 				if(numbers[i]==x[j])c++;
 			}
 		}
-		if(no1==no2)c--;
-		if(no3==no2)c--;
-		if(no1==no3)c--;
-		if(no1==no2 && no2==no3)c++;
 		if(c==3 && pTurn==true)c++;
 			
 		
