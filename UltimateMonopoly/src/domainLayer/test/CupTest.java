@@ -76,5 +76,18 @@ class CupTest {
 		else
 			assertEquals(false, cp.rolledOdd());
 	}
+	
+	@Test
+	void testget2RollValue() {
+		assertEquals(cp.getFirstDie() + cp.getSecondDie(),
+				cp.get2RollValue());
+	}
 
+	@Test
+	void testget3RollValue() {
+		assertEquals(cp.getFirstDie() + cp.getSecondDie() + cp.getThirdDie(),
+				cp.get3RollValue());
+	}
+
+	
 }
