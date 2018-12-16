@@ -11,6 +11,13 @@ import domainLayer.Cup;
 class CupTest {
 	Cup cp = new Cup();
 	
+	public boolean repOK() {
+        if(cp.getFirstDie()<1 || cp.getFirstDie()>6) return false;
+        if(cp.getSecondDie()<1 || cp.getSecondDie()>6) return false;
+        if(cp.getThirdDie()<1 || cp.getThirdDie()>6) return false;
+        return true;
+    }
+	
 	@Test
 	void testRoll() {
 		int valOriginal = cp.get2RollValue();
