@@ -17,18 +17,27 @@ import domainLayer.squares.TransitSquare;
  * The Class Board.
  */
 public class Board {
+	/**
+	 * OVERVIEW: Board is where the game is played. Has three layers.
+	 */
 	
-	/** The Constant SIZE. */
+	/** 
+	 * 	EFFECTS: initializes this to be 120.
+	 */
 	private static final int SIZE = 120;
 	
-	/** The squares. */
+	/** 
+	 * 	EFFECTS: initializes this to be an array list of size SIZE.
+	 */
 	private ArrayList<Square> squares = new ArrayList<Square>(SIZE);
 	
-	/** The cup. */
+	/** 
+	 * 	EFFECTS: initializes a new cup.
+	 */
 	private Cup cup = new Cup();
 	
 	/**
-	 * Instantiates a new board.
+	 * EFFECTS: Instantiates a new board by building and linking squares.
 	 */
 	public Board() {
 		buildSquares();
@@ -38,7 +47,7 @@ public class Board {
 	}
 	
 	/**
-	 * Sets up the transit squares and their brothers.
+	 * EFFECTS: Sets up the transit squares and their brothers.
 	 */
 	public void setUpTransitSquares() {
 		if(squares.get(15).getType().equals("TransitSquare")) {
@@ -62,7 +71,7 @@ public class Board {
 	}
 	
 	/**
-	 * Gets the cup.
+	 * EFFECTS: Gets the cup.
 	 *
 	 * @return the cup
 	 */
@@ -71,7 +80,7 @@ public class Board {
 	}
 	
 	/**
-	 * Gets the squares list.
+	 * EFFECTS: Gets the squares list.
 	 *
 	 * @return the squares list
 	 */
@@ -80,7 +89,7 @@ public class Board {
 	}
 	
 	/**
-	 * Gets the square that is a given distance away as index from a starting square.
+	 * EFFECTS: Gets the square that is a given distance away as index from a starting square.
 	 *
 	 * @param starting square
 	 * @param distance between the indexes of squares as integer
@@ -92,7 +101,7 @@ public class Board {
 	}
 	
 	/**
-	 * Gets the square with a given index.
+	 * EFFECTS: Gets the square with a given index.
 	 *
 	 * @param index of the targeted square
 	 * @return the square with the given index
@@ -102,7 +111,7 @@ public class Board {
 	}
 	
 	/**
-	 * Gets the start square.
+	 * EFFECTS: Gets the start square.
 	 *
 	 * @return the start square
 	 */
@@ -111,8 +120,9 @@ public class Board {
 	}
 	
 	/**
-	 * Builds the Go square and adds it to the squares list.
-	 * Calls separate square creating methods to create each square on the board.
+	 * MODIFIES: squares
+	 * EFFECTS: Builds the Go square and adds it to the squares list.
+	 * 			Calls separate square creating methods to create each square on the board.
 	 */
 	public void buildSquares() {
 		Square sq = new GoSquare("Go Square", 0);
@@ -241,7 +251,8 @@ public class Board {
 	
 	
 	/**
-	 * Builds a property square with the given parameters and adds it to the squares list.
+	 * MODIFIES: squares
+	 * EFFECTS: Builds a property square with the given parameters and adds it to the squares list.
 	 *
 	 * @param name of the square
 	 * @param index of the square
@@ -255,7 +266,8 @@ public class Board {
 	}
 	
 	/**
-	 * Builds a regular square with the given parameters and adds it to the squares list.
+	 * MODIFIES: squares
+	 * EFFECTS: Builds a regular square with the given parameters and adds it to the squares list.
 	 *
 	 * @param name of the square
 	 * @param index of the square
@@ -267,7 +279,8 @@ public class Board {
 	
 
 	/**
-	 * Builds a Roll Three square with the given parameters and adds it to the squares list.
+	 * MODIFIES: squares
+	 * EFFECTS: Builds a Roll Three square with the given parameters and adds it to the squares list.
 	 *
 	 * @param name of the square
 	 * @param index of the square
@@ -278,7 +291,8 @@ public class Board {
 		}
 
 	/**
-	 * Builds a transit square with the given parameters and adds it to the squares list.
+	 * MODIFIES: squares
+	 * EFFECTS: Builds a transit square with the given parameters and adds it to the squares list.
 	 *
 	 * @param name of the square
 	 * @param index of the square
@@ -291,7 +305,8 @@ public class Board {
 	}
 	
 	/**
-	 * Builds a chance square with the given parameters and adds it to the squares list.
+	 * MODIFIES: squares
+	 * EFFECTS: Builds a chance square with the given parameters and adds it to the squares list.
 	 *
 	 * @param name of the square
 	 * @param index of the square
@@ -302,7 +317,8 @@ public class Board {
 	}
 	
 	/**
-	 * Builds a community chest square with the given parameters and adds it to the squares list.
+	 * MODIFIES: squares
+	 * EFFECTS: Builds a community chest square with the given parameters and adds it to the squares list.
 	 *
 	 * @param name of the square
 	 * @param index of the square
@@ -314,7 +330,7 @@ public class Board {
 	}
 	
 	/**
-	 * Links squares.
+	 * EFFECTS: Links squares.
 	 */
 	public void linkSquares() {
 		for (int i = 0; i < (SIZE - 1); i++) {
@@ -328,7 +344,7 @@ public class Board {
 	}
 	
 	/**
-	 * Links two squares according to their indexes in the squares list.
+	 * EFFECTS: Links two squares according to their indexes in the squares list.
 	 *
 	 * @param index of the squares list
 	 */
