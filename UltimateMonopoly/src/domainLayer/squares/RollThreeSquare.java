@@ -77,8 +77,8 @@ public class RollThreeSquare extends RegularSquare{
 					if(a<c) {
 						a=c;
 					}
-					System.out.println("Player:"+plyrs.get(i).getName()+" won "+crd.getReward(no1, no2, no3, false));
 				}
+				System.out.println("Player:"+plyrs.get(i).getName()+" won "+a);
 				plyrs.get(i).addCash(a);
 			}
 			
