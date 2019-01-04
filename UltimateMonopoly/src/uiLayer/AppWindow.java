@@ -84,10 +84,16 @@ public class AppWindow extends JFrame implements PropertyListener{
 	
 	
 	private String[] imagePaths= {"graphics/hat small.png",
+			"graphics/car small.png",
+			"graphics/presentRed.png",
 			"graphics/car smalBluel.png",
+			"graphics/greenBoot.png",
 			"graphics/car smallGreen.png",
+			"graphics/presentBlue.png",
+			"graphics/yellowBoot.png",
 			"graphics/car smallLightBlue.png",
-			"graphics/saw.png" };
+			"graphics/presentGreen.png",
+			"graphics/saw.png","graphics/redBoot.png" };
 	
 	public void setUpLabels(int no) {
 		playerPieceLabels=new JLabel[no];
@@ -106,7 +112,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 			playerMoneyLabels[i].setBounds(150+(i%3)*100, k+54, 46, 16);
 			
 			playerUILabels[i] = new JLabel("Player "+i);
-			playerUILabels[i].setBounds(150+(i%3)*100, k+27, 46, 16);
+			playerUILabels[i].setBounds(150+(i%3)*100, k+27, 56, 16);
 			playerUILabels[i].setToolTipText(generateHTML(new ArrayList<Square>()));
 			
 		}
