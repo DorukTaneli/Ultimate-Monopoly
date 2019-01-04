@@ -93,12 +93,14 @@ public class Cup {
 		if(firstDie==secondDie) dualCount++;
 
 	}
-	
+
 	/**
 	 * EFFECTS: Gets the sum of the face values of two regular dice
 	 * @return the sum of the two regular dice rolls
 	 */
+
 	public int get2RollValue() {
+	
 		return firstDie+secondDie;
 	}
 

@@ -76,14 +76,14 @@ public class AppWindow extends JFrame implements PropertyListener{
 		this.setVisible(true);
 	}
 	
-//	public static AppWindow getInstance() {
-//		if(instance == null) {
-//			instance = new AppWindow();
-//		}
-//		
-//		return instance;
-//		
-//	}
+	public static AppWindow getInstance() {
+		if(instance == null) {
+			instance = new AppWindow();
+		}
+		
+		return instance;
+		
+	}
 	
 
 
