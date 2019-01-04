@@ -3,7 +3,10 @@ package uiLayer;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -21,6 +24,9 @@ public class AppWindow extends JFrame implements PropertyListener{
 	private JLabel boardLabel;
 	private JLabel hatLbl;
 	private JLabel carLbl;
+	private JLabel hatUILbl;
+	private JLabel carUILbl;
+	private JLabel sawUILbl;
 	private int BOARD_SIZE = 830;
 	private int WINDOW_X = 1400;
 	private int WINDOW_Y = 850;
@@ -102,32 +108,20 @@ public class AppWindow extends JFrame implements PropertyListener{
 		playerPanel.setLayout(null);
 		
 		
-		JLabel lbl = new JLabel("Player 1");
-		lbl.setBounds(159, 25, 46, 16);
-		lbl.setToolTipText("<html>"
-				+ "<p width=\"200\"> Player1</p>"
-				+ "<p width=\"200\">Money: 2000</p>"
-				+ "<ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul>"
-				+ "</html>\"");
-		playerPanel.add(lbl);
+		hatUILbl = new JLabel("Player 1");
+		hatUILbl.setBounds(159, 25, 46, 16);
+		hatUILbl.setToolTipText(generateHTML(new ArrayList<Square>()));
+		playerPanel.add(hatUILbl);
 		
-		JLabel lbl_1 = new JLabel("Player 2");
-		lbl_1.setBounds(248, 25, 46, 16);
-		lbl_1.setToolTipText("<html>"
-				+ "<p width=\"200\"> Player2</p>"
-				+ "<p width=\"200\">Money: 9000</p>"
-				+ "<ul>Owned Places:<li>Smells</li><li>Like</li><li>Teen</li><li>Spirit</li></ul>"
-				+ "</html>\"");
-		playerPanel.add(lbl_1);
+		carUILbl = new JLabel("Player 2");
+		carUILbl.setBounds(248, 25, 46, 16);
+		carUILbl.setToolTipText(generateHTML(new ArrayList<Square>()));
+		playerPanel.add(carUILbl);
 		
-		JLabel lbl_2 = new JLabel("Player 3");
-		lbl_2.setBounds(342, 25, 46, 16);
-		lbl_2.setToolTipText("<html>"
-				+ "<p width=\"200\"> Player3</p>"
-				+ "<p width=\"200\">Money: 9001</p>"
-				+ "<ul>Owned Places:<li>Fire</li><li>Water</li><li>Earth</li><li>Wood</li></ul>"
-				+ "</html>\"");
-		playerPanel.add(lbl_2);
+		sawUILbl = new JLabel("Player 3");
+		sawUILbl.setBounds(342, 25, 46, 16);
+		sawUILbl.setToolTipText(generateHTML(new ArrayList<Square>()));
+		playerPanel.add(sawUILbl);
 		
 		player1Money = new JLabel("1500");
 		player1Money.setHorizontalAlignment(SwingConstants.CENTER);
@@ -242,10 +236,37 @@ public class AppWindow extends JFrame implements PropertyListener{
 
 	}
 		
+
+	public String generateHTML(ArrayList<Square> sqrs) { //should this be a new class?
+		String[] names = new String[sqrs.size()];
+		int[] buildings = new int[sqrs.size()];
+		
+		for(int i=0;i<sqrs.size();i++) {
+			Square sq = sqrs.get(i);
+			names[i]=sq.getName();
+			//buildings[i]=sq.getBuildingNum();
+		}
+		
+		String str = "<html>"
+				+ "<p width=\"200\"> Player1</p>"
+				+ "<ul>Owned Places:"+generateHTMLList(Arrays.asList(names))+"</ul>"
+				+ "</html>\"";
+
+		
+		return str;
+	}
 	
+	public String generateHTMLList(List<String> lst) {
+		String ret="";
+		for(int i=0;i<lst.size();i++) {
+			ret+="<li>"+lst.get(i)+"</li>";
+			
+		}
+		return ret;
+	}
 
 	
-	public int getPixelX(int ind) {
+ 	public int getPixelX(int ind) {
 		//		System.out.println("Current variables: "
 		//				+ "\n X_OFFSET: "+ X_OFFSET
 		//				+ "\n HALFSQ: "+HALFSQ
@@ -350,25 +371,24 @@ public class AppWindow extends JFrame implements PropertyListener{
 
 
 	@Override
-	public void onPropertyEvent(Publisher pb, String type, String val) {
+	public void onPropertyEvent(Publisher pb, String type, Object val) {
 		// TODO Auto-generated method stub
+		System.out.println("Observer got the message "+ val);
 		if(type=="Money") {
-			System.out.println("Observer got the message "+ val);
-			if(((Player)pb).getName()=="Hat") {
-				player1Money.setText(val);
-				System.out.println("Observer got the message "+ val);
-				player1Money.revalidate();
-				player1Money.repaint();
-			}
-			else if(((Player) pb).getName()=="Car"){
-				player2Money.setText(val);
-				System.out.println("Observer got the message "+ val);
-				player2Money.revalidate();
-				player2Money.repaint();
+			switch(((Player)pb).getName()) {
+				case "Hat": player1Money.setText((String)val); break;
+				case "Car": player2Money.setText((String)val); break;
 			}
 		}
 		else if(type=="Location") {
+
+		}
+		else if(type=="Purchase") {
+			switch(((Player)pb).getName()) {
+			case "Hat": hatUILbl.setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Car": carUILbl.setToolTipText(generateHTML((ArrayList<Square>)val)); break;
 			
+			}
 		}
 		else {
 			
