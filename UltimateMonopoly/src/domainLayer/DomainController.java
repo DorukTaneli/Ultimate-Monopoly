@@ -18,13 +18,13 @@ import uiLayer.PropertyListener;
 public final class DomainController {
 	private static volatile DomainController instance = null;
 	
-	private static final int PLAYERS_TOTAL = 2;
+	private static  int PLAYERS_TOTAL;
 	private ArrayList<Player> players = new ArrayList<Player>(PLAYERS_TOTAL);
 	private Board board = new Board();
 	private Cup cup; //might not be needed in DC, might be needed in order to save the game.
 	private int turn = 0;
 	private static AppWindow app;
-
+	public boolean playersAreSet=false;
 	
 	/**
 	 * Creates Domain Controller Object.
@@ -34,15 +34,18 @@ public final class DomainController {
 	public DomainController(AppWindow aw) {
 		Player p;
 		this.app=aw;
-		p = new Player("Hat", board);
-		players.add(p);
-		p = new Player("Car", board);
-		players.add(p);
-		this.cup=board.getCup();
+		PLAYERS_TOTAL = aw.getNumOfPlayers();
+		System.out.println("Num of players: "+PLAYERS_TOTAL);
+		players = new ArrayList<Player>();
+		for(int i=0;i<PLAYERS_TOTAL;i++) {
+			p = new Player("Player"+i, board);
+			players.add(p);
+		}
 		
 		for(Player player: players) {
 				player.addPropertyListener(app);
 		}
+		playersAreSet=true;
 	}
 	/**
 	 * Returns the singleton instance of Domain Controller
