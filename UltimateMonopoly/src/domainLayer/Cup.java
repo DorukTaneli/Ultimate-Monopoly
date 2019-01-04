@@ -5,13 +5,32 @@ public class Cup {
 	private int firstDie;
 	
 
+	public SpeedDie getSpeedDie() {
+		return speedDie;
+	}
+
+	public void setSpeedDie(SpeedDie speedDie) {
+		this.speedDie = speedDie;
+	}
+
+	public void setFirstDie(int firstDie) {
+		this.firstDie = firstDie;
+	}
+
+	public void setSecondDie(int secondDie) {
+		this.secondDie = secondDie;
+	}
+
+	public void setThirdDie(int thirdDie) {
+		this.thirdDie = thirdDie;
+	}
 	private int secondDie;
 	private int thirdDie;
 	private String speedDieString;
 	private Die die;
 	private SpeedDie speedDie;
 	
-	private int dualCount;
+	public int dualCount;
 	
 	public Cup() {
 		die = new Die();
@@ -70,6 +89,13 @@ public class Cup {
 		else return false;
 	}
 	
+	public void setDual(int f,int s) {
+		firstDie=f;
+		secondDie=s;
+		if(f==s) dualCount++;
+		
+	}
+	
 	public boolean isThirdDualRoll() {
 		if(dualCount>=3) {
 			dualCount=0;
@@ -93,12 +119,12 @@ public class Cup {
 //	}
 //	
 	public boolean rolledEven() {
-		if((get2RollValue()+getSpeedDieInt())%2==0) return true;
+		if((get2RollValue()/*+getSpeedDieInt()*/)%2==0) return true;
 		return false;
 	}
 	
 	public boolean rolledOdd() {
-		if((get2RollValue()+getSpeedDieInt())%2==1) return true;
+		if((get2RollValue()/*+getSpeedDieInt()*/)%2==1) return true;
 		return false;
 	}
 	

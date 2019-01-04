@@ -16,11 +16,11 @@ public final class DomainController {
 	private Board board = new Board();
 	private Cup cup; //might not be needed in DC, might be needed in order to save the game.
 	private int turn = 0;
-	private AppWindow app;
+	private static AppWindow app;
 
-	private DomainController() {
+	public DomainController(AppWindow aw) {
 		Player p;
-		this.app=AppWindow.getInstance();
+		this.app=aw;
 		p = new Player("Hat", board);
 		players.add(p);
 		p = new Player("Car", board);
@@ -34,7 +34,7 @@ public final class DomainController {
 	
 	public static DomainController getInstance() {
 		if(instance == null) {
-					instance = new DomainController();
+					instance = new DomainController(app);
 		}
 		
 		return instance;
