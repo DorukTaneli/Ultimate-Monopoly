@@ -22,6 +22,7 @@ public class RollThreeSquare extends RegularSquare{
 			,(new RollThreeCard("rtcard121",new int[] {3,4,6})),(new RollThreeCard("rtcard22",new int[] {3,5,6}))
 			,(new RollThreeCard("rtcard123",new int[] {4,5,6})),(new RollThreeCard("rtcard24",new int[] {1,3,6}))};
 	Cup cup;
+	
 	public RollThreeSquare(String name, int index) {
 		super(name, index);
 		cup=new Cup();
