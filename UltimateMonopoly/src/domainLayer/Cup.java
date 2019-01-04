@@ -53,8 +53,9 @@ public class Cup {
 		if(firstDie==secondDie) dualCount++;
 		
 	}
-	int c=0;
+
 	public int get2RollValue() {
+	
 		return firstDie+secondDie;
 	}
 	
