@@ -41,7 +41,6 @@ public class AppWindow extends JFrame implements PropertyListener{
 	private static volatile AppWindow instance = null;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		pop = new StarGamePopUp();
 		pop.start();
 	}
