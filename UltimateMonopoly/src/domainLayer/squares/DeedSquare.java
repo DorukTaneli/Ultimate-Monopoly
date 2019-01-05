@@ -55,14 +55,62 @@ public class DeedSquare extends PropertySquare implements Buildable{
 	}
 	
 	public void payRent(Player p) {
-		owner.addCash(baseRent);
-		p.reduceCash(baseRent);
+		owner.addCash(baseRent+ houseNo*houseCost());
+		p.reduceCash(baseRent + houseNo*houseCost());
+	}
+	
+	public int houseCost() {
+		switch(this.color) {
+		case "purple": return 50;
+		case "lblue": return 50;
+		case "pink": return 100;
+		case "orange": return 100;
+		case "red": return 150;
+		case "yellow": return 150;
+		case "green": return 200;
+		case "dblue": return 200;
+		case "white": return 100;
+		case "black": return 200;
+		case "gray": return 300;
+		case "lbrown": return 50;
+		case "lpink": return 50;
+		case "lgreen": return 50;
+		case "lyellow": return 100;
+		case "turqoise": return 100;
+		case "maroon": return 150;
+		case "mustard": return 200;
+		case "salmon": return 250;
+		case "dbrown": return 300;
+		default: return 50;
+		}	
 	}
 
 	@Override
-	public void build() {
+	public void build(Player player, boolean canBuildSky) {
 		// TODO Auto-generated method stub
+		if (this.houseNo<5) {
+			player.reduceCash(houseCost());
+			this.houseNo++;
+		}
+		else if (this.houseNo==5 && canBuildSky) {
+			player.reduceCash(houseCost());
+			this.houseNo++;
+		}
+	}
 
+	@Override
+	public void demolish(Player player) {
+		// TODO Auto-generated method stub
+		player.addCash(houseCost()/2);
+		this.houseNo--;
+	}
+
+	@Override
+	public void demolishAll(Player player) {
+		// TODO Auto-generated method stub
+		player.addCash(houseNo*houseCost()/2);
+		this.houseNo=0;
+		
 	}
 
 	@Override
@@ -76,17 +124,12 @@ public class DeedSquare extends PropertySquare implements Buildable{
 		// TODO Auto-generated method stub
 		return this.houseNo;
 	}
-
-	@Override
-	public void demolish() {
-		// TODO Auto-generated method stub
-		this.houseNo--;
+	
+	public boolean hasHotel() {
+		return this.getBuildingNo()==5;
 	}
-
-	@Override
-	public void demolishAll() {
-		// TODO Auto-generated method stub
-		this.houseNo=0;
+	
+	public boolean hasSkyscraper() {
+		return this.getBuildingNo()==6;
 	}
-
 }

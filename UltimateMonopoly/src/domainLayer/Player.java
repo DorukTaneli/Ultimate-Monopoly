@@ -3,6 +3,7 @@ package domainLayer;
 import java.util.ArrayList;
 
 import domainLayer.cards.Card;
+import domainLayer.squares.DeedSquare;
 import domainLayer.squares.PropertySquare;
 import domainLayer.squares.Square;
 
@@ -419,5 +420,79 @@ public class Player implements Publisher{
 			listener.onPropertyEvent(this, type, value);
 		}
 
+	}
+	
+	public int ownershipCount(DeedSquare dsq) {
+		int ownershipCount=0;
+		String dsqColor=dsq.getColor();
+		for (Square sq: myProperties) {
+			if (sq instanceof DeedSquare) {
+				DeedSquare ndsq=(DeedSquare) sq;
+				if (ndsq.getColor()==dsqColor) {
+					ownershipCount++;
+				}
+			}
+		}
+		return ownershipCount;
+	}
+	
+	public boolean hasMajorityOwnership(int ownershipCount, String dsqColor) {
+		if(dsqColor=="purple" || dsqColor=="dblue") {
+			return ownershipCount==2;
+		}
+		else if(dsqColor=="lgreen" || dsqColor=="lyellow" || dsqColor=="turqoise" || dsqColor=="maroon" || dsqColor=="mustard" || dsqColor=="salmon") {
+			return ownershipCount>3;
+		}
+		else {
+			return ownershipCount>2;
+		}
+	}
+	
+	public boolean hasMonopoly(int ownershipCount, String dsqColor) {
+		if(dsqColor=="purple" || dsqColor=="dblue") {
+			return ownershipCount==2;
+		}
+		else if(dsqColor=="lgreen" || dsqColor=="lyellow" || dsqColor=="turqoise" || dsqColor=="maroon" || dsqColor=="mustard" || dsqColor=="salmon") {
+			return ownershipCount==4;
+		}
+		else {
+			return ownershipCount==3;
+		}
+	}
+	
+	public boolean canBuildSkyscraper(String dsqColor, boolean hasMonopoly) {
+		boolean hasHotelInAll=true;
+		for (Square sq: myProperties) {
+			if (sq instanceof DeedSquare) {
+				DeedSquare ndsq=(DeedSquare) sq;
+				if (ndsq.getColor()==dsqColor) {
+					if(ndsq.hasSkyscraper()) {
+						return true;
+					}
+					else if(!ndsq.hasHotel()) {
+						return false;
+					}
+				}
+			}
+		}
+		return hasHotelInAll;
+	}
+
+	public void attemptBuild(DeedSquare dsq) {
+		// TODO Auto-generated method stub
+		boolean success=false;
+		int ownershipCount=ownershipCount(dsq);
+		if (hasMajorityOwnership(ownershipCount, dsq.getColor()) && cash >= dsq.houseCost()){
+			boolean canBuildSky= canBuildSkyscraper(dsq.getColor(), hasMonopoly(ownershipCount, dsq.getColor()));
+			dsq.build(this, canBuildSky);
+			success=true;
+			publishPropertyEvent("Build", dsq);
+		}
+		
+		System.out.println("Build attempted,result is: "+success+"");
+		if(success) {
+			System.out.println("House count: "+ dsq.getBuildingNo());
+			System.out.println("Money left: "+this.cash);	
+		}
 	}
 }

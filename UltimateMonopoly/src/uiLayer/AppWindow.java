@@ -440,6 +440,9 @@ public class AppWindow extends JFrame implements PropertyListener{
 			
 			}
 		}
+		else if(type=="Build") {
+			
+		}
 		else {
 			
 		}
