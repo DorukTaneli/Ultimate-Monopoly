@@ -40,7 +40,7 @@ public final class DomainController {
 		for(int i=0;i<PLAYERS_TOTAL;i++) {
 			p = new Player("Player"+i, board);
 			players.add(p);
-			if(i==1 || i==2 || i==3) p.setBotBehaviour(true , 1, this);
+		//	if(i==1 || i==2 || i==3) p.setBotBehaviour(true , 1, this);
 		}
 		
 		
