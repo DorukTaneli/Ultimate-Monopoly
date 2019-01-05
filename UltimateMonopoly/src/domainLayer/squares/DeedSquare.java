@@ -99,9 +99,11 @@ public class DeedSquare extends PropertySquare implements Buildable{
 	}
 
 	@Override
-	public void demolish(Player player) {
+	public void demolish(Player player, boolean isHurricane) {
 		// TODO Auto-generated method stub
-		player.addCash(houseCost()/2);
+		if(!isHurricane) {
+			player.addCash(houseCost()/2);
+		}
 		this.houseNo--;
 	}
 
