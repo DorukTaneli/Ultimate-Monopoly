@@ -3,7 +3,10 @@ package uiLayer;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -18,9 +21,12 @@ import java.awt.Button;
 
 public class AppWindow extends JFrame implements PropertyListener{
 	
+	private static StarGamePopUp pop;
+	private JLabel[] playerPieceLabels;
+	private int numOfPlayers;
 	private JLabel boardLabel;
-	private JLabel hatLbl;
-	private JLabel carLbl;
+	private JLabel[] playerUILabels;
+	private JLabel[] playerMoneyLabels;
 	private int BOARD_SIZE = 830;
 	private int WINDOW_X = 1400;
 	private int WINDOW_Y = 850;
@@ -32,40 +38,37 @@ public class AppWindow extends JFrame implements PropertyListener{
 	private int INNERLAYER;
 	private int OUTERLAYER;
 	private DomainController ctrl;
-	private JLabel player1Money;
-	private JLabel player2Money;
-	private JLabel player3Money;
 	private static volatile AppWindow instance = null;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		instance = new AppWindow();
-		instance.initialize();
+		pop = new StarGamePopUp();
+		pop.start();
 	}
 	
-	private AppWindow() {
+	public int getNumOfPlayers() {
+		return numOfPlayers;
+	}
+
+	public AppWindow() {
+		numOfPlayers = pop.gamePlayerNum;
 		setResizable(false);
-		
 		this.setSize(WINDOW_X, WINDOW_Y);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
+		this.initialize();
 		
 	}
 	
 	public void initialize() {
 		
-		ctrl = DomainController.getInstance();
+		ctrl = new DomainController(this);
 		
+		setUpLabels(numOfPlayers);
 		addButtons();
-		addPieces();
 		addPlayerLabels();
 		addBoardImage();
 		updatePieceGUILocation();
-				
-		System.out.println("midlayer: " + MIDLAYER);
-		System.out.println("halfsq: " + HALFSQ);
-		
-		
+		System.out.println("Game Starting...");		
 		this.setVisible(true);
 	}
 	
@@ -75,10 +78,47 @@ public class AppWindow extends JFrame implements PropertyListener{
 		}
 		
 		return instance;
-		
+
 	}
 	
+	
+	private String[] imagePaths= {"graphics/hat small.png",
+			"graphics/car small.png",
+			"graphics/presentRed.png",
+			"graphics/car smalBluel.png",
+			"graphics/greenBoot.png",
+			"graphics/car smallGreen.png",
+			"graphics/presentBlue.png",
+			"graphics/yellowBoot.png",
+			"graphics/car smallLightBlue.png",
+			"graphics/presentGreen.png",
+			"graphics/saw.png","graphics/redBoot.png" };
+	
+	public void setUpLabels(int no) {
+		playerPieceLabels=new JLabel[no];
+		playerUILabels=new JLabel[no];
+		playerMoneyLabels= new JLabel[no];
+		int k=0;
+		
+		for(int i=0;i<no;i++) {	
+			if(i%3==0) k+=80; //For Vertical placement
+			playerPieceLabels[i] = new JLabel(new ImageIcon(imagePaths[i]));
+			playerPieceLabels[i].setBounds(0, 0, 50, 50);
+			playerPieceLabels[i].setVisible(true);
+			
+			playerMoneyLabels[i] = new JLabel("1500");
+			playerMoneyLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
+			playerMoneyLabels[i].setBounds(150+(i%3)*100, k+54, 46, 16);
+			
+			playerUILabels[i] = new JLabel("Player "+i);
+			playerUILabels[i].setBounds(150+(i%3)*100, k+27, 56, 16);
+			playerUILabels[i].setToolTipText(generateHTML(new ArrayList<Square>()));
+			
+		}
+		
+		
 
+	}
 
 	public void addBoardImage() {
 		ImageIcon imageIcon = new ImageIcon("graphics/ultimatemonopolyboard.png"); // load the image to a imageIcon
@@ -97,60 +137,62 @@ public class AppWindow extends JFrame implements PropertyListener{
 	
 	public void addPlayerLabels() {
 		JPanel playerPanel = new JPanel();
-		playerPanel.setBounds(840, 0, 585, 750);
+		playerPanel.setBounds(840, 0, 585, 500);
 		this.getContentPane().add(playerPanel);
 		playerPanel.setLayout(null);
+		for(int i=0;i<numOfPlayers;i++) {
+			this.getContentPane().add(playerPieceLabels[i]);
+			playerPanel.add(playerUILabels[i]);
+			playerPanel.add(playerMoneyLabels[i]);
+			playerPieceLabels[i].setVisible(true);
+			playerUILabels[i].setVisible(true);
+			playerMoneyLabels[i].setVisible(true);
+		}
 		
-		
-		JLabel lbl = new JLabel("Player 1");
-		lbl.setBounds(159, 25, 46, 16);
-		lbl.setToolTipText("<html>"
-				+ "<p width=\"200\"> Player1</p>"
-				+ "<p width=\"200\">Money: 2000</p>"
-				+ "<ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul>"
-				+ "</html>\"");
-		playerPanel.add(lbl);
-		
-		JLabel lbl_1 = new JLabel("Player 2");
-		lbl_1.setBounds(248, 25, 46, 16);
-		lbl_1.setToolTipText("<html>"
-				+ "<p width=\"200\"> Player2</p>"
-				+ "<p width=\"200\">Money: 9000</p>"
-				+ "<ul>Owned Places:<li>Smells</li><li>Like</li><li>Teen</li><li>Spirit</li></ul>"
-				+ "</html>\"");
-		playerPanel.add(lbl_1);
-		
-		JLabel lbl_2 = new JLabel("Player 3");
-		lbl_2.setBounds(342, 25, 46, 16);
-		lbl_2.setToolTipText("<html>"
-				+ "<p width=\"200\"> Player3</p>"
-				+ "<p width=\"200\">Money: 9001</p>"
-				+ "<ul>Owned Places:<li>Fire</li><li>Water</li><li>Earth</li><li>Wood</li></ul>"
-				+ "</html>\"");
-		playerPanel.add(lbl_2);
-		
-		player1Money = new JLabel("1500");
-		player1Money.setHorizontalAlignment(SwingConstants.CENTER);
-		player1Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
-		player1Money.setBounds(159, 54, 46, 16);
-		playerPanel.add(player1Money);
-		
-		player2Money = new JLabel("1500");
-		player2Money.setHorizontalAlignment(SwingConstants.CENTER);
-		player2Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
-		player2Money.setBounds(248, 54, 46, 16);
-		playerPanel.add(player2Money);
-		
-		player3Money = new JLabel("0");
-		player3Money.setHorizontalAlignment(SwingConstants.CENTER);
-		player3Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
-		player3Money.setBounds(342, 54, 46, 16);
-		playerPanel.add(player3Money);
+//		
+//		hatUILbl = new JLabel("Player 1");
+//		hatUILbl.setBounds(159, 25, 46, 16);
+//		hatUILbl.setToolTipText(generateHTML(new ArrayList<Square>()));
+//		playerPanel.add(hatUILbl); //DONT FORGET TO ADD***********
+//		
+//		carUILbl = new JLabel("Player 2");
+//		carUILbl.setBounds(248, 25, 46, 16);
+//		carUILbl.setToolTipText(generateHTML(new ArrayList<Square>()));
+//		playerPanel.add(carUILbl);
+//		
+//		sawUILbl = new JLabel("Player 3");
+//		sawUILbl.setBounds(342, 25, 46, 16);
+//		sawUILbl.setToolTipText(generateHTML(new ArrayList<Square>()));
+//		playerPanel.add(sawUILbl);
+//		
+//		player1Money = new JLabel("1500");
+//		player1Money.setHorizontalAlignment(SwingConstants.CENTER);
+//		player1Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
+//		player1Money.setBounds(159, 54, 46, 16);
+//		playerPanel.add(player1Money); //ADDDDDDDDDDDDDDDDDDDD********
+//		
+//		player2Money = new JLabel("1500");
+//		player2Money.setHorizontalAlignment(SwingConstants.CENTER);
+//		player2Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
+//		player2Money.setBounds(248, 54, 46, 16);
+//		playerPanel.add(player2Money);
+//		
+//		player3Money = new JLabel("0");
+//		player3Money.setHorizontalAlignment(SwingConstants.CENTER);
+//		player3Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
+//		player3Money.setBounds(342, 54, 46, 16);
+//		playerPanel.add(player3Money);
 		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
+		
+	}
+	
+	public void addButtons() {
+		getContentPane().setLayout(null);
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBounds(86, 642, 366, 95);
-		playerPanel.add(buttonPanel);
-		buttonPanel.setLayout(new GridLayout(2, 4, 10, 10));
+		buttonPanel.setBounds(930, 550, 366, 200);
+		buttonPanel.setLayout(new GridLayout(4, 2, 10, 10));
+		getContentPane().add(buttonPanel);
+		buttonPanel.setVisible(true);
 		
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
@@ -200,52 +242,85 @@ public class AppWindow extends JFrame implements PropertyListener{
 		});
 		buttonPanel.add(button_3);
 		
-	}
-	
-	public void addButtons() {
-		getContentPane().setLayout(null);			
-	}
-	
-	
-	public void addPieces() {
-//		Player playerHat = (Player)ctrl.getPlayers().get(0);
-//		Player playerCar = (Player)ctrl.getPlayers().get(1);
-//
-//		Piece pieceHat = new Piece(new JLabel(new ImageIcon("graphics/hat small.png")), playerHat, -25);
-//		Piece pieceCar = new Piece(new JLabel(new ImageIcon("graphics/car small.png")), playerCar, 25);
-
-		hatLbl = new JLabel(new ImageIcon("graphics/hat small.png"));
-		this.getContentPane().add(hatLbl);
-		hatLbl.setBounds(0, 0, 50, 50);
-		hatLbl.setVisible(true);
+		Button button_4 = new Button("Pause");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getActionCommand() == "Pause") {
+					System.out.println("**Pause button pressed!\n");
+					button.setEnabled(false);
+					button_1.setEnabled(false);
+					button_2.setEnabled(false);
+					button_3.setEnabled(false);
+					button_4.setLabel("Unpause");	
+				}
+				
+				if(e.getActionCommand() == "Unpause") {
+					System.out.println("**Unpause button pressed!\n");
+					button.setEnabled(true);
+					button_1.setEnabled(true);
+					button_2.setEnabled(true);
+					button_3.setEnabled(true);
+					button_4.setLabel("Pause");
+				}
+			}
+		});
+		buttonPanel.add(button_4);
 		
-		carLbl = new JLabel(new ImageIcon("graphics/car small.png"));
-		this.getContentPane().add(carLbl);
-		carLbl.setBounds(0, 0, 50, 50);
-//		carLbl.setBounds(getPixelX(0), getPixelY(0), 50, 50);
-		carLbl.setVisible(true);
 	}
+	
 	
 
 	public void updatePieceGUILocation(){	
-		int playerLocIndex = ctrl.getPlayers().get(1).piece.getLocation().getIndex();
-//		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
-//		System.out.println("******** playerLocIndex: "+(playerLocIndex));
-		//
-		carLbl.setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
-		carLbl.setVisible(true);
-//		System.out.println("******** carLbl location: "+carLbl.getLocation());
+		if(!ctrl.playersAreSet) return;
+		for(int i=0;i<numOfPlayers;i++) {
+			int playerLocIndex = ctrl.getPlayers().get(i).piece.getLocation().getIndex();
+			playerPieceLabels[i].setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
+			
+		}
 		
-		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
-		hatLbl.setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
-		hatLbl.setVisible(true);
-
+////		System.out.println("******** carLbl location should be: "+getPixelX(playerLocIndex));
+////		System.out.println("******** playerLocIndex: "+(playerLocIndex));
+//		//
+//		carLbl.setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
+//		carLbl.setVisible(true);
+////		System.out.println("******** carLbl location: "+carLbl.getLocation());
+//		
+//		playerLocIndex = ctrl.getPlayers().get(0).piece.getLocation().getIndex();
+//		hatLbl.setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
+//		hatLbl.setVisible(true);
 	}
 		
+
+	public String generateHTML(ArrayList<Square> sqrs) { //should this be a new class?
+		String[] names = new String[sqrs.size()];
+		int[] buildings = new int[sqrs.size()];
+		
+		for(int i=0;i<sqrs.size();i++) {
+			Square sq = sqrs.get(i);
+			names[i]=sq.getName();
+			//buildings[i]=sq.getBuildingNum();
+		}
+		
+		String str = "<html>"
+				+ "<p width=\"200\"></p>"
+				+ "<ul>Owned Places:"+generateHTMLList(Arrays.asList(names))+"</ul>"
+				+ "</html>\"";
+
+		
+		return str;
+	}
 	
+	public String generateHTMLList(List<String> lst) {
+		String ret="";
+		for(int i=0;i<lst.size();i++) {
+			ret+="<li>"+lst.get(i)+"</li>";
+			
+		}
+		return ret;
+	}
 
 	
-	public int getPixelX(int ind) {
+ 	public int getPixelX(int ind) {
 		//		System.out.println("Current variables: "
 		//				+ "\n X_OFFSET: "+ X_OFFSET
 		//				+ "\n HALFSQ: "+HALFSQ
@@ -350,25 +425,44 @@ public class AppWindow extends JFrame implements PropertyListener{
 
 
 	@Override
-	public void onPropertyEvent(Publisher pb, String type, String val) {
+	public void onPropertyEvent(Publisher pb, String type, Object val) {
 		// TODO Auto-generated method stub
+		System.out.println("Observer got the message "+ val);
 		if(type=="Money") {
-			System.out.println("Observer got the message "+ val);
-			if(((Player)pb).getName()=="Hat") {
-				player1Money.setText(val);
-				System.out.println("Observer got the message "+ val);
-				player1Money.revalidate();
-				player1Money.repaint();
-			}
-			else if(((Player) pb).getName()=="Car"){
-				player2Money.setText(val);
-				System.out.println("Observer got the message "+ val);
-				player2Money.revalidate();
-				player2Money.repaint();
+			switch(((Player)pb).getName()) {
+				case "Player0": playerMoneyLabels[0].setText((String)val); break;
+				case "Player1": playerMoneyLabels[1].setText((String)val); break;
+				case "Player2": playerMoneyLabels[2].setText((String)val); break;
+				case "Player3": playerMoneyLabels[3].setText((String)val); break;
+				case "Player4": playerMoneyLabels[4].setText((String)val); break;
+				case "Player5": playerMoneyLabels[5].setText((String)val); break;
+				case "Player6": playerMoneyLabels[6].setText((String)val); break;
+				case "Player7": playerMoneyLabels[7].setText((String)val); break;
+				case "Player8": playerMoneyLabels[8].setText((String)val); break;
+				case "Player9": playerMoneyLabels[9].setText((String)val); break;
+				case "Player10": playerMoneyLabels[10].setText((String)val); break;
+				case "Player11": playerMoneyLabels[11].setText((String)val); break;
 			}
 		}
 		else if(type=="Location") {
+
+		}
+		else if(type=="Purchase") {
+			switch(((Player)pb).getName()) {
+			case "Player0": playerUILabels[0].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player1": playerUILabels[1].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player2": playerUILabels[2].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player3": playerUILabels[3].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player4": playerUILabels[4].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player5": playerUILabels[5].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player6": playerUILabels[6].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player7": playerUILabels[7].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player8": playerUILabels[8].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player9": playerUILabels[9].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player10": playerUILabels[10].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player11": playerUILabels[11].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
 			
+			}
 		}
 		else {
 			

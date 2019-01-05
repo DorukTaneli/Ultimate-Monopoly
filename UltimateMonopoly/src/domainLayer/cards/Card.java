@@ -7,7 +7,7 @@ public abstract class Card {
 	private String name;
 	private String description;
 	private boolean keepable;
-	Player drawer = null;
+	public Player drawer = null;
 	
 	public Card(String name,Boolean keepable) {
 		this.name=name;
