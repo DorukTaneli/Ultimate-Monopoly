@@ -119,6 +119,7 @@ public class Board {
 	 * 			Calls separate square creating methods to create each square on the board.
 	 */
 	public void buildSquares() {
+		//hebe
 		Square sq = new GoSquare("Go Square", 0);
 		squares.add(sq);
 		buildPS("Mediterranean Avenue", 1, 60, 2, "purple");
