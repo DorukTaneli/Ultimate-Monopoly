@@ -31,6 +31,7 @@ public final class DomainController {
 	 * Initializes Appwindow, Players, Cup, and PropertyListeners
 	 * @param Appwindow Object to be set 
 	 */
+	
 	public DomainController(AppWindow aw) {
 		Player p;
 		this.app=aw;
