@@ -189,8 +189,8 @@ public class AppWindow extends JFrame implements PropertyListener{
 	public void addButtons() {
 		getContentPane().setLayout(null);
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setBounds(950, 642, 366, 95);
-		buttonPanel.setLayout(new GridLayout(2, 4, 10, 10));
+		buttonPanel.setBounds(930, 550, 366, 200);
+		buttonPanel.setLayout(new GridLayout(4, 2, 10, 10));
 		getContentPane().add(buttonPanel);
 		buttonPanel.setVisible(true);
 		
