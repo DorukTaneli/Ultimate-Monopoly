@@ -242,6 +242,30 @@ public class AppWindow extends JFrame implements PropertyListener{
 		});
 		buttonPanel.add(button_3);
 		
+		Button button_4 = new Button("Pause");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getActionCommand() == "Pause") {
+					System.out.println("**Pause button pressed!\n");
+					button.setEnabled(false);
+					button_1.setEnabled(false);
+					button_2.setEnabled(false);
+					button_3.setEnabled(false);
+					button_4.setLabel("Unpause");	
+				}
+				
+				if(e.getActionCommand() == "Unpause") {
+					System.out.println("**Unpause button pressed!\n");
+					button.setEnabled(true);
+					button_1.setEnabled(true);
+					button_2.setEnabled(true);
+					button_3.setEnabled(true);
+					button_4.setLabel("Pause");
+				}
+			}
+		});
+		buttonPanel.add(button_4);
+		
 	}
 	
 	
