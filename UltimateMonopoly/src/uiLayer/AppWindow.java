@@ -149,40 +149,6 @@ public class AppWindow extends JFrame implements PropertyListener{
 			playerMoneyLabels[i].setVisible(true);
 		}
 		
-//		
-//		hatUILbl = new JLabel("Player 1");
-//		hatUILbl.setBounds(159, 25, 46, 16);
-//		hatUILbl.setToolTipText(generateHTML(new ArrayList<Square>()));
-//		playerPanel.add(hatUILbl); //DONT FORGET TO ADD***********
-//		
-//		carUILbl = new JLabel("Player 2");
-//		carUILbl.setBounds(248, 25, 46, 16);
-//		carUILbl.setToolTipText(generateHTML(new ArrayList<Square>()));
-//		playerPanel.add(carUILbl);
-//		
-//		sawUILbl = new JLabel("Player 3");
-//		sawUILbl.setBounds(342, 25, 46, 16);
-//		sawUILbl.setToolTipText(generateHTML(new ArrayList<Square>()));
-//		playerPanel.add(sawUILbl);
-//		
-//		player1Money = new JLabel("1500");
-//		player1Money.setHorizontalAlignment(SwingConstants.CENTER);
-//		player1Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
-//		player1Money.setBounds(159, 54, 46, 16);
-//		playerPanel.add(player1Money); //ADDDDDDDDDDDDDDDDDDDD********
-//		
-//		player2Money = new JLabel("1500");
-//		player2Money.setHorizontalAlignment(SwingConstants.CENTER);
-//		player2Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
-//		player2Money.setBounds(248, 54, 46, 16);
-//		playerPanel.add(player2Money);
-//		
-//		player3Money = new JLabel("0");
-//		player3Money.setHorizontalAlignment(SwingConstants.CENTER);
-//		player3Money.setToolTipText("<html><p width=\"200\"> Player1</p><p width=\"200\">Money: 2000</p><ul>Owned Places:<li>Kentucky</li><li>Fried</li><li>Chiken</li></ul></html>\"");
-//		player3Money.setBounds(342, 54, 46, 16);
-//		playerPanel.add(player3Money);
-		//BufferedImage myPic = ImageIO.read(new File("graphics\\ultimatemonopolyboard.png"));
 		
 	}
 	

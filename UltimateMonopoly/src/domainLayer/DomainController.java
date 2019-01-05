@@ -40,7 +40,10 @@ public final class DomainController {
 		for(int i=0;i<PLAYERS_TOTAL;i++) {
 			p = new Player("Player"+i, board);
 			players.add(p);
+			if(i==1 || i==2 || i==3) p.setBotBehaviour(true , 1, this);
 		}
+		
+		
 		
 		for(Player player: players) {
 				player.addPropertyListener(app);
@@ -129,7 +132,7 @@ public final class DomainController {
 	}
 
 	public void buildPressed() {
-
+		System.out.println("Build attempted by "+getCurrentPlayer().getName());
 	}
 
 	/**
@@ -137,10 +140,17 @@ public final class DomainController {
 	 * his turn ends and it is the next player's turn.
 	 */
 	public void endTurnPressed() {
+
 		Player p = getCurrentPlayer();
+		System.out.println("End Turn attempted by "+p.getName());
 		if(p.haveRolled()) {
 			p.setHaveRolled(false);
 			turn = (turn + 1) % PLAYERS_TOTAL;
+			System.out.print(p.getName()+" ended their turn. ");
+			p=getCurrentPlayer();
+			System.out.print("It is now the turn of "+p.getName()+". isBot?:"+p.amIBot+"\n");
+			
+			if(p.amIBot && getCurrentPlayer().getName().equals(p.getName())) p.bot.manageTurn();;
 		}
 
 	}
