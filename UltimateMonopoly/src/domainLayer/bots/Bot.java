@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import domainLayer.DomainController;
 import domainLayer.Player;
+import uiLayer.AppWindow;
 
 public class Bot  implements Serializable{
 
@@ -44,7 +45,7 @@ public class Bot  implements Serializable{
 	}
 
 	public void botRoll() {
-		ctrl.rollPressed();
+		ctrl.rollPressed(AppWindow.instance);
 	}
 
 	public void botEnd() {

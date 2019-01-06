@@ -123,11 +123,11 @@ public final class DomainController implements Serializable{
 	 * Passes takeTurn message to the current Player
 	 * Updates UI location of player's piece
 	 */
-	public void rollPressed() {
+	public void rollPressed(AppWindow apw) {
 		Player currentPlayer = getCurrentPlayer();
 		currentPlayer.takeTurn();
 		//TODO make the following observer pattern
-		app.updatePieceGUILocation();
+		apw.updatePieceGUILocation();
 	}
 
 	/**

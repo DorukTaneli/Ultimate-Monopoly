@@ -69,7 +69,7 @@ public class StarGamePopUp extends Thread  implements Serializable{
 				gameReady=true;
 				AppWindow game = ls.load(1); 
 				game.setVisible(true);
-				game.reload();
+				game.reload(game);
 				//game.initialize();
 				popFrame.dispose();
 			} 
