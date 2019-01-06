@@ -17,6 +17,7 @@ import domainLayer.DomainController;
 import domainLayer.Player;
 import domainLayer.Publisher;
 import domainLayer.SaveLoad;
+import domainLayer.squares.DeedSquare;
 import domainLayer.squares.Square;
 
 import java.awt.BorderLayout;
@@ -306,26 +307,37 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 	public String generateHTML(ArrayList<Square> sqrs) { //should this be a new class?
 		String[] names = new String[sqrs.size()];
 		int[] buildings = new int[sqrs.size()];
+		String[] houses=new String[sqrs.size()];
 
 		for(int i=0;i<sqrs.size();i++) {
 			Square sq = sqrs.get(i);
+			DeedSquare sqr=(DeedSquare) sq;
 			names[i]=sq.getName();
+			int no=sqr.getBuildingNo();
+			if(no==5) {
+				houses[i]="Hotel";
+			}else if (no==6){
+				houses[i]="Skyscraper";
+			}else{
+				houses[i]=no+" Houses";
+			}
+			
 			//buildings[i]=sq.getBuildingNum();
 		}
 
 		String str = "<html>"
 				+ "<p width=\"200\"></p>"
-				+ "<ul>Owned Places:"+generateHTMLList(Arrays.asList(names))+"</ul>"
+				+ "<ul>Owned Places:"+generateHTMLList(Arrays.asList(names),Arrays.asList(houses))+"</ul>"
 				+ "</html>\"";
 
 
 		return str;
 	}
 
-	public String generateHTMLList(List<String> lst) {
+	public String generateHTMLList(List<String> lst,List<String> lst1) {
 		String ret="";
 		for(int i=0;i<lst.size();i++) {
-			ret+="<li>"+lst.get(i)+"</li>";
+			ret+="<li>"+lst.get(i)+"->"+lst1.get(i)+"</li>";
 
 		}
 		return ret;
