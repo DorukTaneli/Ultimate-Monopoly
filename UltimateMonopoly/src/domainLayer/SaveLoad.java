@@ -32,6 +32,7 @@ public class SaveLoad  implements Serializable{
 			e.printStackTrace();
 		}finally {
 			try {
+				//oos.reset();
 				oos.close();
 				System.out.println("Save complete of file no: "+ saveFile +". OOS closed.");
 			} catch (IOException e) {

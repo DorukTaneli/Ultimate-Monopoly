@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import domainLayer.DomainController;
 import domainLayer.LoadSave;
 
 public class StarGamePopUp extends Thread  implements Serializable{
@@ -68,6 +69,7 @@ public class StarGamePopUp extends Thread  implements Serializable{
 				gameReady=true;
 				AppWindow game = ls.load(1); 
 				game.setVisible(true);
+				game.reload();
 				//game.initialize();
 				popFrame.dispose();
 			} 

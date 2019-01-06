@@ -24,13 +24,16 @@ public class LoadSave  implements Serializable{
 	}
 	
 	public AppWindow load(int i) {
-		AppWindow apw=null;
+		AppWindow apw = null;
 		setSaveFile(i);
 		ois=null;
 		try {
 			ois= new ObjectInputStream(new FileInputStream("saveFiles/save"+saveFile));
 			try {
 				apw = (AppWindow)ois.readObject();
+				System.out.println("Read complete. apw is not nyull");
+				ois.close();
+				return apw;
 				
 			} catch (ClassNotFoundException e) {
 				System.out.println("Error with load.");
@@ -43,6 +46,7 @@ public class LoadSave  implements Serializable{
 			e.printStackTrace();
 		}finally {
 			try {
+				//ois.reset();
 				ois.close();
 				System.out.println("Load complete of file no: "+saveFile+". OIS closed.");
 				return apw;

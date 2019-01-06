@@ -26,7 +26,7 @@ public final class DomainController implements Serializable{
 	private Board board = new Board();
 	private Cup cup; //might not be needed in DC, might be needed in order to save the game.
 	private int turn = 0;
-	private static AppWindow app;
+	public static AppWindow app;
 	public boolean playersAreSet=false;
 	private SaveLoad saver;
 	
@@ -166,7 +166,7 @@ public final class DomainController implements Serializable{
 	}
 	
 	public void savePressed() {
-		saver.save(app.getInstance());
+		saver.save(this.app);
 	}
 }
 

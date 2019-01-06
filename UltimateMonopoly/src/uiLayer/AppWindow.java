@@ -28,6 +28,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 
 	private static StarGamePopUp pop;
 	private JLabel[] playerPieceLabels;
+	private Button[] allButtons;
 	private int numOfPlayers;
 	private int numOfBots;
 	private JLabel boardLabel;
@@ -44,7 +45,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 	private int INNERLAYER;
 	private int OUTERLAYER;
 	private DomainController ctrl;
-	private static volatile AppWindow instance = null;
+	public static volatile AppWindow instance = null;
 
 	public static void main(String[] args) {
 		pop = new StarGamePopUp();
@@ -67,16 +68,20 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 		this.setSize(WINDOW_X, WINDOW_Y);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
+		ctrl = new DomainController(this);
 		this.initialize();
 
 	}
 	
+	public AppWindow(AppWindow apw) {
+		this.instance=apw.instance;
+		this.ctrl=apw.ctrl;
+		instance.setVisible(true);
+		
+	}
 	
 
 	public void initialize() {
-
-		ctrl = new DomainController(this);
-
 		setUpLabels(numOfPlayers);
 		addButtons();
 		addPlayerLabels();
@@ -96,6 +101,18 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 	}
 	
 	public void reload() {
+		revealAllLabels();
+		addButtons();
+		System.out.println("Reloaded. Current player is: "+ctrl.getCurrentPlayer().getName());
+		updatePieceGUILocation();
+	}
+	
+	public void revealAllLabels() {
+		for(int i=0;i<numOfPlayers;i++) {
+			playerPieceLabels[i].setVisible(true);
+			playerUILabels[i].setVisible(true);
+			playerMoneyLabels[i].setVisible(true);
+		}
 		
 	}
 
@@ -171,6 +188,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 	}
 
 	public void addButtons() {
+		allButtons= new Button[6];
 		getContentPane().setLayout(null);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBounds(930, 550, 366, 200);
@@ -189,6 +207,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 			}
 		});
 		buttonPanel.add(button);
+		allButtons[0]=button;
 
 		Button button_1 = new Button("Buy Deed");
 		button_1.addActionListener(new ActionListener() {
@@ -201,6 +220,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 			}
 		});
 		buttonPanel.add(button_1);
+		allButtons[1]=button_1;
 
 		Button button_2 = new Button("Build");
 		button_2.addActionListener(new ActionListener() {
@@ -213,6 +233,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 			}
 		});
 		buttonPanel.add(button_2);
+		allButtons[2]=button_2;
 
 		Button button_3 = new Button("End Turn");
 		button_3.addActionListener(new ActionListener() {
@@ -225,6 +246,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 			}
 		});
 		buttonPanel.add(button_3);
+		allButtons[3]=button_3;
 
 		Button button_4 = new Button("Pause");
 		button_4.addActionListener(new ActionListener() {
@@ -249,6 +271,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 			}
 		});
 		buttonPanel.add(button_4);
+		allButtons[4]=button_4;
 
 		
 		
@@ -261,6 +284,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 			}
 		});
 		buttonPanel.add(button_5);
+		allButtons[5]=button_5;
 
 	}
 
