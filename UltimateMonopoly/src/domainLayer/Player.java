@@ -2,6 +2,7 @@ package domainLayer;
 
 import java.util.ArrayList;
 
+import domainLayer.bots.Bot;
 import domainLayer.cards.Card;
 import domainLayer.squares.PropertySquare;
 import domainLayer.squares.Square;
@@ -61,6 +62,10 @@ public class Player implements Publisher{
 	/** The index. */
 	private int index;
 	
+	public boolean amIBot=false;
+	
+	public Bot bot;
+	
 	/** The my listeners. */
 	private ArrayList<PropertyListener> myListeners=new ArrayList<PropertyListener>();
 
@@ -76,6 +81,8 @@ public class Player implements Publisher{
 		this.addCash(1500);
 		this.cup=board.getCup();
 		piece= new Piece(board.getStartSquare());
+		
+		
 	}
 	
 	/**
@@ -151,7 +158,15 @@ public class Player implements Publisher{
 		return name;
 	}
 
-	
+	public void setBotBehaviour(boolean isBot,int c,DomainController ctrl) {
+		amIBot=isBot;
+		if(isBot) {
+			bot= new Bot(this,ctrl);
+			bot.selectMode(c);
+			System.out.println("****Bot created with "+this.getName()+".****");
+		}
+		
+	}
 	
 	/**
 	 * EFFECTS: Move one by one for f squares.

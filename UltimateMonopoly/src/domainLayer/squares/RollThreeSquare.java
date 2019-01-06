@@ -33,7 +33,7 @@ public class RollThreeSquare extends RegularSquare{
 		int len=cards.size();
 		int card=(int) Math.floor((Math.random() * len));
 		RollThreeCard drawn=cards.get(card);
-		cards.remove(card);
+		cards.remove(card); // might remove this line
 		return drawn;
 	}
 	
