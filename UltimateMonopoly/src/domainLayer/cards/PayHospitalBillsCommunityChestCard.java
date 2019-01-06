@@ -2,8 +2,8 @@ package domainLayer.cards;
 
 public class PayHospitalBillsCommunityChestCard extends CommunityChestCard{
 
-	public PayHospitalBillsCommunityChestCard(String name, Boolean keepable) {
-		super(name, keepable);
+	public PayHospitalBillsCommunityChestCard() {
+		super("PayHospitalBillsCommunityChestCard", false);
 		// TODO Auto-generated constructor stub
 	}
 

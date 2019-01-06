@@ -35,4 +35,8 @@ public abstract class Card  implements Serializable{
 	}
 
 	public abstract String getType();
+
+	public String getName() {
+		return name;
+	}
 }

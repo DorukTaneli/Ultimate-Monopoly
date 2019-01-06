@@ -23,7 +23,7 @@ class GoToJailChanceCardTest {
 	
 	@Test
 	void testCardAction() {
-		GoToJailChanceCard jCard = new GoToJailChanceCard("GoToJailChanceCard", false);
+		GoToJailChanceCard jCard = new GoToJailChanceCard();
 		jCard.setDrawer(p);
 		p.teleportNoLand(b.getSquareByIndex(1));
 		jCard.cardAction();
