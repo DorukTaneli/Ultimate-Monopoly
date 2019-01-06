@@ -45,6 +45,7 @@ public class StarGamePopUp extends Thread  implements Serializable{
 		JTextField num2 = new JTextField("0");
 		num2.setBounds(65, 80, 250, 30);
 		
+
 		JButton button = new JButton("Start New Game");
 		button.setBounds(60, 115, 140, 30);
 		button.addActionListener(new ActionListener() { 
@@ -59,6 +60,9 @@ public class StarGamePopUp extends Thread  implements Serializable{
 			} 
 			} );
 		
+		JTextField num3 = new JTextField("1");
+		num3.setBounds(315, 115, 50, 30);
+		
 		JButton button2 = new JButton("Load Game");
 		button2.setBounds(210, 115, 100, 30);
 		button2.addActionListener(new ActionListener() { 
@@ -69,12 +73,13 @@ public class StarGamePopUp extends Thread  implements Serializable{
 				gameReady=true;
 				gamePlayerNum=Integer.parseInt(num.getText());
 				gameBotNum=Integer.parseInt(num2.getText());
-				DomainController game = ls.load(1); 
+				DomainController game = ls.load(Integer.parseInt(num3.getText())); 
 				new AppWindow(game);
 				//game.initialize();
 				popFrame.dispose();
 			} 
 			} );
+		
 		
 		
 		cont.add(button);
@@ -83,6 +88,7 @@ public class StarGamePopUp extends Thread  implements Serializable{
 		cont.add(numofBots);
 		cont.add(num2);
 		cont.add(button2);
+		cont.add(num3);
 		popFrame.setVisible(true);
 	}
 	
