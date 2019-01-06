@@ -100,10 +100,24 @@ public class Cup  implements Serializable{
 	 * EFFECTS: Gets the sum of the face values of two regular dice
 	 * @return the sum of the two regular dice rolls
 	 */
-
+	//int count=0;
 	public int get2RollValue() {
 	
 		return firstDie+secondDie;
+//		if(count==0) {
+//			count++;
+//			return 3;
+//		}
+//		if(count==1) {
+//			count++;
+//			return 37;
+//		}
+//		if(count==3) {
+//			count++;
+//			return 2;
+//		}
+//		count++;
+//		return 1;
 	}
 
 	/**
