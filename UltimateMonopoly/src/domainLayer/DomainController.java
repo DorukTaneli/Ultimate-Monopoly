@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import domainLayer.squares.DeedSquare;
 import domainLayer.squares.PropertySquare;
 import domainLayer.squares.Square;
 import uiLayer.AppWindow; //THIS SHOULDNT BE HERE ************ DOING THIS TO SEE THE PIECES MOVE
@@ -138,11 +139,19 @@ public final class DomainController implements Serializable{
 		Player p = getCurrentPlayer();
 		Square sq = p.getLocation();
 		if(sq instanceof PropertySquare)
-			p.attemptPurchase((PropertySquare)p.getLocation());
+			p.attemptPurchase((PropertySquare)sq);
 	}
 
 	public void buildPressed() {
+
 		System.out.println("Build attempted by "+getCurrentPlayer().getName());
+
+		Player p= getCurrentPlayer();
+		Square sq=p.getLocation();
+		if(sq instanceof DeedSquare) {
+			p.attemptBuild((DeedSquare)sq);
+		}
+
 	}
 
 	/**
