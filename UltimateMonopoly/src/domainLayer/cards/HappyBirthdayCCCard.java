@@ -7,7 +7,7 @@ import domainLayer.Player;
 
 public class HappyBirthdayCCCard extends CommunityChestCard {
 
-	public HappyBirthdayCCCard(String name, Boolean keepable) {
+	public HappyBirthdayCCCard() {
 		super("HappyBirthdayCCCard", false);
 	}
 
