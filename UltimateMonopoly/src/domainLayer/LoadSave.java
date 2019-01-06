@@ -12,7 +12,7 @@ import uiLayer.AppWindow;
 
 public class LoadSave  implements Serializable{
 	String saveFile="1";
-	transient ObjectInputStream ois;
+	transient ObjectInputStream ois=null;
 	
 	public LoadSave(int fileNum) {
 		saveFile=fileNum+"";
@@ -26,12 +26,11 @@ public class LoadSave  implements Serializable{
 	public DomainController load(int i) {
 		DomainController apw = null;
 		setSaveFile(i);
-		ois=null;
 		try {
 			ois= new ObjectInputStream(new FileInputStream("saveFiles/save"+saveFile));
 			try {
 				apw = (DomainController)ois.readObject();
-				System.out.println("Read complete. apw is not nyull");
+				System.out.println("Read complete. apw is not null: "+apw);
 				ois.close();
 				return apw;
 				

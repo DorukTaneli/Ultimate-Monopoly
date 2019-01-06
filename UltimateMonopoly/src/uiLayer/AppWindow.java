@@ -29,8 +29,8 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 	private static StarGamePopUp pop;
 	private JLabel[] playerPieceLabels;
 	private Button[] allButtons;
-	private int numOfPlayers;
-	private int numOfBots;
+	public int numOfPlayers;
+	public int numOfBots;
 	private JLabel boardLabel;
 	private JLabel[] playerUILabels;
 	private JLabel[] playerMoneyLabels;
@@ -53,13 +53,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 		pop.start();
 	}
 
-	public int getNumOfPlayers() {
-		return numOfPlayers;
-	}
 
-	public int getNumOfBots() {
-		return numOfBots;
-	}
 
 	public AppWindow() {
 		numOfPlayers = pop.gamePlayerNum;
@@ -69,22 +63,36 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 		this.setSize(WINDOW_X, WINDOW_Y);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
-		ctrl = new DomainController(this);
+		setDomain(new DomainController(numOfPlayers,numOfBots));
+		ctrl.addPropertyListeners(instance);
 		this.initialize();
 
 	}
 	
-	public AppWindow(DomainController apw) {
-		ctrl=apw;
-		numOfPlayers = pop.gamePlayerNum;
-		numOfBots = pop.gameBotNum;
-		this.setVisible(true);
-		this.initialize();
+	public void setDomain(DomainController dmn) {
+		this.ctrl=dmn;
+	}
+	
+	public AppWindow(DomainController apw) { //Used when loading the game
+		numOfPlayers = apw.PLAYERS_TOTAL;
+		numOfBots = apw.BOTS_NUM_TOTAL;
+		instance=this;
+		System.out.println("Loading player num: "+apw.PLAYERS_TOTAL+" \nLoading bot num: "+apw.BOTS_NUM_TOTAL);
+		setResizable(false);
+		this.setSize(WINDOW_X, WINDOW_Y);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Sawcon Ultimate Monopoly");
+		setDomain(apw);
+		ctrl.addPropertyListeners(instance);
 		
+		
+		this.initialize();
+		ctrl.publishPlayers();
 	}
 	
 
 	public void initialize() {
+		System.out.println("Setting up AppWindow with "+numOfPlayers+" players.");
 		setUpLabels(numOfPlayers);
 		addButtons();
 		addPlayerLabels();
@@ -102,7 +110,13 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 		return instance;
 
 	}
-	
+	public int getNumOfPlayers() {
+		return numOfPlayers;
+	}
+
+	public int getNumOfBots() {
+		return numOfBots;
+	}
 
 	private String[] imagePaths= {"graphics/hat small.png",
 			"graphics/car small.png",

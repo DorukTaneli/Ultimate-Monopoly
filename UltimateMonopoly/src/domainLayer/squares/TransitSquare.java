@@ -39,12 +39,12 @@ public class TransitSquare extends PropertySquare{
 	 */
 	public Square getNextSquare(int f) {
 		if(f%2==0) {
-			System.out.println("Transit Station is working!\n Player rolled: "+f+" which is even"
-					+ "\n Sending him to my brothers next square!");
+//			System.out.println("Transit Station is working!\n Player rolled: "+f+" which is even"
+//					+ "\n Sending him to my brothers next square!");
 			return brother.getNextSquareFromSuper(f);
 		}else {
-			System.out.println("Transit Station is working!\n Player rolled: "+f+" which is odd"
-					+ "\n Sending him to my own next square!");
+//			System.out.println("Transit Station is working!\n Player rolled: "+f+" which is odd"
+//					+ "\n Sending him to my own next square!");
 			return this.getNextSquareFromSuper(f);
 		}
 	}

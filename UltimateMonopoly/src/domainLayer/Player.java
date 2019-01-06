@@ -180,9 +180,9 @@ public class Player implements Publisher,Serializable{
 		
 		Square currentLoc=piece.getLocation();
 		
-		System.out.println("Player "+this.name+" passed on");
+		//System.out.println("Player "+this.name+" passed on");
 		for(int k=0;k<f;k++) {
-			System.out.println("->"+currentLoc.getName()+" ");
+			//System.out.println("->"+currentLoc.getName()+" ");
 			Square nextLoc=currentLoc.getNextSquare(f);
 			piece.setLocation(nextLoc);	
 			nextLoc.passedOn(this);

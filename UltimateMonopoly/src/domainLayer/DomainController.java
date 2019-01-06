@@ -18,15 +18,14 @@ import uiLayer.PropertyListener;
  */
 
 public final class DomainController implements Serializable{
-	private static volatile DomainController instance = null;
+	public static DomainController instance = null;
 	
-	private static int PLAYERS_TOTAL;
-	private static int BOTS_NUM_TOTAL;
+	public int PLAYERS_TOTAL;
+	public int BOTS_NUM_TOTAL;
 	private ArrayList<Player> players = new ArrayList<Player>(PLAYERS_TOTAL);
 	private Board board = new Board();
 	private Cup cup; //might not be needed in DC, might be needed in order to save the game.
 	private int turn = 0;
-	public static AppWindow app;
 	public boolean playersAreSet=false;
 	private SaveLoad saver;
 	
@@ -36,12 +35,12 @@ public final class DomainController implements Serializable{
 	 * @param Appwindow Object to be set 
 	 */
 	
-	public DomainController(AppWindow aw) {
+	public DomainController(int pNum, int bNum) {
+		instance=this;
 		Player p;
-		this.app=aw;
 		saver = new SaveLoad(1);
-		PLAYERS_TOTAL = aw.getNumOfPlayers();
-		BOTS_NUM_TOTAL = aw.getNumOfBots();
+		PLAYERS_TOTAL = pNum;
+		BOTS_NUM_TOTAL = bNum;
 		System.out.println("Num of players: "+PLAYERS_TOTAL);
 		players = new ArrayList<Player>();
 		for(int i=0;i<PLAYERS_TOTAL;i++) {
@@ -55,20 +54,20 @@ public final class DomainController implements Serializable{
 		
 		
 		
-		for(Player player: players) {
-				player.addPropertyListener(app);
-		}
+		
 		playersAreSet=true;
+	}
+	
+	public void addPropertyListeners(AppWindow apw) {
+		for(Player player: players) {
+			player.addPropertyListener(apw);
+	}
 	}
 	/**
 	 * Returns the singleton instance of Domain Controller
 	 * @return the singleton instance of Domain Controller
 	 */
 	public static DomainController getInstance() {
-		if(instance == null) {
-					instance = new DomainController(app);
-		}
-		
 		return instance;
 		
 	}
@@ -118,6 +117,13 @@ public final class DomainController implements Serializable{
 	public Board getBoard() {
 		return board;
 	}
+	
+	public void publishPlayers() {	
+		for(Player player: players) {
+			player.publishPropertyEvent("Money", player.getCash()+"");
+			player.publishPropertyEvent("Purchase", player.getPlayerProperties());
+	}
+	}
 
 	/**
 	 * Passes takeTurn message to the current Player
@@ -155,6 +161,7 @@ public final class DomainController implements Serializable{
 		System.out.println("End Turn attempted by "+p.getName());
 		if(p.haveRolled()) {
 			p.setHaveRolled(false);
+			System.out.println("There are "+PLAYERS_TOTAL+" players.");
 			turn = (turn + 1) % PLAYERS_TOTAL;
 			System.out.print(p.getName()+" ended their turn. ");
 			p=getCurrentPlayer();
@@ -166,7 +173,7 @@ public final class DomainController implements Serializable{
 	}
 	
 	public void savePressed() {
-		saver.save(instance);
+		saver.save(this);
 	}
 }
 
