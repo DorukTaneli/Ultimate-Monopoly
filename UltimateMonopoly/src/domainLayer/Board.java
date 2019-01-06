@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import domainLayer.cards.RollThreeCard;
 import domainLayer.squares.ChanceSquare;
 import domainLayer.squares.CommunityChestSquare;
 import domainLayer.squares.DeedSquare;
@@ -33,6 +34,21 @@ public class Board implements Serializable{
 	
 	private SquareFactory sf = new SquareFactory();
 	
+	private RollThreeCard[] rtcards={(new RollThreeCard("rtcard1",new int[] {1,2,3})),(new RollThreeCard("rtcard2",new int[] {1,2,4}))
+			,(new RollThreeCard("rtcard3",new int[] {1,2,5})),(new RollThreeCard("rtcard4",new int[] {1,2,6}))
+			,(new RollThreeCard("rtcard5",new int[] {1,3,4})),(new RollThreeCard("rtcard6",new int[] {1,3,5}))
+			,(new RollThreeCard("rtcard7",new int[] {1,4,5})),(new RollThreeCard("rtcard8",new int[] {1,4,6}))
+			,(new RollThreeCard("rtcard9",new int[] {1,5,6})),(new RollThreeCard("rtcard10",new int[] {2,3,4}))
+			,(new RollThreeCard("rtcard11",new int[] {2,4,5})),(new RollThreeCard("rtcard12",new int[] {2,4,6}))
+			,(new RollThreeCard("rtcard13",new int[] {2,5,6})),(new RollThreeCard("rtcard14",new int[] {3,4,5}))
+			,(new RollThreeCard("rtcard15",new int[] {3,4,6})),(new RollThreeCard("rtcard16",new int[] {3,5,6}))
+			,(new RollThreeCard("rtcard17",new int[] {4,5,6})),(new RollThreeCard("rtcard18",new int[] {2,4,6}))
+			,(new RollThreeCard("rtcard19",new int[] {2,5,6})),(new RollThreeCard("rtcard20",new int[] {3,4,5}))
+			,(new RollThreeCard("rtcard121",new int[] {3,4,6})),(new RollThreeCard("rtcard22",new int[] {3,5,6}))
+			,(new RollThreeCard("rtcard123",new int[] {4,5,6})),(new RollThreeCard("rtcard24",new int[] {1,3,6}))};
+	private ArrayList<RollThreeCard> rtdeck=new ArrayList<RollThreeCard>();
+	
+	
 	/**
 	 * EFFECTS: Instantiates a new board by building and linking squares.
 	 */
@@ -40,6 +56,7 @@ public class Board implements Serializable{
 		buildSquares();
 		linkSquares();
 		setUpTransitSquares();
+		initializeRollThreeDeck();
 		
 	}
 	
@@ -246,6 +263,15 @@ public class Board implements Serializable{
 		buildPS("Rodeo Drive", 119, 480, 90, "dbrown");
 	}
 	
+	public ArrayList<RollThreeCard> getRTDeck(){
+		return rtdeck;
+	}
+	
+	public void initializeRollThreeDeck() {
+		for(int i=0;i<rtcards.length;i++) {
+			rtdeck.add(rtcards[i]);
+		}
+	}
 	
 	
 	/**
