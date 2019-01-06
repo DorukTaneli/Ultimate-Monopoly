@@ -152,7 +152,6 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 		}
 
 
-
 	}
 
 	public void addBoardImage() {
