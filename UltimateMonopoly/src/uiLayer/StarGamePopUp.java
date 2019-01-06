@@ -67,9 +67,10 @@ public class StarGamePopUp extends Thread  implements Serializable{
 				// TODO Auto-generated method stub
 				LoadSave ls = new LoadSave(1);
 				gameReady=true;
-				AppWindow game = ls.load(1); 
-				game.setVisible(true);
-				game.reload(game);
+				gamePlayerNum=Integer.parseInt(num.getText());
+				gameBotNum=Integer.parseInt(num2.getText());
+				DomainController game = ls.load(1); 
+				new AppWindow(game);
 				//game.initialize();
 				popFrame.dispose();
 			} 

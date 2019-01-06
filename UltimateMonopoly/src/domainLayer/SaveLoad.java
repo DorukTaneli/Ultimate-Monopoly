@@ -21,7 +21,7 @@ public class SaveLoad  implements Serializable{
 		saveFile=i+"";
 	}
 	
-	public void save(AppWindow apw) {
+	public void save(DomainController apw) {
 		oos=null;
 		try {
 			oos= new ObjectOutputStream(new FileOutputStream("saveFiles/save"+saveFile));

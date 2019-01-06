@@ -166,7 +166,7 @@ public final class DomainController implements Serializable{
 	}
 	
 	public void savePressed() {
-		saver.save(this.app);
+		saver.save(instance);
 	}
 }
 

@@ -23,14 +23,14 @@ public class LoadSave  implements Serializable{
 		saveFile=i+"";
 	}
 	
-	public AppWindow load(int i) {
-		AppWindow apw = null;
+	public DomainController load(int i) {
+		DomainController apw = null;
 		setSaveFile(i);
 		ois=null;
 		try {
 			ois= new ObjectInputStream(new FileInputStream("saveFiles/save"+saveFile));
 			try {
-				apw = (AppWindow)ois.readObject();
+				apw = (DomainController)ois.readObject();
 				System.out.println("Read complete. apw is not nyull");
 				ois.close();
 				return apw;

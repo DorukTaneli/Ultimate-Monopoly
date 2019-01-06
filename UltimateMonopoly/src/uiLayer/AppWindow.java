@@ -74,10 +74,12 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 
 	}
 	
-	public AppWindow(AppWindow apw) {
-		this.instance=apw.instance;
-		this.ctrl=apw.ctrl;
-		instance.setVisible(true);
+	public AppWindow(DomainController apw) {
+		ctrl=apw;
+		numOfPlayers = pop.gamePlayerNum;
+		numOfBots = pop.gameBotNum;
+		this.setVisible(true);
+		this.initialize();
 		
 	}
 	
@@ -101,99 +103,6 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 
 	}
 	
-	public void reload(AppWindow app) {
-		instance = app.instance;
-		revealAllLabels();
-		reloadButtons();
-		System.out.println("Reloaded. Current player is: "+ctrl.getCurrentPlayer().getName());
-		updatePieceGUILocation();
-	}
-	
-	public void revealAllLabels() {
-		for(int i=0;i<numOfPlayers;i++) {
-			playerPieceLabels[i].setVisible(true);
-			playerUILabels[i].setVisible(true);
-			playerMoneyLabels[i].setVisible(true);
-		}
-		
-	}
-	
-	public void reloadButtons() {
-		allButtons[0].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource()==allButtons[0]) {
-					System.out.println("**Roll button pressed!");
-					ctrl.rollPressed(instance);
-				}
-
-			}
-		});
-		
-		
-		allButtons[1].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource()==allButtons[1]) {
-					System.out.println("**Buy button pressed!");
-					ctrl.buyPressed();
-				}
-
-			}
-		});
-		
-		allButtons[2].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource()==allButtons[2]) {
-					System.out.println("**Build button pressed!");
-					ctrl.buildPressed();
-				}
-
-			}
-		});
-		
-		allButtons[3].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource()==allButtons[3]) {
-					System.out.println("**End button pressed!");
-					ctrl.endTurnPressed();
-				}
-
-			}
-		});
-		
-		allButtons[4].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(e.getActionCommand() == "Pause") {
-					System.out.println("**Pause button pressed!\n");
-					allButtons[0].setEnabled(false);
-					allButtons[1].setEnabled(false);
-					allButtons[2].setEnabled(false);
-					allButtons[3].setEnabled(false);
-					allButtons[4].setLabel("Unpause");	
-				}
-
-				if(e.getActionCommand() == "Unpause") {
-					System.out.println("**Unpause button pressed!\n");
-					allButtons[0].setEnabled(true);
-					allButtons[1].setEnabled(true);
-					allButtons[2].setEnabled(true);
-					allButtons[3].setEnabled(true);
-					allButtons[4].setLabel("Pause");
-				}
-			}
-		});
-		
-		allButtons[5].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("**Save button pressed\n.");
-				ctrl.savePressed();
-				
-			}
-		});
-		
-		
-		
-	}
-
 
 	private String[] imagePaths= {"graphics/hat small.png",
 			"graphics/car small.png",
