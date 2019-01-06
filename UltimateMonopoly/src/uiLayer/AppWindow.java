@@ -489,7 +489,21 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 			}
 		}
 		else if(type=="Build") {
-			
+			switch(((Player)pb).getName()) {
+			case "Player0": playerUILabels[0].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player1": playerUILabels[1].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player2": playerUILabels[2].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player3": playerUILabels[3].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player4": playerUILabels[4].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player5": playerUILabels[5].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player6": playerUILabels[6].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player7": playerUILabels[7].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player8": playerUILabels[8].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player9": playerUILabels[9].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player10": playerUILabels[10].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+			case "Player11": playerUILabels[11].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
+
+			}
 		}
 		else {
 

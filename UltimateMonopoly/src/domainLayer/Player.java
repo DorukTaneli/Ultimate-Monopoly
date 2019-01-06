@@ -502,7 +502,7 @@ public class Player implements Publisher,Serializable{
 			boolean canBuildSky= canBuildSkyscraper(dsq.getColor(), hasMonopoly(ownershipCount, dsq.getColor()));
 			dsq.build(this, canBuildSky);
 			success=true;
-			publishPropertyEvent("Build", dsq);
+			publishPropertyEvent("Build", myProperties);
 		}
 		
 		System.out.println("Build attempted,result is: "+success+"");
