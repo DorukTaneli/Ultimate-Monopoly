@@ -5,6 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+
+import domainLayer.squares.DeedSquare;
+
+import domainLayer.cards.RollThreeCard;
 import domainLayer.squares.PropertySquare;
 import domainLayer.squares.Square;
 import uiLayer.AppWindow; //THIS SHOULDNT BE HERE ************ DOING THIS TO SEE THE PIECES MOVE
@@ -54,7 +58,7 @@ public final class DomainController implements Serializable{
 		
 		
 		
-		
+		distributeRTCards();
 		playersAreSet=true;
 	}
 	
@@ -84,6 +88,17 @@ public final class DomainController implements Serializable{
 	//		player.takeTurn();
 	//	}
 	//}
+	public ArrayList<RollThreeCard> getRollThreeDeck(){
+		return board.getRTDeck();
+	}
+	
+	public void distributeRTCards() {
+		for(int i=0;i<players.size();i++) {
+			int len=board.getRTDeck().size();
+			int a=(int) Math.floor((Math.random() * len+1));
+			players.get(i).keepCard(board.getRTDeck().get(a));
+		}
+	}
 
 	/**
 	 * Gets the current PLayer
@@ -144,11 +159,19 @@ public final class DomainController implements Serializable{
 		Player p = getCurrentPlayer();
 		Square sq = p.getLocation();
 		if(sq instanceof PropertySquare)
-			p.attemptPurchase((PropertySquare)p.getLocation());
+			p.attemptPurchase((PropertySquare)sq);
 	}
 
 	public void buildPressed() {
+
 		System.out.println("Build attempted by "+getCurrentPlayer().getName());
+
+		Player p= getCurrentPlayer();
+		Square sq=p.getLocation();
+		if(sq instanceof DeedSquare) {
+			p.attemptBuild((DeedSquare)sq);
+		}
+
 	}
 
 	/**

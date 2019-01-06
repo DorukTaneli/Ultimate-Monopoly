@@ -12,8 +12,8 @@ public class GoToJailChanceCard extends ChanceCard{
 	 * @param the name of the card
 	 * @param boolean keepable
 	 */
-	public GoToJailChanceCard(String name, Boolean keepable) {
-		super(name, keepable);
+	public GoToJailChanceCard() {
+		super("Go To Jail Card", false);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -24,7 +24,7 @@ public class GoToJailChanceCard extends ChanceCard{
 	@Override
 	public void cardAction() {
 		// TODO Auto-generated method stub
-		System.out.println("GO TO JAIL CHANCE CARD ACTIVATED ON PLAYER: "+drawer.getName());
+		System.out.println(this.getName() + " ACTIVATED ON PLAYER: "+drawer.getName());
 		drawer.goToJail();
 	}
 

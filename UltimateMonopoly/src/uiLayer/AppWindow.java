@@ -475,6 +475,9 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 
 			}
 		}
+		else if(type=="Build") {
+			
+		}
 		else {
 
 		}
