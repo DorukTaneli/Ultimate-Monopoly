@@ -3,6 +3,9 @@ package uiLayer;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,17 +16,20 @@ import javax.swing.*;
 import domainLayer.DomainController;
 import domainLayer.Player;
 import domainLayer.Publisher;
+import domainLayer.SaveLoad;
 import domainLayer.squares.Square;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Button;
 
-public class AppWindow extends JFrame implements PropertyListener{
-	
+
+public class AppWindow extends JFrame implements PropertyListener,Serializable{
+
 	private static StarGamePopUp pop;
 	private JLabel[] playerPieceLabels;
 	private int numOfPlayers;
+	private int numOfBots;
 	private JLabel boardLabel;
 	private JLabel[] playerUILabels;
 	private JLabel[] playerMoneyLabels;
@@ -39,30 +45,38 @@ public class AppWindow extends JFrame implements PropertyListener{
 	private int OUTERLAYER;
 	private DomainController ctrl;
 	private static volatile AppWindow instance = null;
-	
+
 	public static void main(String[] args) {
 		pop = new StarGamePopUp();
 		pop.start();
 	}
-	
+
 	public int getNumOfPlayers() {
 		return numOfPlayers;
 	}
 
+	public int getNumOfBots() {
+		return numOfBots;
+	}
+
 	public AppWindow() {
 		numOfPlayers = pop.gamePlayerNum;
+		numOfBots = pop.gameBotNum;
+		instance=this;
 		setResizable(false);
 		this.setSize(WINDOW_X, WINDOW_Y);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Sawcon Ultimate Monopoly");
 		this.initialize();
-		
+
 	}
 	
+	
+
 	public void initialize() {
-		
+
 		ctrl = new DomainController(this);
-		
+
 		setUpLabels(numOfPlayers);
 		addButtons();
 		addPlayerLabels();
@@ -71,17 +85,21 @@ public class AppWindow extends JFrame implements PropertyListener{
 		System.out.println("Game Starting...");		
 		this.setVisible(true);
 	}
-	
+
 	public static AppWindow getInstance() {
 		if(instance == null) {
 			instance = new AppWindow();
 		}
-		
+
 		return instance;
 
 	}
 	
-	
+	public void reload() {
+		
+	}
+
+
 	private String[] imagePaths= {"graphics/hat small.png",
 			"graphics/car small.png",
 			"graphics/presentRed.png",
@@ -93,30 +111,30 @@ public class AppWindow extends JFrame implements PropertyListener{
 			"graphics/car smallLightBlue.png",
 			"graphics/presentGreen.png",
 			"graphics/saw.png","graphics/redBoot.png" };
-	
+
 	public void setUpLabels(int no) {
 		playerPieceLabels=new JLabel[no];
 		playerUILabels=new JLabel[no];
 		playerMoneyLabels= new JLabel[no];
 		int k=0;
-		
+
 		for(int i=0;i<no;i++) {	
 			if(i%3==0) k+=80; //For Vertical placement
 			playerPieceLabels[i] = new JLabel(new ImageIcon(imagePaths[i]));
 			playerPieceLabels[i].setBounds(0, 0, 50, 50);
 			playerPieceLabels[i].setVisible(true);
-			
+
 			playerMoneyLabels[i] = new JLabel("1500");
 			playerMoneyLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
 			playerMoneyLabels[i].setBounds(150+(i%3)*100, k+54, 46, 16);
-			
+
 			playerUILabels[i] = new JLabel("Player "+i);
 			playerUILabels[i].setBounds(150+(i%3)*100, k+27, 56, 16);
 			playerUILabels[i].setToolTipText(generateHTML(new ArrayList<Square>()));
-			
+
 		}
-		
-		
+
+
 
 	}
 
@@ -134,7 +152,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 		boardLabel.setBounds(0, 0, BOARD_SIZE, BOARD_SIZE);
 		this.getContentPane().add(boardLabel);
 	}
-	
+
 	public void addPlayerLabels() {
 		JPanel playerPanel = new JPanel();
 		playerPanel.setBounds(840, 0, 585, 500);
@@ -148,10 +166,10 @@ public class AppWindow extends JFrame implements PropertyListener{
 			playerUILabels[i].setVisible(true);
 			playerMoneyLabels[i].setVisible(true);
 		}
-		
-		
+
+
 	}
-	
+
 	public void addButtons() {
 		getContentPane().setLayout(null);
 		JPanel buttonPanel = new JPanel();
@@ -159,7 +177,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 		buttonPanel.setLayout(new GridLayout(4, 2, 10, 10));
 		getContentPane().add(buttonPanel);
 		buttonPanel.setVisible(true);
-		
+
 		Button button = new Button("Roll Dice");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,11 +185,11 @@ public class AppWindow extends JFrame implements PropertyListener{
 					System.out.println("**Roll button pressed!");
 					ctrl.rollPressed();
 				}
-			
+
 			}
 		});
 		buttonPanel.add(button);
-		
+
 		Button button_1 = new Button("Buy Deed");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -179,11 +197,11 @@ public class AppWindow extends JFrame implements PropertyListener{
 					System.out.println("**Buy Deed button pressed!");
 					ctrl.buyPressed();
 				}
-			
+
 			}
 		});
 		buttonPanel.add(button_1);
-		
+
 		Button button_2 = new Button("Build");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -191,11 +209,11 @@ public class AppWindow extends JFrame implements PropertyListener{
 					System.out.println("**Build button pressed!");
 					ctrl.buildPressed();
 				}
-				
+
 			}
 		});
 		buttonPanel.add(button_2);
-		
+
 		Button button_3 = new Button("End Turn");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -203,11 +221,11 @@ public class AppWindow extends JFrame implements PropertyListener{
 					System.out.println("**End Turn button pressed!\n");
 					ctrl.endTurnPressed();
 				}
-				
+
 			}
 		});
 		buttonPanel.add(button_3);
-		
+
 		Button button_4 = new Button("Pause");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -219,7 +237,7 @@ public class AppWindow extends JFrame implements PropertyListener{
 					button_3.setEnabled(false);
 					button_4.setLabel("Unpause");	
 				}
-				
+
 				if(e.getActionCommand() == "Unpause") {
 					System.out.println("**Unpause button pressed!\n");
 					button.setEnabled(true);
@@ -231,52 +249,64 @@ public class AppWindow extends JFrame implements PropertyListener{
 			}
 		});
 		buttonPanel.add(button_4);
+
 		
+		
+		Button button_5 = new Button("Save Game");
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("**Save button pressed\n.");
+				ctrl.savePressed();
+				
+			}
+		});
+		buttonPanel.add(button_5);
+
 	}
-	
-	
+
+
 
 	public void updatePieceGUILocation(){	
 		if(!ctrl.playersAreSet) return;
 		for(int i=0;i<numOfPlayers;i++) {
 			int playerLocIndex = ctrl.getPlayers().get(i).piece.getLocation().getIndex();
 			playerPieceLabels[i].setLocation(getPixelX(playerLocIndex) - PIECESIZE/2, getPixelY(playerLocIndex) - PIECESIZE/2);
-			
+
 		}
-		
+
 	}
-		
+
 
 	public String generateHTML(ArrayList<Square> sqrs) { //should this be a new class?
 		String[] names = new String[sqrs.size()];
 		int[] buildings = new int[sqrs.size()];
-		
+
 		for(int i=0;i<sqrs.size();i++) {
 			Square sq = sqrs.get(i);
 			names[i]=sq.getName();
 			//buildings[i]=sq.getBuildingNum();
 		}
-		
+
 		String str = "<html>"
 				+ "<p width=\"200\"></p>"
 				+ "<ul>Owned Places:"+generateHTMLList(Arrays.asList(names))+"</ul>"
 				+ "</html>\"";
 
-		
+
 		return str;
 	}
-	
+
 	public String generateHTMLList(List<String> lst) {
 		String ret="";
 		for(int i=0;i<lst.size();i++) {
 			ret+="<li>"+lst.get(i)+"</li>";
-			
+
 		}
 		return ret;
 	}
 
-	
- 	public int getPixelX(int ind) {
+
+	public int getPixelX(int ind) {
 		//		System.out.println("Current variables: "
 		//				+ "\n X_OFFSET: "+ X_OFFSET
 		//				+ "\n HALFSQ: "+HALFSQ
@@ -386,18 +416,18 @@ public class AppWindow extends JFrame implements PropertyListener{
 		System.out.println("Observer got the message "+ val);
 		if(type=="Money") {
 			switch(((Player)pb).getName()) {
-				case "Player0": playerMoneyLabels[0].setText((String)val); break;
-				case "Player1": playerMoneyLabels[1].setText((String)val); break;
-				case "Player2": playerMoneyLabels[2].setText((String)val); break;
-				case "Player3": playerMoneyLabels[3].setText((String)val); break;
-				case "Player4": playerMoneyLabels[4].setText((String)val); break;
-				case "Player5": playerMoneyLabels[5].setText((String)val); break;
-				case "Player6": playerMoneyLabels[6].setText((String)val); break;
-				case "Player7": playerMoneyLabels[7].setText((String)val); break;
-				case "Player8": playerMoneyLabels[8].setText((String)val); break;
-				case "Player9": playerMoneyLabels[9].setText((String)val); break;
-				case "Player10": playerMoneyLabels[10].setText((String)val); break;
-				case "Player11": playerMoneyLabels[11].setText((String)val); break;
+			case "Player0": playerMoneyLabels[0].setText((String)val); break;
+			case "Player1": playerMoneyLabels[1].setText((String)val); break;
+			case "Player2": playerMoneyLabels[2].setText((String)val); break;
+			case "Player3": playerMoneyLabels[3].setText((String)val); break;
+			case "Player4": playerMoneyLabels[4].setText((String)val); break;
+			case "Player5": playerMoneyLabels[5].setText((String)val); break;
+			case "Player6": playerMoneyLabels[6].setText((String)val); break;
+			case "Player7": playerMoneyLabels[7].setText((String)val); break;
+			case "Player8": playerMoneyLabels[8].setText((String)val); break;
+			case "Player9": playerMoneyLabels[9].setText((String)val); break;
+			case "Player10": playerMoneyLabels[10].setText((String)val); break;
+			case "Player11": playerMoneyLabels[11].setText((String)val); break;
 			}
 		}
 		else if(type=="Location") {
@@ -417,11 +447,11 @@ public class AppWindow extends JFrame implements PropertyListener{
 			case "Player9": playerUILabels[9].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
 			case "Player10": playerUILabels[10].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
 			case "Player11": playerUILabels[11].setToolTipText(generateHTML((ArrayList<Square>)val)); break;
-			
+
 			}
 		}
 		else {
-			
+
 		}
 	}
 }

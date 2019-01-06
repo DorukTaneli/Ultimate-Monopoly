@@ -1,9 +1,11 @@
 package domainLayer.bots;
 
+import java.io.Serializable;
+
 import domainLayer.DomainController;
 import domainLayer.Player;
 
-public class Bot {
+public class Bot  implements Serializable{
 
 	
 	Player p;
@@ -29,10 +31,10 @@ public class Bot {
 	}
 	
 	public void selectMode(int mode) {
-		switch(mode) {
-		case 1: BI = new BotRandom(p ,ctrl); return;
-		
-		
+		switch(mode) {		
+		case 1: BI = new BotDumb(p, ctrl); return;
+		case 2: BI = new BotSmart(p, ctrl); return;
+		default: BI = new BotRandom(p ,ctrl); return;
 		}
 	}
 

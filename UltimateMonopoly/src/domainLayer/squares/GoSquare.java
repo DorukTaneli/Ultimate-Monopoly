@@ -1,8 +1,10 @@
 package domainLayer.squares;
 
+import java.io.Serializable;
+
 import domainLayer.Player;
 
-public class GoSquare extends Square{
+public class GoSquare extends Square  implements Serializable{
 
 	private int salary = 200;
 	private Player lastToPass;

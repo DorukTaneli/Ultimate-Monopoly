@@ -1,12 +1,14 @@
 package domainLayer;
 
+import java.io.Serializable;
+
 /**
  * OVERVIEW:The cup class is a pure fabrication class that makes rolling easier
  * The cup class contains a regular and a speed die 
  * @author SAWCON
  */
 
-public class Cup {
+public class Cup  implements Serializable{
 
 	private int secondDie;
 	private int thirdDie;

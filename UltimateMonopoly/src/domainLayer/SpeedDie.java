@@ -1,6 +1,8 @@
 package domainLayer;
 
-public class SpeedDie {
+import java.io.Serializable;
+
+public class SpeedDie  implements Serializable{
 	
 	public static final int MAX = 6;
 	private int faceValue;

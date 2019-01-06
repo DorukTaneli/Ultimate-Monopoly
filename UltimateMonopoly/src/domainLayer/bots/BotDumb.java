@@ -6,8 +6,8 @@ import java.util.Random;
 import domainLayer.DomainController;
 import domainLayer.Player;
 
-public class BotSmart extends Bot implements BotInterface,Serializable{
-	public BotSmart(Player p, DomainController ctrl) {
+public class BotDumb extends Bot implements BotInterface,Serializable{
+	public BotDumb(Player p, DomainController ctrl) {
 		super(p, ctrl);
 		// TODO Auto-generated constructor stub
 	}
@@ -19,14 +19,13 @@ public class BotSmart extends Bot implements BotInterface,Serializable{
 	public void manageAction() {
 		System.out.println("Action wanted from Bot "+p.getName());
 		
-		botRoll();//handles dual rolls
+		botRoll();
 		switch(turnMoveCounter) {
 		case 0: botRoll(); break;
 		case 1:	botBuy(); break;
 		case 2: botBuild(); break;
 		default: turnMoveCounter=0; botEnd(); return;
 		}
-		
 		turnMoveCounter++;
 		
 	}

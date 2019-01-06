@@ -1,11 +1,13 @@
 package domainLayer;
 
+import java.io.Serializable;
+
 /**
  * The Die class is a class which has a face value and a roll functionality
  * @author SAWCON
  *
  */
-public class Die {
+public class Die  implements Serializable{
 	
 	public static final int MAX = 6;
 	private int faceValue;

@@ -1,5 +1,7 @@
 package domainLayer;
 
+import java.io.Serializable;
+
 import domainLayer.squares.ChanceSquare;
 import domainLayer.squares.CommunityChestSquare;
 import domainLayer.squares.DeedSquare;
@@ -9,7 +11,7 @@ import domainLayer.squares.RollThreeSquare;
 import domainLayer.squares.Square;
 import domainLayer.squares.TransitSquare;
 
-public class SquareFactory {
+public class SquareFactory  implements Serializable{
 
 	public Square getSquare(String type, String name, int index, int price, int rent, String color) {
 

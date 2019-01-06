@@ -1,11 +1,12 @@
 package domainLayer.bots;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import domainLayer.DomainController;
 import domainLayer.Player;
 
-public class BotRandom extends Bot implements BotInterface{
+public class BotRandom extends Bot implements BotInterface,Serializable{
 	public BotRandom(Player p, DomainController ctrl) {
 		super(p, ctrl);
 		// TODO Auto-generated constructor stub

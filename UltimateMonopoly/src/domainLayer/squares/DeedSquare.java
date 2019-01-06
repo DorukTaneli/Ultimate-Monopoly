@@ -1,12 +1,13 @@
 package domainLayer.squares;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import domainLayer.Buildable;
 import domainLayer.Player;
 
-public class DeedSquare extends PropertySquare implements Buildable{
+public class DeedSquare extends PropertySquare implements Buildable, Serializable{
 	
 	private int baseRent;
 	private String color;

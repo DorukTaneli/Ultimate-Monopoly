@@ -1,8 +1,10 @@
 package domainLayer.squares;
 
+import java.io.Serializable;
+
 import domainLayer.Player;
 
-public class RegularSquare extends Square{
+public class RegularSquare extends Square  implements Serializable{
 	
 	public RegularSquare(String name, int index) {
 		super(name, index);

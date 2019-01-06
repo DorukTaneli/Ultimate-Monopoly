@@ -1,5 +1,6 @@
 package domainLayer.squares;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import domainLayer.Cup;
 import domainLayer.DomainController;
 import domainLayer.Player;
 import domainLayer.cards.RollThreeCard;
-public class RollThreeSquare extends RegularSquare{
+public class RollThreeSquare extends RegularSquare  implements Serializable{
 	private ArrayList<RollThreeCard> cards=new ArrayList<RollThreeCard>();
 	private RollThreeCard[] rtcards={(new RollThreeCard("rtcard1",new int[] {1,2,3})),(new RollThreeCard("rtcard2",new int[] {1,2,4}))
 			,(new RollThreeCard("rtcard3",new int[] {1,2,5})),(new RollThreeCard("rtcard4",new int[] {1,2,6}))

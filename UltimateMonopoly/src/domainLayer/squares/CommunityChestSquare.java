@@ -1,10 +1,12 @@
 package domainLayer.squares;
 
+import java.io.Serializable;
+
 import domainLayer.Player;
 import domainLayer.cards.CommunityChestCard;
 import domainLayer.cards.PayHospitalBillsCommunityChestCard;
 
-public class CommunityChestSquare extends Square{
+public class CommunityChestSquare extends Square implements Serializable{
 	
 	CommunityChestCard card = new PayHospitalBillsCommunityChestCard("Pay Hospital Bills", false);
 

@@ -1,10 +1,12 @@
 package domainLayer.squares;
 
+import java.io.Serializable;
+
 import domainLayer.Player;
 import domainLayer.cards.ChanceCard;
 import domainLayer.cards.GoToJailChanceCard;
 
-public class ChanceSquare extends Square{
+public class ChanceSquare extends Square implements Serializable{
 	
 	ChanceCard card = new GoToJailChanceCard("Go to Jail Card", false);
 

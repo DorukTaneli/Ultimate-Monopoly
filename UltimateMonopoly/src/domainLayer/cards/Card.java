@@ -1,8 +1,10 @@
 package domainLayer.cards;
 
+import java.io.Serializable;
+
 import domainLayer.Player;
 
-public abstract class Card {
+public abstract class Card  implements Serializable{
 	
 	private String name;
 	private String description;

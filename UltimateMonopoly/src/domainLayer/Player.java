@@ -1,5 +1,6 @@
 package domainLayer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import domainLayer.bots.Bot;
@@ -19,7 +20,7 @@ import uiLayer.PropertyListener;
  * @author SAWCON
  */
 
-public class Player implements Publisher{
+public class Player implements Publisher,Serializable{
 
 	
 	/** The piece. */

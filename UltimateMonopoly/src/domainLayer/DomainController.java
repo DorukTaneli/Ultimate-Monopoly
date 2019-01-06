@@ -1,7 +1,9 @@
 package domainLayer;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import domainLayer.squares.PropertySquare;
 import domainLayer.squares.Square;
@@ -15,16 +17,18 @@ import uiLayer.PropertyListener;
  * @author SAWCON
  */
 
-public final class DomainController {
+public final class DomainController implements Serializable{
 	private static volatile DomainController instance = null;
 	
-	private static  int PLAYERS_TOTAL;
+	private static int PLAYERS_TOTAL;
+	private static int BOTS_NUM_TOTAL;
 	private ArrayList<Player> players = new ArrayList<Player>(PLAYERS_TOTAL);
 	private Board board = new Board();
 	private Cup cup; //might not be needed in DC, might be needed in order to save the game.
 	private int turn = 0;
 	private static AppWindow app;
 	public boolean playersAreSet=false;
+	private SaveLoad saver;
 	
 	/**
 	 * Creates Domain Controller Object.
@@ -35,13 +39,18 @@ public final class DomainController {
 	public DomainController(AppWindow aw) {
 		Player p;
 		this.app=aw;
+		saver = new SaveLoad(1);
 		PLAYERS_TOTAL = aw.getNumOfPlayers();
+		BOTS_NUM_TOTAL = aw.getNumOfBots();
 		System.out.println("Num of players: "+PLAYERS_TOTAL);
 		players = new ArrayList<Player>();
 		for(int i=0;i<PLAYERS_TOTAL;i++) {
 			p = new Player("Player"+i, board);
 			players.add(p);
-		//	if(i==1 || i==2 || i==3) p.setBotBehaviour(true , 1, this);
+			Random rand = new Random();
+			int botMode = rand.nextInt(3);
+			
+			if(i>=PLAYERS_TOTAL-BOTS_NUM_TOTAL) p.setBotBehaviour(true , botMode, this);
 		}
 		
 		
@@ -154,6 +163,10 @@ public final class DomainController {
 			if(p.amIBot && getCurrentPlayer().getName().equals(p.getName())) p.bot.manageTurn();;
 		}
 
+	}
+	
+	public void savePressed() {
+		saver.save(app.getInstance());
 	}
 }
 

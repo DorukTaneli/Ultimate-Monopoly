@@ -1,6 +1,8 @@
 package domainLayer;
 
-public interface Buildable {
+import java.io.Serializable;
+
+public interface Buildable{
 
 	public void build();
 	public void setBuildingNo(int buildingNo);

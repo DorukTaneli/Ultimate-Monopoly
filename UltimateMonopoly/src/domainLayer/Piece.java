@@ -1,8 +1,10 @@
 package domainLayer;
 
+import java.io.Serializable;
+
 import domainLayer.squares.Square;
 
-public class Piece {
+public class Piece  implements Serializable{
 
 	private Square location;
 	

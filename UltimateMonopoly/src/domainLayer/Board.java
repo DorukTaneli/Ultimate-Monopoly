@@ -1,4 +1,5 @@
 package domainLayer;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,7 @@ import domainLayer.squares.TransitSquare;
 /**
  * The Class Board.
  */
-public class Board {
+public class Board implements Serializable{
 	/**
 	 * OVERVIEW: Board is where the game is played. Has three layers.
 	 */
