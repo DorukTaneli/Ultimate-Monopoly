@@ -4,6 +4,7 @@ import java.util.List;
 
 import domainLayer.DomainController;
 import domainLayer.Player;
+import uiLayer.AppWindow;
 
 public class HappyBirthdayCCCard extends CommunityChestCard {
 
@@ -15,13 +16,13 @@ public class HappyBirthdayCCCard extends CommunityChestCard {
 	public void cardAction() {
 		System.out.println(this.getName() + " ACTIVATED ON PLAYER: "+drawer.getName());
 		
-		List<Player> players = DomainController.getInstance().getPlayers();
+		List<Player> players = AppWindow.getInstance().ctrl.getPlayers(); //Gets the domain controller from AppWindow because of save/load issues
 		for (Player p : players) {
 			p.reduceCash(10);
 			drawer.addCash(10);
 		}
 		
-		drawer.teleportToLand(DomainController.getInstance().getBoard().getSquareByIndex(115));	
+		drawer.teleportToLand(AppWindow.getInstance().ctrl.getBoard().getSquareByIndex(115));	
 	}
 
 	@Override

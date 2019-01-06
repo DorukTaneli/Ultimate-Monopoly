@@ -95,7 +95,7 @@ public final class DomainController implements Serializable{
 	public void distributeRTCards() {
 		for(int i=0;i<players.size();i++) {
 			int len=board.getRTDeck().size();
-			int a=(int) Math.floor((Math.random() * len+1));
+			int a=(int) Math.floor((Math.random() * len));
 			players.get(i).keepCard(board.getRTDeck().get(a));
 		}
 	}

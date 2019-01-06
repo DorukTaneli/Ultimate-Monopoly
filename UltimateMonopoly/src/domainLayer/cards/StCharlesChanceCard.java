@@ -2,6 +2,7 @@ package domainLayer.cards;
 
 import domainLayer.DomainController;
 import domainLayer.squares.Square;
+import uiLayer.AppWindow;
 
 public class StCharlesChanceCard extends ChanceCard{
 
@@ -13,7 +14,7 @@ public class StCharlesChanceCard extends ChanceCard{
 	public void cardAction() {
 		System.out.println(this.getName() + " ACTIVATED ON PLAYER: "+drawer.getName());
 		
-		Square stCharles = DomainController.getInstance().getBoard().getSquareByIndex(11);
+		Square stCharles = AppWindow.getInstance().ctrl.getBoard().getSquareByIndex(11);
 		this.drawer.teleportToLand(stCharles);
 	}
 

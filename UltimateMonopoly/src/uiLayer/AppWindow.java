@@ -44,7 +44,7 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 	private int MIDLAYER;
 	private int INNERLAYER;
 	private int OUTERLAYER;
-	private DomainController ctrl;
+	public DomainController ctrl;
 	public static volatile AppWindow instance;
 
 	public static void main(String[] args) {
@@ -104,7 +104,8 @@ public class AppWindow extends JFrame implements PropertyListener,Serializable{
 
 	public static AppWindow getInstance() {
 		if(instance == null) {
-			instance = new AppWindow();
+			System.out.println("AppWindow is null");
+			//instance = new AppWindow();
 		}
 
 		return instance;

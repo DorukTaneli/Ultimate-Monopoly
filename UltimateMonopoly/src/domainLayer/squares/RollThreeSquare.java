@@ -8,6 +8,7 @@ import domainLayer.Cup;
 import domainLayer.DomainController;
 import domainLayer.Player;
 import domainLayer.cards.RollThreeCard;
+import uiLayer.AppWindow;
 
 public class RollThreeSquare extends RegularSquare{
 	int[] d={0,0,0};
@@ -20,13 +21,14 @@ public class RollThreeSquare extends RegularSquare{
 	}
 	
 	public RollThreeCard drawRollThreeCard() {
-		if(DomainController.getInstance().getRollThreeDeck().size()==0) {
+		
+		if(AppWindow.getInstance().ctrl.getRollThreeDeck().size()==0) {
 			return dummy;
 		}else {
-			int len=DomainController.getInstance().getRollThreeDeck().size();
-			int card=(int) Math.floor((Math.random() * len+1));
-			RollThreeCard drawn=DomainController.getInstance().getRollThreeDeck().get(card);
-			DomainController.getInstance().getRollThreeDeck().remove(card);
+			int len=AppWindow.getInstance().ctrl.getRollThreeDeck().size();
+			int card=(int) Math.floor((Math.random() * len));
+			RollThreeCard drawn=AppWindow.getInstance().ctrl.getRollThreeDeck().get(card);
+			AppWindow.getInstance().ctrl.getRollThreeDeck().remove(card);
 			return drawn;
 		}
 	}
@@ -38,7 +40,7 @@ public class RollThreeSquare extends RegularSquare{
 		int no1=cup.getFirstDie();
 		int no2=cup.getSecondDie();
 		int no3=cup.getThirdDie();
-		List<Player> plyrs=DomainController.getInstance().getPlayers();
+		List<Player> plyrs=AppWindow.getInstance().ctrl.getPlayers();
 		RollThreeCard drawn=drawRollThreeCard();
 		if(drawn!=dummy) {
 		for(int i=0;i<plyrs.size();i++) {
