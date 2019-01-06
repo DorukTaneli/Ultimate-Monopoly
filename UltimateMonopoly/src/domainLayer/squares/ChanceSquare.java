@@ -1,14 +1,19 @@
 package domainLayer.squares;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import domainLayer.Player;
 import domainLayer.cards.ChanceCard;
 import domainLayer.cards.GoToJailChanceCard;
+import domainLayer.cards.StCharlesChanceCard;
 
 public class ChanceSquare extends Square implements Serializable{
 	
-	ChanceCard card = new GoToJailChanceCard("Go to Jail Card", false);
+	List<ChanceCard> cards = new ArrayList<ChanceCard>();
+	ChanceCard Jailcard = new GoToJailChanceCard("Go to Jail Card", false);
+	ChanceCard StCharlescard = new StCharlesChanceCard("Go to Jail Card", false);
 
 	public ChanceSquare(String name, int index) {
 		super(name, index);

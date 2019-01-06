@@ -2,12 +2,14 @@ package domainLayer.cards;
 
 public class HolidayBonusChanceCard extends ChanceCard {
 
-	public HolidayBonusChanceCard(String name, Boolean keepable) {
-		super(name, keepable);
+	public HolidayBonusChanceCard() {
+		super("HolidayBonusChanceCard", false);
 	}
 
 	@Override
 	public void cardAction() {
+		System.out.println(this.getName() + " ACTIVATED ON PLAYER: "+drawer.getName());
+		
 		drawer.addCash(100);
 
 	}
