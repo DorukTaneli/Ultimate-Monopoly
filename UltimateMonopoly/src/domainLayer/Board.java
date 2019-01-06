@@ -30,6 +30,8 @@ public class Board {
 	/** The cup. */
 	private Cup cup = new Cup();
 	
+	private SquareFactory sf = new SquareFactory();
+	
 	/**
 	 * EFFECTS: Instantiates a new board by building and linking squares.
 	 */
@@ -119,7 +121,8 @@ public class Board {
 	 * 			Calls separate square creating methods to create each square on the board.
 	 */
 	public void buildSquares() {
-		Square sq = new GoSquare("Go Square", 0);
+//		Square sq = new GoSquare("Go Square", 0);
+		Square sq = sf.getSquare("Go", "Go Square", 0, 0, 0, null);
 		squares.add(sq);
 		buildPS("Mediterranean Avenue", 1, 60, 2, "purple");
 		buildCCS("Community Chest", 2);
@@ -255,7 +258,7 @@ public class Board {
 	 * @param color group of the property related to that square
 	 */
 	public void buildPS(String name, int ind, int pr, int rent, String color) {
-		Square s = new DeedSquare(name, ind, pr, rent, color);
+		Square s = sf.getSquare("PS", name, ind, pr, rent, color);
 		squares.add(s);
 	}
 	
@@ -267,7 +270,7 @@ public class Board {
 	 * @param index of the square
 	 */
 	public void buildRS(String name, int ind) {
-		Square s = new RegularSquare(name, ind);
+		Square s = sf.getSquare("RS", name, ind, 0, 0, null);
 		squares.add(s);
 	}
 	
@@ -280,7 +283,7 @@ public class Board {
 	 * @param index of the square
 	 */
 	public void buildRTS(String name, int ind) {
-		Square s = new RollThreeSquare(name, ind);
+		Square s = sf.getSquare("RTS", name, ind, 0, 0, null);
 		squares.add(s);
 		}
 
@@ -293,7 +296,7 @@ public class Board {
 	 * @param price of the transit property related to that square
 	 */
 	public void buildTransit(String name,int ind,int pr) {
-		Square s = new TransitSquare(name,ind,pr,25);
+		Square s = sf.getSquare("Transit", name, ind, pr, 25, null);
 		squares.add(s);
 		
 	}
@@ -306,7 +309,7 @@ public class Board {
 	 * @param index of the square
 	 */
 	public void buildChance(String name, int index) {
-		Square s = new ChanceSquare(name,index);
+		Square s = sf.getSquare("Chance", name, index, 0, 0, null);
 		squares.add(s);
 	}
 	
@@ -318,8 +321,7 @@ public class Board {
 	 * @param index of the square
 	 */
 	public void buildCCS(String name, int index) { //COMMUNUTY CHEST SQUARE
-		Square s = new CommunityChestSquare(name,index);
-
+		Square s = sf.getSquare("CCS", name, index, 0, 0, null);
 		squares.add(s);
 	}
 	
