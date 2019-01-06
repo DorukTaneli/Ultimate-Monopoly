@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import uiLayer.AppWindow;
+import uiLayer.animations.*;
 
 public class MovePiece {
 
